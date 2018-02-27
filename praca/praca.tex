@@ -15,7 +15,7 @@
   parkingowych na~Miejscach Obsługi Podróżnych. Pozostałe dwie części to
   aplikacja mobilna oraz strona internetowa przeznaczone dla kierowców
   poruszających się po drogach. Informują one o~zajętości miejsc parkingowych
-  na każdym MOPie w danym momencie oraz predyckję ich zajętości w niedalekiej
+  na każdym MOPie w danym momencie oraz predyckji ich zajętości w niedalekiej
   przyszłości.  
   %TODO napisać coś jak będzie co streszczać 
 \end{abstract}
@@ -24,47 +24,8 @@
 %\listoffigures
 %\listoftables
 
-\chapter*{Wprowadzenie}
-\addcontentsline{toc}{chapter}{Wprowadzenie}
-
-\section*{Rozwój sieci drogowej w Polsce}
-Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w okresie PRL i pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
-Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
-\begin{figure}[h]
-\caption{Rozwój sieci dróg ekspresowych i autostrad w Polsce na początku XX w.}
-\includegraphics[width=\textwidth]{images/1024px-PL-Motorways.png}
-\end{figure} \newline
-Ostatnie lata to okres szczególnie intensywnego rozwoju sieci drogowej w Polsce. Budowa infrastruktury wiąże się również z potrzebą zapewnienia podróżnym bezpieczeństwa i komfortu.
-\begin{figure}[h]
-\caption{Sieć autostrad i dróg ekspresowych w Polsce (styczeń 2018r.). Na zielono - odcinki zrealizowane, na czerwono - odcinki w budowie, na szaro - odcinki planowane.}
-\includegraphics[width=\textwidth]{images/2018.png}
-\end{figure}
-
-\section*{Miejsca Obsługi Podróżnych}
-Miejsce Obsługi Podróżnych (\textbf{MOP}) to teren wydzielony w pasie drogowym (w bliskim sąsiedztwie drogi), wyposażony w parking oraz w infrastrukturę zapewniającą komfort i odpoczynek podróżnym\cite{gddkia-mop}. MOP-y powstają tylko przy autostradach i drogach ekspresowych.\newline
-MOP-y w Polsce dzielimy są na trzy kategorie:
-\begin{enumerate}
-    \item \textbf{MOP kategorii I} - o funkcji wypoczynkowej, wyposażony w stanowiska postojowe (parking), jezdnie manewrowe, urządzenia wypoczynkowe, sanitarne i oświetlenie; dopuszcza się wyposażenie w obiekty małej gastronomii.
-    \item \textbf{MOP kategorii II} - - o funkcji wypoczynkowo-usługowej, wyposażony w obiekty, o których mowa
-w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastronomiczno-handlowe, punkty informacji turystycznej.
-    \item \textbf{MOP kategorii III} - - o funkcji wypoczynkowej i usługowej, wyposażony w obiekty, o których mowa w punkcie 2., obiekty noclegowe oraz inne obiekty handlowo-usługowe w zależności od potrzeb.
-\end{enumerate}
-\begin{figure}[h]
-\caption{Aktualne (styczeń 2018r.) pozycje MOP-ów w Polsce (na niebiesko). MOP-y planowane (na czerwono).}
-\includegraphics[width=\textwidth]{images/mopymap.png}
-\end{figure}
-
-\section*{Problemy związane z budową MOP-ów}
-Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w Polsce stwarza szereg problemów z nimi związanych:
-\begin{enumerate}
-    \item \textbf{Problemy administracyjno-prawne} - GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencalnych najemców.
-    \item \textbf{Lokalizacja MOP-ów} - efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
-    \item \textbf{Liczba miejsc parkingowych i ich układ} - MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
-\end{enumerate}
-
-\chapter{Podstawowe pojęcia}\label{r:pojecia}
-
-\section{Definicje}
+\chapter*{Podstawowe pojęcia}\label{r:pojecia}
+\addcontentsline{toc}{chapter}{Podstawowe pojęcia}
 
 \begin{defi}\label{GDDKiA}
   \emph{GDDKiA} - Generalna Dyrekcja Dróg Krajowych i Autostrad.
@@ -86,51 +47,58 @@ Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost lic
   \emph{OSM} - Serwis OpenStreetMap (http://openstreetmap.org).
 \end{defi}
 
-\section{Blabalizator różnicowy}
+\chapter*{Wprowadzenie}
+\addcontentsline{toc}{chapter}{Wprowadzenie}
 
-Teoretycy blabalii (zob. np. pracę~\cite{grglo}) zadowalają się
-niekonstruktywnym opisem natury fetorów.
+\section*{Rozwój sieci drogowej w Polsce}
+Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w okresie PRL i pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
+Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
+\begin{figure}[h]
+\caption{Rozwój sieci dróg ekspresowych i autostrad w Polsce na początku XX w.}
+\includegraphics[width=\textwidth]{images/1024px-PL-Motorways.png}
+\end{figure} \newline
+Ostatnie lata to okres szczególnie intensywnego rozwoju sieci drogowej w Polsce. Budowa infrastruktury wiąże się również z potrzebą zapewnienia podróżnym bezpieczeństwa i komfortu.
+\begin{figure}[h]
+\caption{Sieć autostrad i dróg ekspresowych w Polsce (styczeń 2018r.). Na zielono - odcinki zrealizowane, na czerwono - odcinki w budowie, na szaro - odcinki planowane.}
+\includegraphics[width=\textwidth]{images/2018.png}
+\end{figure}
 
-Podstawowym narzędziem blabalii empirycznej jest blabalizator
-różnicowy.  Przyrząd ten pozwala w~sposób przybliżony uzyskać
-współczynniki rozkładu Głombaskiego dla fetorów bazowych
-i~harmonicznych.  Praktyczne znaczenie tego procesu jest oczywiste:
-korzystając z~reperkusatywności pozwala on przejść do przestrzeni
-$\Lambda^{\nabla}$, a~tym samym znaleźć retroizotonalne współczynniki
-semi-quasi-celibatu dla klatek Rozkoszy (zob.~\cite{JR}).
-
-Klasyczne algorytmy dla blabalizatora różnicowego wykorzystują:
+\section*{Miejsca Obsługi Podróżnych}
+Miejsce Obsługi Podróżnych (\textbf{MOP}) to teren wydzielony w pasie drogowym (w bliskim sąsiedztwie drogi), wyposażony w parking oraz w infrastrukturę zapewniającą komfort i odpoczynek podróżnym\cite{gddkia-mop}. MOP-y powstają tylko przy autostradach i drogach ekspresowych.\newline
+MOP-y w Polsce dzielimy na trzy kategorie:
 \begin{enumerate}
-\item dualizm falowo-korpuskularny, a w szczególności
-  \begin{enumerate}
-  \item korpuskularną naturę fetorów,
-  \item falową naturę blaba,
-  \item falowo-korpuskularną naturę gryzmołów;
-  \end{enumerate}
-\item postępującą gryzmolizację poszczególnych dziedzin nauki, w
-  szczególności badań systemowych i rozcieńczonych;
-\item dynamizm fazowy stetryczenia parajonizacyjnego;
-\item wreszcie tradycyjne opozycje:
-  \begin{itemize}
-  \item duch --- bakteria,
-  \item mieć --- chcieć,
-  \item myśl --- owsianka,
-  \item parafina --- durszlak\footnote{Więcej o tym przypadku --- patrz
-      prace Gryzybór-Głombaskiego i innych teoretyków nurtu
-      teoretyczno-praktycznego badań w~Instytucie Podstawowych
-      Problemów Blabalii w~Fifie.},
-  \item logos --- termos%\footnote{Szpotański}
-  \end{itemize}
-  z właściwym im przedziwym dynamizmem.
+    \item \textbf{MOP kategorii I} - o funkcji wypoczynkowej, wyposażony w stanowiska postojowe (parking), jezdnie manewrowe, urządzenia wypoczynkowe, sanitarne i oświetlenie; dopuszcza się wyposażenie w obiekty małej gastronomii.
+    \item \textbf{MOP kategorii II} - - o funkcji wypoczynkowo-usługowej, wyposażony w obiekty, o których mowa
+w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastronomiczno-handlowe, punkty informacji turystycznej.
+    \item \textbf{MOP kategorii III} - - o funkcji wypoczynkowej i usługowej, wyposażony w obiekty, o których mowa w punkcie 2., obiekty noclegowe oraz inne obiekty handlowo-usługowe w zależności od potrzeb.
+\end{enumerate}
+\begin{figure}[h]
+\caption{Aktualne (styczeń 2018r.) pozycje MOP-ów w Polsce (na niebiesko). MOP-y planowane (na czerwono).}
+\includegraphics[width=\textwidth]{images/mopymap.png}
+\end{figure}
+
+\section*{Problemy związane z budową MOP-ów}
+Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w Polsce stwarza szereg problemów z nimi związanych:
+\begin{enumerate}
+    \item \textbf{Problemy administracyjno-prawne} - GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencalnych najemców.
+    \item \textbf{Lokalizacja MOP-ów} - efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
+    \item \textbf{Liczba miejsc parkingowych i ich układ} - MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
 \end{enumerate}
 
-\begin{figure}[tp]
-  \centering
-  \framebox{\vbox to 4cm{\vfil\hbox to
-      7cm{\hfil\tiny.\hfil}\vfil}}
-  \caption{Artystyczna wizja blaba w~obrazie węgierskiego artysty
-    Josipa~A. Rozkoszy pt.~,,Blaba''}
-\end{figure}
+\section*{coś o mopsimie}
+
+\section*{coś o mopniku}
+
+\section*{Zajętość MOP-ów i dostępne usługi}
+Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest dobór odpowiedniej liczby miejsc parkingowych. Dodatkowo, miejsca te należy odpowiednio podzielić pomiędzy różne typy pojazdów: samochody osobowe, samochody ciężarowe, autobusy, pojazdy przewożące substancje niebezpieczne itd. Podróżni mają też różne potrzeby związane z postojem - od szybkiego zatankowania samochodu, przez obiad z rodziną na świeżym powietrzu, do spędzenia nocy w kabinie. \newline Aktualnie informację o znajdujących się na MOP-ie usługach można uzyskać ze znaków informacyjnych umieszczonych kilka kilometrów przed zjazdem. Jednak takie oznaczenia nie odpowiadają na kilka ważnych pytań, które możemy mieć na dowolnym etapie podróży:
+\begin{enumerate}
+	\item Za ile kilometrów znajduje się najbliższa stacja benzynowa? 
+	\item Czy starczy mi paliwa do następnej, ponieważ tutaj jest duża kolejka?
+	\item Czy na tym MOP-ie jest monitoring?
+	\item Czy na tym MOP-ie są wolne miejsca parkingowe? (ten problem jest ważniejszy z punktu widzenia kierowców pojazdów wielkogabarytowych)
+	\item Jaka będzie zajętość miejsc parkingowych za godzinę?
+\end{enumerate}
+Odpowiedzią na te wszystkie pytania będzie MOPSIK (MOP - System Informowania Kierowców) - aplikacja mobilna i strona internetowa.
 
 \chapter{Mopnik}\label{r:mopnik}
 
