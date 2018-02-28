@@ -15,7 +15,7 @@
   parkingowych na~Miejscach Obsługi Podróżnych. Pozostałe dwie części to
   aplikacja mobilna oraz strona internetowa przeznaczone dla kierowców
   poruszających się po drogach. Informują one o~zajętości miejsc parkingowych
-  na każdym MOPie w danym momencie oraz predyckji ich zajętości w niedalekiej
+  na każdym MOPie w danym momencie oraz predykcji ich zajętości w niedalekiej
   przyszłości.  
   %TODO napisać coś jak będzie co streszczać 
 \end{abstract}
@@ -24,8 +24,8 @@
 %\listoffigures
 %\listoftables
 
-\chapter*{Podstawowe pojęcia}\label{r:pojecia}
-\addcontentsline{toc}{chapter}{Podstawowe pojęcia}
+\chapter*{Słowniczek}\label{r:pojecia}
+\addcontentsline{toc}{chapter}{Słowniczek}
 
 \begin{defi}\label{GDDKiA}
   \emph{GDDKiA} - Generalna Dyrekcja Dróg Krajowych i Autostrad.
@@ -47,10 +47,9 @@
   \emph{OSM} - Serwis OpenStreetMap (http://openstreetmap.org).
 \end{defi}
 
-\chapter*{Wprowadzenie}
-\addcontentsline{toc}{chapter}{Wprowadzenie}
+\chapter{Wprowadzenie}
 
-\section*{Rozwój sieci drogowej w Polsce}
+\section{Rozwój sieci drogowej w Polsce}
 Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w okresie PRL i pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
 Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
 \begin{figure}[h]
@@ -63,7 +62,7 @@ Ostatnie lata to okres szczególnie intensywnego rozwoju sieci drogowej w Polsce
 \includegraphics[width=\textwidth]{images/2018.png}
 \end{figure}
 
-\section*{Miejsca Obsługi Podróżnych}
+\section{Miejsca Obsługi Podróżnych}
 Miejsce Obsługi Podróżnych (\textbf{MOP}) to teren wydzielony w pasie drogowym (w bliskim sąsiedztwie drogi), wyposażony w parking oraz w infrastrukturę zapewniającą komfort i odpoczynek podróżnym\cite{gddkia-mop}. MOP-y powstają tylko przy autostradach i drogach ekspresowych.\newline
 MOP-y w Polsce dzielimy na trzy kategorie:
 \begin{enumerate}
@@ -77,19 +76,28 @@ w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastr
 \includegraphics[width=\textwidth]{images/mopymap.png}
 \end{figure}
 
-\section*{Problemy związane z budową MOP-ów}
+\section{Problemy związane z budową MOP-ów}
 Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w Polsce stwarza szereg problemów z nimi związanych:
 \begin{enumerate}
-    \item \textbf{Problemy administracyjno-prawne} - GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencalnych najemców.
+    \item \textbf{Problemy administracyjno-prawne} - GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencjalnych najemców.
     \item \textbf{Lokalizacja MOP-ów} - efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
     \item \textbf{Liczba miejsc parkingowych i ich układ} - MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
 \end{enumerate}
 
-\section*{coś o mopsimie}
+\section{Symulacja ruchu drogowego w Polsce}
+Efektywne rozmieszczenie coraz większej liczby MOP-ów jest jednym z głównych wyzwań, stojących przed planistami dróg. Powinno ono uwzględniać wszystkie kwestie poruszone w poprzednim rozdziale. Jednak rozwój sieci drogowej w Polsce na niespotykaną wcześniej skalę sprawia, że zadanie to jest coraz trudniejsze. Może się okazać, że dane dotyczące natężenia ruchu na danym odcinku drogi, odległości od najbliższych MOP-ów czy węzłów komunikacyjnych są niewystarczające i trudno na ich podstawie określić wykorzystanie MOP-a w okresach wzmożonego ruchu sezonowego lub w przyszłości, wraz z dalszym rozwojem infrastruktury drogowej. Przydatnymi danymi, wykorzystywanymi w modelowaniu ruchu drogowego, są macierze podróży, określające liczbę pojazdów poruszających się pomiędzy danymi parami punktów w zadanym okresie. Planista dróg, wyposażony w macierze podróży, chciałby na ich podstawie wiedzieć:
+\begin{enumerate}
+	\item Jakie jest natężenie ruchu na poszczególnych odcinkach drogi?
+	\item Jak dodanie lub usunięcie (np. w wyniku tymczasowego zatrzymania ruchu) odcinka drogi wpłynie na to natężenie?
+	\item Jaka część podróżnych, jadąca danym odcinkiem drogi, chciałaby skorzystać z MOP-a?
+\end{enumerate}
+Pomocny w przeprowadzeniu tej analizy może okazać się \textbf{MOPSim} - program komputerowy symulujący ruch pojazdów na
+sieci dróg krajowych i autostrad w Polsce.
 
-\section*{coś o mopniku}
+\section{coś o mopniku}
 
-\section*{Zajętość MOP-ów i dostępne usługi}
+\section{Zajętość MOP-ów i dostępne usługi}
+
 Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest dobór odpowiedniej liczby miejsc parkingowych. Dodatkowo, miejsca te należy odpowiednio podzielić pomiędzy różne typy pojazdów: samochody osobowe, samochody ciężarowe, autobusy, pojazdy przewożące substancje niebezpieczne itd. Podróżni mają też różne potrzeby związane z postojem - od szybkiego zatankowania samochodu, przez obiad z rodziną na świeżym powietrzu, do spędzenia nocy w kabinie. \newline Aktualnie informację o znajdujących się na MOP-ie usługach można uzyskać ze znaków informacyjnych umieszczonych kilka kilometrów przed zjazdem. Jednak takie oznaczenia nie odpowiadają na kilka ważnych pytań, które możemy mieć na dowolnym etapie podróży:
 \begin{enumerate}
 	\item Za ile kilometrów znajduje się najbliższa stacja benzynowa? 
@@ -98,7 +106,8 @@ Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest 
 	\item Czy na tym MOP-ie są wolne miejsca parkingowe? (ten problem jest ważniejszy z punktu widzenia kierowców pojazdów wielkogabarytowych)
 	\item Jaka będzie zajętość miejsc parkingowych za godzinę?
 \end{enumerate}
-Odpowiedzią na te wszystkie pytania będzie MOPSIK (MOP - System Informowania Kierowców) - aplikacja mobilna i strona internetowa.
+
+Odpowiedzią na te pytania będzie \textbf{MOPSIK} (MOP - System Informowania Kierowców) - aplikacja mobilna i strona internetowa.
 
 \chapter{Mopnik}\label{r:mopnik}
 
