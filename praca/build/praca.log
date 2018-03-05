@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.29)  27 FEB 2018 12:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.29)  5 MAR 2018 15:19
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -639,65 +639,54 @@ l.21 \end{abstract}
 ] [5] [6
 
 ]
-<images/1024px-PL-Motorways.png, id=128, 1027.84pt x 602.25pt>
+Rozdzia\l  1.
+<images/1024px-PL-Motorways.png, id=163, 1027.84pt x 602.25pt>
 File: images/1024px-PL-Motorways.png Graphic file (type png)
 
 <use images/1024px-PL-Motorways.png>
-Package pdftex.def Info: images/1024px-PL-Motorways.png used on input line 58.
+Package pdftex.def Info: images/1024px-PL-Motorways.png used on input line 57.
 (pdftex.def)             Requested size: 441.01773pt x 258.41107pt.
 
-<images/2018.png, id=130, 778.91pt x 725.71124pt>
+<images/2018.png, id=165, 778.91pt x 725.71124pt>
 File: images/2018.png Graphic file (type png)
  <use images/2018.png>
-Package pdftex.def Info: images/2018.png used on input line 63.
+Package pdftex.def Info: images/2018.png used on input line 62.
 (pdftex.def)             Requested size: 441.01773pt x 410.89134pt.
 
+Underfull \vbox (badness 1817) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7 <./images/1024px-PL-Motorways.png>] [8 <./images/2018.png>]
-<images/mopymap.png, id=151, 983.675pt x 918.43124pt>
+ [7 <./images/1024px-PL-Motorways.png>] [8 <./images/2018.png>]
+<images/mopymap.png, id=184, 983.675pt x 918.43124pt>
 File: images/mopymap.png Graphic file (type png)
  <use images/mopymap.png>
-Package pdftex.def Info: images/mopymap.png used on input line 77.
+Package pdftex.def Info: images/mopymap.png used on input line 76.
 (pdftex.def)             Requested size: 441.01773pt x 411.7627pt.
 
-[9 <./images/mopymap.png>] [10]
-Rozdzia\l  1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 140.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 140.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 140.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\sigma' on input line 140.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 140.
-
-[11
-
-] [12]
-Rozdzia\l  2.
-
-LaTeX Warning: Citation `beaman' on page 13 undefined on input line 167.
-
-[13
-
-] [14
+[9 <./images/mopymap.png>] [10] [11] [12
 
 ]
-Rozdzia\l  3.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 182.
+Rozdzia\l  2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 149.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 149.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [15] [16
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 149.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\sigma' on input line 149.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 149.
+
+[13] [14]
+Rozdzia\l  3.
+[15
+
+] [16
 
 ]
 Rozdzia\l  4.
@@ -705,85 +694,89 @@ Rozdzia\l  4.
 
 ]
 Rozdzia\l  5.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 203.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 196.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+) [19] [20
+
+]
+Rozdzia\l  6.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 216.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 203.
- [19] [20
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 216.
+ [21] [22
 
 ]
 Dodatek A.
 
 Package hyperref Warning: Composite letter `\textasciimacron+o'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciimacron' on input line 216.
+(hyperref)                removing `\textasciimacron' on input line 229.
 
-[21] [22
+[23] [24
 
 ]
 Dodatek B.
-[23] [24
+[25] [26
 
 ]
 Dodatek C.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 259.
+(hyperref)                removing `math shift' on input line 272.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\sigma' on input line 259.
+(hyperref)                removing `\sigma' on input line 272.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 259.
+(hyperref)                removing `math shift' on input line 272.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 259.
+(hyperref)                removing `math shift' on input line 272.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 259.
+(hyperref)                removing `\rho' on input line 272.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 259.
+(hyperref)                removing `math shift' on input line 272.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <24.88> on input line 259.
+(Font)              <24.88> on input line 272.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 259.
+(Font)              <20.74> on input line 272.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 259.
-[25] [26
+(Font)              <17.28> on input line 272.
+[27] [28
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 330.
- [27]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 330.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
+ [29]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
  (build/praca.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 330.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 330.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
 Package rerunfilecheck Info: File `praca.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 330.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
  ) 
 Here is how much of TeX's memory you used:
- 6363 strings out of 492995
- 89790 string characters out of 6132704
- 183791 words of memory out of 5000000
- 9754 multiletter control sequences out of 15000+600000
+ 6385 strings out of 492995
+ 89991 string characters out of 6132704
+ 184711 words of memory out of 5000000
+ 9760 multiletter control sequences out of 15000+600000
  21989 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,8n,31p,792b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,8n,31p,967b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
@@ -804,10 +797,10 @@ f-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf-di
 st/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist
 /fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on build/praca.pdf (29 pages, 789649 bytes).
+Output written on build/praca.pdf (31 pages, 792842 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 82 named destinations out of 1000 (max. 500000)
- 136 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 408 PDF objects out of 1000 (max. 8388607)
+ 347 compressed objects within 4 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
