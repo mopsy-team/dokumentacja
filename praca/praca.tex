@@ -66,10 +66,10 @@ Ostatnie lata to okres szczególnie intensywnego rozwoju sieci drogowej w Polsce
 Miejsce Obsługi Podróżnych (\textbf{MOP}) to teren wydzielony w pasie drogowym (w bliskim sąsiedztwie drogi), wyposażony w parking oraz w infrastrukturę zapewniającą komfort i odpoczynek podróżnym\cite{gddkia-mop}. MOP-y powstają tylko przy autostradach i drogach ekspresowych.\newline
 MOP-y w Polsce dzielimy na trzy kategorie:
 \begin{enumerate}
-    \item \textbf{MOP kategorii I} - o funkcji wypoczynkowej, wyposażony w stanowiska postojowe (parking), jezdnie manewrowe, urządzenia wypoczynkowe, sanitarne i oświetlenie; dopuszcza się wyposażenie w obiekty małej gastronomii.
-    \item \textbf{MOP kategorii II} - - o funkcji wypoczynkowo-usługowej, wyposażony w obiekty, o których mowa
+    \item \textbf{MOP kategorii I} -- o funkcji wypoczynkowej, wyposażony w stanowiska postojowe (parking), jezdnie manewrowe, urządzenia wypoczynkowe, sanitarne i oświetlenie; dopuszcza się wyposażenie w obiekty małej gastronomii.
+    \item \textbf{MOP kategorii II} -- o funkcji wypoczynkowo-usługowej, wyposażony w obiekty, o których mowa
 w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastronomiczno-handlowe, punkty informacji turystycznej.
-    \item \textbf{MOP kategorii III} - - o funkcji wypoczynkowej i usługowej, wyposażony w obiekty, o których mowa w punkcie 2., obiekty noclegowe oraz inne obiekty handlowo-usługowe w zależności od potrzeb.
+    \item \textbf{MOP kategorii III} -- o funkcji wypoczynkowej i usługowej, wyposażony w obiekty, o których mowa w punkcie 2., obiekty noclegowe oraz inne obiekty handlowo-usługowe w zależności od potrzeb.
 \end{enumerate}
 \begin{figure}[h]
 \caption{Aktualne (styczeń 2018r.) pozycje MOP-ów w Polsce (na niebiesko). MOP-y planowane (na czerwono).}
@@ -94,7 +94,31 @@ Efektywne rozmieszczenie coraz większej liczby MOP-ów jest jednym z głównych
 Pomocny w przeprowadzeniu tej analizy może okazać się \textbf{MOPSim} - program komputerowy symulujący ruch pojazdów na
 sieci dróg krajowych i autostrad w Polsce.
 
-\section{coś o mopniku}
+\section{Przewidywanie liczby potrzebnych miejsc parkingowych}
+Mając dane dotyczące natężenia ruchu na danym odcinku drogi (pochodzące z
+przeprowadzonych pomiarów lub symulacji) można spróbować określić sumaryczną
+liczbę miejsc parkingowych potrzebnych na tym odcinku. W tym celu powszechnie
+wykorzystuje się różne metodyki, będące zwykle prostymi wzorami matematycznymi.
+
+Przykład metodyki: 
+$$ P_T = N_T \times SDR_T \times WS_T $$
+gdzie:
+\begin{itemize}
+  \item $T$ -- typ pojazdu
+  \item $P_T$ -- liczba potrzebnych miejsc parkingowych na 15km drogi
+  \item $N_T$ -- wskaźnik przeliczeniowy uwzględniający np. typ MOP-u
+  \item $SDR_T$ -- średni dobowy ruch w roku w analizowanym kierunku 
+  \item $WS_T$ -- wskaźnik zmienności sezonowej
+\end{itemize}
+Program \textbf{MOPNik} będzie miał za zadanie umożliwienie korzystania z
+takich metodyk -- ich kalibracji (ręcznego wprowadzania niektórych parametrów),
+wczytywania potrzebnych danych (np. średniodobowego natężęnia ruchu)
+oraz obliczania liczby potrzebnych miejsc parkingowych. \\
+Program będzie też umożliwiał integrację z systemem \textbf{MOPSim} dzięki
+czemu możliwe będzie zastosowanie wyżej wymienionych metodyk do danych
+pochodzących z symulacji, jeśli okaże się, że wyniki rzeczywistych pomiarów są
+niepełne. 
+
 
 \section{Zajętość MOP-ów i dostępne usługi}
 
@@ -111,59 +135,24 @@ Odpowiedzią na te pytania będzie \textbf{MOPSIK} (MOP - System Informowania Ki
 
 \chapter{Mopnik}\label{r:mopnik}
 
-\section{Podejście wprost}
-
-Najprostszym sposobem wykonania blabalizy jest siłowe przeszukanie
-całej przestrzeni rozwiązań.  Jednak, jak łatwo wyliczyć, rozmiar
-przestrzeni rozwiązań rośnie wykładniczo z~liczbą fetorów bazowych.
-Tak więc przegląd wszystkich rozwiązań sprawdza się jedynie dla bardzo
-prostych przestrzeni lamblialnych.  Oznacza to, że taka metoda ma
-niewielkie znaczenie praktyczne --- w~typowym przypadku z~życia trzeba
-rozważać przestrzenie lamblialne wymiaru rzędu 1000.
-
-W~literaturze można znaleźć kilka prób opracowania heurystyk dla
-problemu blabalizy (por. \cite{heu}).  Korzystając z~heurystyk daje
-się z~pewnym trudem dokonać blabalizy w~przestrzeni o~np.~500 fetorach
-bazowych.  Należy jednak pamiętać, że heurystyka nie daje gwarancji
-znalezienia najlepszego rozwiązania.  Fifak w~pracy~\cite{ff-sr}
-podaje, jak dla dowolnie zadanej funkcji oceniającej skonstruować
-dane, dla których rozwiązanie wygenerowane przez algorytm heurystyczny
-jest dowolnie odległe od rzeczywistego.
-
-\section{Metody wykorzystujące teorię Głombaskiego}
-
-Teoria Głombaskiego (zob.~\cite{grglo}) dostarcza eleganckiego
-narzędzia opisu przejścia do przestrzeni $\Lambda^{\nabla}$.
-Wystarczy mianowicie przedstawić fetory bazowe wyjściowej przestrzeni
-lamblialnej w~nieskończonej bazie tak zwanych wyższych aromatów.
-(Formalną definicję tego pojęcia przedstawię w~rozdziale poświęconym
-teorii Fifaka).  Podstawową cechą wyższych aromatów jest ulotność.  To
-zaś oznacza, że odpowiednio dobierając współczynniki przejścia do
-przestrzeni wyższych aromatów można zagwarantować dowolną z~góry
-zadaną dokładność przybliżonego rozwiązania problemu blabalizy.
-
-Oczywiście ze względu na nieskończony wymiar przestrzeni wyższych
-aromatów koszt poszukiwania współczynników blabalizy jest liniowy ze
-względu na wymiar wyjściowej przestrzeni lamblialnej.
-
-\section{Metody wykorzystujące własności fetorów $\sigma$}
-
-Najchętniej wykorzystywaną przestrzenią wyższych aromatów jest
-przestrzeń fetorów~$\sigma$.  Fetory $\sigma$ dają szczególnie prostą
-bazę podprzestrzeni widłowej.  Wiąże się to z~faktem, że w~tym przypadku
-fetory harmoniczne wyższych rzędów są pomijalne (rzędu $2^{-t^3}$,
-gdzie $t$ jest wymiarem wyjściowej przestrzeni lamblialnej).
-
-Niestety z~fetorami $\sigma$ wiąże się też przykre ograniczenie: można
-wykazać (zob.~\cite[s. 374]{ff-sr}), że dla dowolnie dobranej bazy
-w~podprzestrzeni widłowej istnieje ograniczenie dolne w~metryce sierpa
-na odległość rzutu dokładnego rozwiązania problemu blabalizy na
-podprzestrzeń widłową.  Ponieważ rzut ten stanowi najlepsze
-przybliżone rozwiązanie, jakie można osiągnąć nie naruszając aksjomatu
-reperkusatywności, więc istnieje pewien nieprzekraczalny próg
-dokładności dla blabalizy wykonanej przez przejście do przestrzeni
-fetorów $\sigma$.  Wartość retroinicjalną tego progu nazywa się
-\textit{reziduum blabicznym}.
+\section{Przypadki użycia}
+Inżynier GDDKiA może:
+\begin{enumerate}
+  \item Wprowadzać dane dotyczące \textbf{SDR} oraz położenie MOP-ów z pliku.
+  \item Wyświetlić wprowadzone dane na mapie.
+  \item Wybrać metodykę, ustawić jej parametry i na jej podstawie wyznaczyć
+    liczbę potrzebnych miejsc parkingowych na odcinku drogi oraz na konkretnym
+    MOPie.
+  \item Wyświetlić wyniki na mapie.
+  \item Edytować sieć drogową. 
+  \item Wyświetlić wyników symulacji przeprowadzonych za pomocą systemu
+    \textbf{MOPSim} dotyczących:
+    \begin{enumerate}
+      \item Długo- i krótkoterminowych predykcji \textbf{SDR}.
+      \item Krótkoterminowej predykcji zajętości MOPów.
+    \end{enumerate}
+  \item Zapisać wyniki przeprowadzanych analiz do pliku.
+\end{enumerate}
 
 \chapter{Mopsim}\label{r:mopsim}
 
