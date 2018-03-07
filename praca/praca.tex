@@ -27,25 +27,13 @@
 \chapter*{Słowniczek}\label{r:pojecia}
 \addcontentsline{toc}{chapter}{Słowniczek}
 
-\begin{defi}\label{GDDKiA}
-  \emph{GDDKiA} - Generalna Dyrekcja Dróg Krajowych i Autostrad.
-\end{defi}
-
-\begin{defi}\label{MOP}
-  \emph{MOP} - Miejsce Obsługi Podróżnych.
-\end{defi}
-
-\begin{defi}\label{SDR}
-  \emph{SDR} - Średniodobowe natężenie ruchu.
-\end{defi}
-
-\begin{defi}\label{GUI}
-  \emph{GUI} - Graficzny interfejs użytkownika.
-\end{defi}
-
-\begin{defi}\label{OSM}
-  \emph{OSM} - Serwis OpenStreetMap (http://openstreetmap.org).
-\end{defi}
+\begin{enumerate}
+  \item\emph{GDDKiA} - Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)
+  \item\emph{MOP} - Miejsce Obsługi Podróżnych
+  \item\emph{SDR} - Średniodobowe natężenie ruchu
+  \item\emph{GUI} - Graficzny interfejs użytkownika
+  \item\emph{OSM} - Serwis OpenStreetMap (http://openstreetmap.org)
+\end{enumerate}
 
 \chapter{Wprowadzenie}
 
@@ -178,6 +166,18 @@ Dodatkowo, w aplikacji mobilnej:
 \item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z listy zapisanych.
 \end{enumerate}
 
+\section{Strona serwerowa - API}
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOPach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
+Predykcja zajętości MOPów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOPach oraz danych zbieranych za pomocą kamer.
+Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
+
+\section{Przypadki użycia}
+Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
+\begin{enumerate}
+\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOPach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
+\item Pobrać dane o bieżącej zajętości MOPów generowane na postawie TODO
+\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji opisywanych szerzej w TODO
+\end{enumerate}
 \chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
 
 Program przygotowany dla systemu operacyjnego M\$ Windows uruchamia
