@@ -28,23 +28,23 @@
 \addcontentsline{toc}{chapter}{Słowniczek}
 
 \begin{defi}\label{GDDKiA}
-  \emph{GDDKiA} - Generalna Dyrekcja Dróg Krajowych i Autostrad.
+  \emph{GDDKiA} -- Generalna Dyrekcja Dróg Krajowych i Autostrad.
 \end{defi}
 
 \begin{defi}\label{MOP}
-  \emph{MOP} - Miejsce Obsługi Podróżnych.
+  \emph{MOP} -- Miejsce Obsługi Podróżnych.
 \end{defi}
 
 \begin{defi}\label{SDR}
-  \emph{SDR} - Średniodobowe natężenie ruchu.
+  \emph{SDR} -- Średniodobowe natężenie ruchu.
 \end{defi}
 
 \begin{defi}\label{GUI}
-  \emph{GUI} - Graficzny interfejs użytkownika.
+  \emph{GUI} -- Graficzny interfejs użytkownika.
 \end{defi}
 
 \begin{defi}\label{OSM}
-  \emph{OSM} - Serwis OpenStreetMap (http://openstreetmap.org).
+  \emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org).
 \end{defi}
 
 \chapter{Wprowadzenie}
@@ -58,7 +58,7 @@ Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg eksp
 \end{figure} \newline
 Ostatnie lata to okres szczególnie intensywnego rozwoju sieci drogowej w Polsce. Budowa infrastruktury wiąże się również z potrzebą zapewnienia podróżnym bezpieczeństwa i komfortu.
 \begin{figure}[h]
-\caption{Sieć autostrad i dróg ekspresowych w Polsce (styczeń 2018r.). Na zielono - odcinki zrealizowane, na czerwono - odcinki w budowie, na szaro - odcinki planowane.}
+\caption{Sieć autostrad i dróg ekspresowych w Polsce (styczeń 2018r.). Na zielono -- odcinki zrealizowane, na czerwono -- odcinki w budowie, na szaro -- odcinki planowane.}
 \includegraphics[width=\textwidth]{images/2018.png}
 \end{figure}
 
@@ -79,9 +79,9 @@ w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastr
 \section{Problemy związane z budową MOP-ów}
 Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w Polsce stwarza szereg problemów z nimi związanych:
 \begin{enumerate}
-    \item \textbf{Problemy administracyjno-prawne} - GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencjalnych najemców.
-    \item \textbf{Lokalizacja MOP-ów} - efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
-    \item \textbf{Liczba miejsc parkingowych i ich układ} - MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
+    \item \textbf{Problemy administracyjno-prawne} -- GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencjalnych najemców.
+    \item \textbf{Lokalizacja MOP-ów} -- efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
+    \item \textbf{Liczba miejsc parkingowych i ich układ} -- MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
 \end{enumerate}
 
 \section{Symulacja ruchu drogowego w Polsce}
@@ -91,7 +91,7 @@ Efektywne rozmieszczenie coraz większej liczby MOP-ów jest jednym z głównych
 	\item Jak dodanie lub usunięcie (np. w wyniku tymczasowego zatrzymania ruchu) odcinka drogi wpłynie na to natężenie?
 	\item Jaka część podróżnych, jadąca danym odcinkiem drogi, chciałaby skorzystać z MOP-a?
 \end{enumerate}
-Pomocny w przeprowadzeniu tej analizy może okazać się \textbf{MOPSim} - program komputerowy symulujący ruch pojazdów na
+Pomocny w przeprowadzeniu tej analizy może okazać się \textbf{Mopsim} -- program komputerowy symulujący ruch pojazdów na
 sieci dróg krajowych i autostrad w Polsce.
 
 \section{Przewidywanie liczby potrzebnych miejsc parkingowych}
@@ -110,11 +110,11 @@ gdzie:
   \item $SDR_T$ -- średni dobowy ruch w roku w analizowanym kierunku 
   \item $WS_T$ -- wskaźnik zmienności sezonowej
 \end{itemize}
-Program \textbf{MOPNik} będzie miał za zadanie umożliwienie korzystania z
+Program \textbf{Mopnik} będzie miał za zadanie umożliwienie korzystania z
 takich metodyk -- ich kalibracji (ręcznego wprowadzania niektórych parametrów),
 wczytywania potrzebnych danych (np. średniodobowego natężęnia ruchu)
 oraz obliczania liczby potrzebnych miejsc parkingowych. \\
-Program będzie też umożliwiał integrację z systemem \textbf{MOPSim} dzięki
+Program będzie też umożliwiał integrację z systemem \textbf{Mopsim} dzięki
 czemu możliwe będzie zastosowanie wyżej wymienionych metodyk do danych
 pochodzących z symulacji, jeśli okaże się, że wyniki rzeczywistych pomiarów są
 niepełne. 
@@ -122,7 +122,7 @@ niepełne.
 
 \section{Zajętość MOP-ów i dostępne usługi}
 
-Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest dobór odpowiedniej liczby miejsc parkingowych. Dodatkowo, miejsca te należy odpowiednio podzielić pomiędzy różne typy pojazdów: samochody osobowe, samochody ciężarowe, autobusy, pojazdy przewożące substancje niebezpieczne itd. Podróżni mają też różne potrzeby związane z postojem - od szybkiego zatankowania samochodu, przez obiad z rodziną na świeżym powietrzu, do spędzenia nocy w kabinie. \newline Aktualnie informację o znajdujących się na MOP-ie usługach można uzyskać ze znaków informacyjnych umieszczonych kilka kilometrów przed zjazdem. Jednak takie oznaczenia nie odpowiadają na kilka ważnych pytań, które możemy mieć na dowolnym etapie podróży:
+Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest dobór odpowiedniej liczby miejsc parkingowych. Dodatkowo, miejsca te należy odpowiednio podzielić pomiędzy różne typy pojazdów: samochody osobowe, samochody ciężarowe, autobusy, pojazdy przewożące substancje niebezpieczne itd. Podróżni mają też różne potrzeby związane z postojem -- od szybkiego zatankowania samochodu, przez obiad z rodziną na świeżym powietrzu, do spędzenia nocy w kabinie. \newline Aktualnie informację o znajdujących się na MOP-ie usługach można uzyskać ze znaków informacyjnych umieszczonych kilka kilometrów przed zjazdem. Jednak takie oznaczenia nie odpowiadają na kilka ważnych pytań, które możemy mieć na dowolnym etapie podróży:
 \begin{enumerate}
 	\item Za ile kilometrów znajduje się najbliższa stacja benzynowa? 
 	\item Czy starczy mi paliwa do następnej, ponieważ tutaj jest duża kolejka?
@@ -131,9 +131,9 @@ Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest 
 	\item Jaka będzie zajętość miejsc parkingowych za godzinę?
 \end{enumerate}
 
-Odpowiedzią na te pytania będzie \textbf{MOPSIK} (MOP - System Informowania Kierowców) - aplikacja mobilna i strona internetowa.
+Odpowiedzią na te pytania będzie \textbf{Mopsik} (MOP -- System Informowania Kierowców) -- aplikacja mobilna i strona internetowa.
 
-\chapter{Mopnik}\label{r:mopnik}
+\chapter{Mopnik}\label{r:Mopnik}
 
 \section{Przypadki użycia}
 Inżynier GDDKiA może:
@@ -146,7 +146,7 @@ Inżynier GDDKiA może:
   \item Wyświetlić wyniki na mapie.
   \item Edytować sieć drogową. 
   \item Wyświetlić wyniki symulacji przeprowadzonych za pomocą systemu
-    \textbf{MOPSim} dotyczących:
+    \textbf{Mopsim} dotyczących:
     \begin{enumerate}
       \item Długo- i krótkoterminowych predykcji \textbf{SDR}.
       \item Krótkoterminowej predykcji zajętości MOPów.
@@ -154,7 +154,7 @@ Inżynier GDDKiA może:
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
 \end{enumerate}
 
-\chapter{Mopsim}\label{r:mopsim}
+\chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
 Inżynier GDDKiA może:
@@ -299,7 +299,7 @@ utajnieniu.
 
 \bibitem[1]{siec-drogowa-IIIrp} Wikipedia, \textit{Program budowy w III RP},\\ \url{https://pl.wikipedia.org/wiki/Autostrady\_i\_drogi\_ekspresowe\_w\_Polsce}
 
-\bibitem[2]{gddkia-mop} GDDKiA, \textit{Generalna Dyrekcja Dróg Krajowych i Autostrad - Serwis Informacyjny}, \url{https://www.gddkia.gov.pl/pl/963/miejsca-obslugi-podroznych-mop}
+\bibitem[2]{gddkia-mop} GDDKiA, \textit{Generalna Dyrekcja Dróg Krajowych i Autostrad -- Serwis Informacyjny}, \url{https://www.gddkia.gov.pl/pl/963/miejsca-obslugi-podroznych-mop}
 
 \bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
     aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
@@ -313,7 +313,7 @@ utajnieniu.
     $\sigma$-$\rho$}, Acta Fetorica, 2001.
 
 \bibitem[Głomb04]{grglo} Gryzybór Głombaski, \textit{Parazytonikacja
-    blabiczna fetorów --- nowa teoria wszystkiego}, Warszawa 1904.
+    blabiczna fetorów -- nowa teoria wszystkiego}, Warszawa 1904.
 
 \bibitem[Hopp96]{hopp} Claude Hopper, \textit{On some $\Pi$-hedral
     surfaces in quasi-quasi space}, Omnius University Press, 1996.
