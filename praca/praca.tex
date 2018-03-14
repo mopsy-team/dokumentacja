@@ -27,25 +27,13 @@
 \chapter*{Słowniczek}\label{r:pojecia}
 \addcontentsline{toc}{chapter}{Słowniczek}
 
-\begin{defi}\label{GDDKiA}
-  \emph{GDDKiA} -- Generalna Dyrekcja Dróg Krajowych i Autostrad.
-\end{defi}
-
-\begin{defi}\label{MOP}
-  \emph{MOP} -- Miejsce Obsługi Podróżnych.
-\end{defi}
-
-\begin{defi}\label{SDR}
-  \emph{SDR} -- Średniodobowe natężenie ruchu.
-\end{defi}
-
-\begin{defi}\label{GUI}
-  \emph{GUI} -- Graficzny interfejs użytkownika.
-\end{defi}
-
-\begin{defi}\label{OSM}
-  \emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org).
-\end{defi}
+\begin{enumerate}
+  \item\emph{GDDKiA} -- Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)
+  \item\emph{MOP} -- Miejsce Obsługi Podróżnych
+  \item\emph{SDR} -- Średniodobowe natężenie ruchu
+  \item\emph{GUI} -- Graficzny interfejs użytkownika
+  \item\emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org)
+\end{enumerate}
 
 \chapter{Wprowadzenie}
 
@@ -188,6 +176,38 @@ Dodatkowo, w aplikacji mobilnej:
 \item Mapa wyświetla aktualną lokalizację użytkownika, co umożliwia wybranie najbliższego MOP-a. 
 \item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z listy zapisanych.
 \end{enumerate}
+
+\section{Strona serwerowa - API}
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOPach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
+Predykcja zajętości MOPów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOPach oraz danych zbieranych za pomocą kamer.
+Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
+
+\subsection{Przypadki użycia}
+Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
+\begin{enumerate}
+\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOPach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
+\item Pobrać dane o bieżącej zajętości MOPów.
+\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji.
+\end{enumerate}
+
+\subsection{Architektura}
+Na implementację API serwera składają się dwie części:
+\begin{enumerate}
+\item Skrypt cron
+\item Aplikacja Django
+\end{enumerate}
+\paragraph{Cron}\mbox{}\\
+Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $textit{update_mops_db}$, która aktualizuje bazę danych.
+\paragraph{Aplikacja Django}\mbox{}\\
+Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
+\begin{itemize}
+\item /mops - zwraca wszystkie dane o MOPach agregowane w bazie danych
+\item /taken - zwraca dane o zajętości MOPów agregowane w bazie danych
+\end{itemize}
+Planowane jest rozszerzenie o zapytanie:
+\begin{itemize}
+\item /forecast - zwraca przewidywane dane o zajętości MOPów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
+\end{itemize}
 
 \chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
 
