@@ -182,13 +182,33 @@ Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mops
 Predykcja zajętości MOPów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOPach oraz danych zbieranych za pomocą kamer.
 Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
 
-\section{Przypadki użycia}
+\subsection{Przypadki użycia}
 Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
 \begin{enumerate}
 \item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOPach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
-\item Pobrać dane o bieżącej zajętości MOPów generowane na postawie TODO
-\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji opisywanych szerzej w TODO
+\item Pobrać dane o bieżącej zajętości MOPów.
+\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji.
 \end{enumerate}
+
+\subsection{Architektura}
+Na implementację API serwera składają się dwie części:
+\begin{enumerate}
+\item Skrypt cron
+\item Aplikacja Django
+\end{enumerate}
+\paragraph{Cron}\mbox{}\\
+Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $textit{update_mops_db}$, która aktualizuje bazę danych.
+\paragraph{Aplikacja Django}\mbox{}\\
+Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
+\begin{itemize}
+\item /mops - zwraca wszystkie dane o MOPach agregowane w bazie danych
+\item /taken - zwraca dane o zajętości MOPów agregowane w bazie danych
+\end{itemize}
+Planowane jest rozszerzenie o zapytanie:
+\begin{itemize}
+\item /forecast - zwraca przewidywane dane o zajętości MOPów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
+\end{itemize}
+
 \chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
 
 Program przygotowany dla systemu operacyjnego M\$ Windows uruchamia
