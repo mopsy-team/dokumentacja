@@ -1,6 +1,9 @@
 \input{head}
 \usepackage{graphicx}
 \usepackage{hyperref}
+% nie wiem czy to chcemy - do omówienia
+% mnie starsznie drażni, że pierwszy akapit nie ma wcięcia 
+\usepackage{indentfirst}
 \begin{document}
 
 \maketitle
@@ -45,6 +48,14 @@
 
 \begin{defi}\label{OSM}
   \emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org).
+\end{defi}
+
+\begin{defi}\label{RN}
+  \emph{RN} -- React Native
+\end{defi}
+
+\begin{defi}\label{api}
+  \emph{API} -- Interfejs programowania aplikacji (ang. Application programming interface)
 \end{defi}
 
 \chapter{Wprowadzenie}
@@ -189,6 +200,68 @@ Dodatkowo, w aplikacji mobilnej:
 \item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z listy zapisanych.
 \end{enumerate}
 
+\section{Architektura}
+\subsection{API}
+%TODO
+TODO\\
+
+\subsection{Aplikacja mobilna}
+\subsubsection{Technologia}
+Aplikacja mobilna została napisana w języku \textbf{JavaScript} z użyciem biblioteki \textbf{React~Native}. Dzięki temu pisząc jeden kod, otrzymujemy aplikację zarówno na telefony z Androidem, jak i iOS. \\
+
+Aplikacja w React Native (dalej: RN) zbudowana jest z komponentów, które posiadają stan (obiekt słownikowy) inicjowany w konstruktorze. Funkcja \textit{render()} wywoływana jest przy pierwszym ładowaniu komponentu oraz przy każdej zmianie jego stanu. 
+
+Z komponentów budujemy widoki, czyli wszystko co jest widoczne na ekranie w danym momencie.
+
+Cała aplikacja objęta jest nawigatorem, który odpowiedzialny jest za generowanie menu bocznego oraz przechodzenie między widokami zgodnie z wolą użytkownika. \\
+
+\subsubsection{Zakładki}
+Menu boczne zawiera 5 zakładek. 
+\begin{enumerate}
+\item \textit{Konfiguracja/Ustawienia}
+\item \textit{Home}
+\item \textit{Mapa}
+\item \textit{Ulubione MOP-y}
+\item \textit{Wyszukiwarka MOP-ów}
+\end{enumerate}
+Istnieje także szósty widok - \textit{Szczegółowe informacje o MOP-ie}, do którego można przejść z \textit{Ulubionych}, \textit{Wyszukiwarki} i \textit{Mapy}. 
+
+%TODO
+
+\subsubsection{Konfiguracja aplikacji i ustawienia}
+%TODO
+
+\subsubsection{Google Maps}
+\paragraph{Warunki}
+Jedną z podstawowych funkcji aplikacji Mopsik jest wyświetlanie mapy Polski z zaznaczonymi MOP-ami. Do tego celu wykorzystaliśmy Google Maps API. Dostęp do samej mapy i oznaczania na niej punktów jest nieodpłatny, dopóki aplikacja jest darmowa i ogólnodostępna\cite{google-api-faq}.
+\paragraph{Działanie}
+Połączenie do API wuierzytelniane jest przez klucz wygenerowany na stronie \url{https://console.developers.google.com/apis/credentials}. Z każdym przeładowaniem widoku z mapą do API wysyłane jest zapytanie z prośbą o konkretny fragment mapy świata, który jest zwracany w odpowiedzi, a następnie wyświetlany w aplikacji. Na mapie znajdują się markery oznaczające MOP-y. Kolor markera jest uzależniony od zajętości MOP-a dla wybranego \textit{głównego typu pojazdu}. Aplikacja wyświetla aktualną lokalizację użytkownika oraz umożliwia jej śledzenia (mapa porusza się wraz z użytkownikiem). 
+\paragraph{Wydajność}
+Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco obniża wydajność mapy. Aby ją poprawić zastosowaliśmy kilka zabiegów:
+\begin{enumerate}
+\item Do mapy dodawane są tylko markery znajdujące się w obecnie widocznym obszarze. Wraz z przesuwaniem mapy ładowane są kolejne.
+\item Mapa przeładowywana jest nie częściej niż co 2 sekundy. Zapobiega to ciągłemu odświeżaniu gdy odczyty GPS urządzenia są niedokładne i nieprzerwanie drgają.
+%TODO  \item  optymalizacja, której jeszcze nie wymyśliliśmy 
+\end{enumerate}
+\paragraph{Bezpieczeństwo}
+Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
+
+\subsubsection{Zapytanie do API}
+%TODO
+%api
+
+\subsubsection{Użyte biblioteki}
+%TODO
+
+\subsubsection{Komponenty aplikacji}
+%TODO
+
+\subsubsection{Zapisywanie danych}
+%TODO
+%zmienne globalne
+%AsyncStorage
+
+%TODO dodać obrazki
 \chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
 
 Program przygotowany dla systemu operacyjnego M\$ Windows uruchamia
@@ -300,6 +373,8 @@ utajnieniu.
 \bibitem[1]{siec-drogowa-IIIrp} Wikipedia, \textit{Program budowy w III RP},\\ \url{https://pl.wikipedia.org/wiki/Autostrady\_i\_drogi\_ekspresowe\_w\_Polsce}
 
 \bibitem[2]{gddkia-mop} GDDKiA, \textit{Generalna Dyrekcja Dróg Krajowych i Autostrad -- Serwis Informacyjny}, \url{https://www.gddkia.gov.pl/pl/963/miejsca-obslugi-podroznych-mop}
+
+\bibitem[3]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
 
 \bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
     aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
