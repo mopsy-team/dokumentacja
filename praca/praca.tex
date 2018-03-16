@@ -142,6 +142,53 @@ Inżynier GDDKiA może:
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
 \end{enumerate}
 
+\section{Architektura}
+\textbf{Mopnik} jest napisany w języku Java z użyciem narzędzia Apache
+Maven automatyzującego budowę programu.
+\subsubsection{Wykorzystywanie biblioteki}
+Implementacja opiera się na wykorzystaniu następujących bibliotek dla języka
+Java:
+\begin{itemize}
+\item Swing -- biblioteka graficzna służąca do stworzenia GUI aplikacji.
+\item JXMapViewer2 -- biblioteka zapewniająca swingowy JPanel renderujący
+  kafelki mapy (\url{https://github.com/msteiger/jxmapviewer2}).
+\item osm-parser -- biblioteka parsująca pliki .osm do obiektów w Javie
+  (\url{https://github.com/imintel/osm-parser}).
+\item opencsv -- biblioteka do parsowania plików CSV
+  (\url{http://opencsv.sourceforge.net/})
+\end{itemize}
+Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
+projektu biblioteki \textbf{Mopsim}. 
+\subsubsection{Dane wejściowe}
+Użytkownik programu ma możliwość wprowadzeia danych dotyczących \textbf{SDR}
+oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
+założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
+wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
+formacie OSM. Parsowaniem obu rodzajów plików zajmują się odpowiednie
+biblioteki wymienione w poprzedniej sekcji.
+\subsubsection{Wyświetlanie mapy}
+\paragraph{} 
+Mapa Polski, która jest wyświetlana po otwarciu programu, pochodzi z
+serwisu \mbox{OpenStreetMap}. Kafelki są ściągane i renderowane według potrzeby, czyli
+przy każdym przesunięciu czy przybliżeniu mapy. Takie rozwiązanie sprawia, że
+użytkownik musi być przez cały czas korzystania z programu podłączony
+do internetu. Jest możliwość stworzenia lokalnego serwera, hostującego
+kafelki
+\footnote{\url{https://switch2osm.org/manually-building-a-tile-server-16-04-2-lts/}}, a
+następnie zmiany w kodzie adresu serwera na \textit{localhost}. Ze względu na
+powszechny dostęp do internetu, zrezygnowaliśmy z tego rozwiazania, ale warto
+wiedzieć, że ono istnieje. 
+\paragraph{}
+Wczytywanie plików OSM daje następujące możliwości:
+\begin{enumerate}
+  \item Nanoszenie własnych oznaczeń na mapę -- na przykład kolorowanie
+    konkretnych dróg.
+  \item Modyfikowanie sieci drogowej. W tym wypadku zmiany nie zostaną
+    wyświetlone tak jak istniejące drogi, ponieważ kafelki pochodzą z innego
+    źródła. Możliwe jest jednak wprowadzanie własnych oznaczeń na dodanych
+    odcinkach, tak jak na istiejących. 
+\end{enumerate}
+
 \chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
@@ -277,7 +324,7 @@ utajnieniu.
   \begin{tabular}{rrr}
     $\alpha$ & $\beta$ & $\gamma_7$ \\
     901384 & 13784 & 1341\\
-    68746546 & 13498& 09165\\
+68746546 & 13498& 09165\\
     918324719& 1789 & 1310 \\
     9089 & 91032874& 1873 \\
     1 & 9187 & 19032874193 \\
