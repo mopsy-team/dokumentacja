@@ -275,7 +275,7 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
 
 \subsection{Zapytanie do API}
-Po otwarciu aplikacji wykonywane jest zapytanie do API \textit{/mops}, które zwraca wszystkie informacje o mopach. Dane te są przetwarzane i zapamiętywane.
+Po otwarciu aplikacji wykonywane jest zapytanie do API \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
 Po wciśnięciu przycisku \textit{odśwież} oraz po otwarciu każdej z zakładek, wykonywane jest zapytanie \textit{/taken} zwracające tylko aktualną liczbę zajętych miejsc parkingowych dla każdego z MOP-ów. Aplikacja aktualizuje te dane w zapisanych MOP-ach oraz przelicza nowe zajętości dla wszystkich typów pojazdów.
 Do każdego typu pojazdu, w każdym MOP-ie, przyporządkowywany jest kolor zgodnie z ustaloną legendą (np. dla małej zajętości, do 30\% - zielony, a dla największej - czerwony). Ten kolor jest następnie wykorzystywany przy wizualizacji danych.
 
@@ -391,7 +391,7 @@ W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dan
 
 \subsection{Zapisywanie danych}
 Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
-Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie powinny znikać. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
+Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
 
 
 \chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
