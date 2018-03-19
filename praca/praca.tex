@@ -236,7 +236,7 @@ Na implementację API serwera składają się dwie części:
 \item Aplikacja Django
 \end{enumerate}
 \paragraph{Cron}\mbox{}\\
-Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $textit{update_mops_db}$, która aktualizuje bazę danych.
+Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $textit{update\_mops\_db}$, która aktualizuje bazę danych.
 \paragraph{Aplikacja Django}\mbox{}\\
 Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
 \begin{itemize}
