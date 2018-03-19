@@ -1,6 +1,7 @@
 \input{head}
 \usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{dirtree}
 \begin{document}
 
 \maketitle
@@ -33,6 +34,8 @@
   \item\emph{SDR} -- Średniodobowe natężenie ruchu
   \item\emph{GUI} -- Graficzny interfejs użytkownika
   \item\emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org)
+  \item\emph{RN} -- React Native
+  \item\emph{API} -- Interfejs programowania aplikacji (ang. Application programming interface)
 \end{enumerate}
 
 \chapter{Wprowadzenie}
@@ -213,7 +216,39 @@ W programie Mopsim wykorzystano następujące technologie:
 \end{itemize}
 
 
-\chapter{Mopsik}\label{r:apka} 
+\chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
+
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOPach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
+Predykcja zajętości MOPów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOPach oraz danych zbieranych za pomocą kamer.
+Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
+\section{Przypadki użycia}
+Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
+\begin{enumerate}
+\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOPach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
+\item Pobrać dane o bieżącej zajętości MOPów.
+\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji.
+\end{enumerate}
+
+\section{Architektura}
+Na implementację API serwera składają się dwie części:
+\begin{enumerate}
+\item Skrypt cron
+\item Aplikacja Django
+\end{enumerate}
+\paragraph{Cron}\mbox{}\\
+Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $textit{update_mops_db}$, która aktualizuje bazę danych.
+\paragraph{Aplikacja Django}\mbox{}\\
+Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
+\begin{itemize}
+\item /mops - zwraca wszystkie dane o MOPach agregowane w bazie danych
+\item /taken - zwraca dane o zajętości MOPów agregowane w bazie danych
+\end{itemize}
+Planowane jest rozszerzenie o zapytanie:
+\begin{itemize}
+\item /forecast - zwraca przewidywane dane o zajętości MOPów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
+\end{itemize}
+
+\chapter{Mopsik -- Aplikacja mobilna}
 
 \section{Przypadki użycia}
 Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
@@ -233,37 +268,187 @@ Dodatkowo, w aplikacji mobilnej:
 \item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z listy zapisanych.
 \end{enumerate}
 
-\section{Strona serwerowa - API}
-Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOPach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
-Predykcja zajętości MOPów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOPach oraz danych zbieranych za pomocą kamer.
-Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
 
-\subsection{Przypadki użycia}
-Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
+\section{Architektura}
+
+\subsection{Technologia}
+\begin{figure}[!htb]
+    \centering
+    \begin{minipage}{.6\textwidth}
+Aplikacja mobilna została napisana w języku \textbf{JavaScript} z użyciem biblioteki \textbf{React~Native} (dalej: RN). Dzięki temu pisząc jeden kod, otrzymujemy aplikację zarówno na telefony z Androidem, jak i iOS.
+    \end{minipage}%
+    \begin{minipage}{.4\textwidth}
+        \centering
+        \includegraphics[width=5cm]{images/ReactNative.png}\label{RN_logo}
+    \end{minipage}
+\end{figure}
+
+Aplikacja w RN zbudowana jest z komponentów, które posiadają stan (obiekt słownikowy) inicjowany w konstruktorze. Funkcja \textit{render()} wywoływana jest przy pierwszym ładowaniu komponentu oraz przy każdej zmianie jego stanu. 
+
+Z komponentów budujemy widoki, czyli wszystko co jest widoczne na ekranie w danym momencie.
+
+Cała aplikacja objęta jest nawigatorem, który odpowiedzialny jest za generowanie menu bocznego oraz przechodzenie między widokami zgodnie z wolą użytkownika. \\
+
+\subsection{Zakładki}
+Menu boczne zawiera 5 zakładek: 
 \begin{enumerate}
-\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOPach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
-\item Pobrać dane o bieżącej zajętości MOPów.
-\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji.
+\item \textit{Konfiguracja/Ustawienia} -- umożliwia wybór typów pojazdów, którymi jest zainteresowany użytkownik
+\item \textit{Home} -- TODO %TODO
+\item \textit{Mapa} -- wyświetla mapę z zaznaczonymi MOP-ami
+\item \textit{Ulubione MOP-y} -- wyświetla listę MOP-ów zapisanych do ulubionych
+\item \textit{Wyszukiwarka MOP-ów} -- umożliwia wyszukiwanie MOP-a po nazwie, miejscowości, numerze drogi
+\end{enumerate}
+Istnieje także szósty widok - \textit{Szczegółowe informacje o MOP-ie}, do którego można przejść z \textit{Ulubionych}, \textit{Wyszukiwarki} i \textit{Mapy}. Zawiera on wszystkie informacje o MOP-ie, jego wyposażenie oraz zajętości i liczby miejsc parkingowych dla różnych typów pojazdów.
+
+\subsection{Konfiguracja aplikacji i ustawienia}
+Przy pierwszym uruchomieniu aplikacji otwiera się panel konfiguracyjny, w którym należy ustawić dwa parametry:
+\begin{enumerate}
+\item \textit{Główny typ pojazdu} (pole jednokrotnego wyboru) -- w miejscach, w których znajdują się tylko ogólne informacje o MOP-ie wyświetlamy zajętość tylko dla głównego typu pojazdu
+\item \textit{Wszystkie typy pojazdów} (pole wielokrotnego wyboru), którymi zainteresowany jest użytkownik -- w szczegółowych informacjach o MOP-ie wyświetlane są zajętości dla wszystkich zaznaczonych typów
+\end{enumerate}
+Typy pojazdów
+\begin{enumerate}
+\item Samochód osobowy
+\item Samochód ciężarowy
+\item Autobus
+\end{enumerate}
+Podział został wykonany w oparciu o zróżnicowane potrzeby użytkowników tych pojazdów, a także znaczące różnice w gabarytach, a co za tym idzie -- wymiarach potrzebnych miejsc parkingowych.
+Konfigurację aplikacji można zmienić w każdej chwili w zakładce \emph{Ustawienia}.
+
+\subsection{Google Maps}
+\subsubsection{Warunki}
+Jedną z podstawowych funkcji aplikacji Mopsik jest wyświetlanie mapy Polski z zaznaczonymi MOP-ami. Do tego celu wykorzystaliśmy Google Maps API. Dostęp do samej mapy i oznaczania na niej punktów jest nieodpłatny, dopóki aplikacja jest darmowa i ogólnodostępna\cite{google-api-faq}.
+\subsubsection{Działanie}
+Połączenie do API uwierzytelniane jest przez klucz wygenerowany na stronie \url{https://console.developers.google.com/apis/credentials}. Z każdym przeładowaniem widoku z mapą do API wysyłane jest zapytanie z prośbą o konkretny fragment mapy świata, który jest zwracany w odpowiedzi, a następnie wyświetlany w aplikacji. Na mapie znajdują się markery oznaczające MOP-y. Kolor markera jest uzależniony od zajętości MOP-a dla wybranego \textit{głównego typu pojazdu}. Aplikacja wyświetla aktualną lokalizację użytkownika oraz umożliwia jej śledzenia (mapa porusza się wraz z użytkownikiem). 
+\subsubsection{Wydajność}
+Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco obniża wydajność mapy. Aby ją poprawić zastosowaliśmy kilka zabiegów:
+\begin{enumerate}
+\item Do mapy dodawane są tylko markery znajdujące się w obecnie widocznym obszarze. Wraz z przesuwaniem mapy ładowane są kolejne.
+\item Mapa przeładowywana jest nie częściej niż co 2 sekundy. Zapobiega to ciągłemu odświeżaniu gdy odczyty GPS urządzenia są niedokładne i nieprzerwanie drgają.
+%TODO  \item  optymalizacja, której jeszcze nie wymyśliliśmy 
+\end{enumerate}
+\subsubsection{Bezpieczeństwo}
+Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
+
+\subsection{Zapytanie do API}
+Po otwarciu aplikacji wykonywane jest zapytanie do API \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
+Po wciśnięciu przycisku \textit{odśwież} oraz po otwarciu każdej z zakładek, wykonywane jest zapytanie \textit{/taken} zwracające tylko aktualną liczbę zajętych miejsc parkingowych dla każdego z MOP-ów. Aplikacja aktualizuje te dane w zapisanych MOP-ach oraz przelicza nowe zajętości dla wszystkich typów pojazdów.
+Do każdego typu pojazdu, w każdym MOP-ie, przyporządkowywany jest kolor zgodnie z ustaloną legendą (np. dla małej zajętości, do 30\% - zielony, a dla największej - czerwony). Ten kolor jest następnie wykorzystywany przy wizualizacji danych.
+
+\subsection{Użyte biblioteki}
+W aplikacji skorzystaliśmy z gotowych bibliotek RN, co znacząco przyspieszyło i ułatwiło pracę.
+\begin{enumerate}
+\item \textbf{lodash} \\
+\url{https://www.npmjs.com/package/lodash}\\
+Dostarcza funkcji użytkowych w paradygmacie funkcyjnym. Przydatna w mapowaniu MOP-ów.
+
+\item \textbf{react-native-elements}\\
+\url{https://react-native-training.github.io/react-native-elements/}\\ 
+Biblioteka zawierająca wiele gotowych komponentów. Skorzystaliśmy m.in. z \textit{Drawer} (menu boczne), \textit{Header} (nagłówek) i \textit{SearchBar} (wyszukiwarka).
+
+\item \textbf{react-native-maps} \\
+\url{https://github.com/react-community/react-native-maps}\\
+Biblioteka umożliwiająca połączenie do Google Maps API i renderowanie map.
+
+\item \textbf{react-native-svg} \\
+\url{https://github.com/react-native-community/react-native-svg}\\
+Służy do grafiki wektorowej.
+
+\item \textbf{react-native-svg-circular-progress} \\
+\url{https://github.com/stssoftware/react-native-svg-circular-progress}\\
+Wykorzystana do rysowania wykresów zajętości MOP-ów. Wymaga bibkioteki \textit{react-native-svg}.
+
+\item \textbf{react-native-swipeout} \\
+\url{https://github.com/dancormier/react-native-swipeout}\\
+Umożliwia dodawanie przycisków pojawiających się po przesunięciu w bok komponentu. W naszej aplikacji odpowiada za pojawianie się przycisku \textit{Usuń} na liście ulubionych MOP-ów.
+
+\item \textbf{react-native-table-component} \\
+\url{https://github.com/Gil2015/react-native-table-component}\\
+Generuje tabelę z liczbą wolnych miejsc parkingowych w zakładce \textit{Szczegółowe informacje o MOP-ie}.
+
+\item \textbf{react-native-vector-icons} \\
+\url{https://github.com/oblador/react-native-vector-icons}\\
+Dostęp do ikon z \url{https://material.io/icons/}.
+
+\item \textbf{react-navigation} \\
+\url{https://reactnavigation.org}\\
+Otoczka całej aplikacji. Odpowiada za nawigowanie wewnątrz aplikacji i poruszanie pomiędzy widokami.
+\end{enumerate}
+%TODO - dodawać nowe
+
+\subsection{Nawigacja}
+\begin{figure}[h]
+\caption{Schemat nawigacji aplikacji mobilnej Mopsik}
+\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
+\end{figure}
+W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik_nav}.\\
+
+Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodane są do niego widoki \textit{HomeView} oraz \textit{SettingsView}, a także stosy \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
+
+Z zakładek \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}. Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie w nagłówku pojawia się przycisk cofania. \\
+
+Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po dwóch widokach - głównym i szczegółowym. W widokach głównych (tj. mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. 
+
+\subsection{Pozostałe komponenty}
+Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plików Mopsika. Poza komponentami opisanymi w poprzednim punkcie, aplikacja korzysta z narzędzi znajdujących się folderze \textit{tools}.
+\begin{enumerate}
+\item \textit{DrawerContent} -- menu boczne
+\item \textit{Header} -- nagłówek
+\item \textit{UsageCircle} -- wykres kołowy zajętości miejsc parkingowych
+\item \textit{UsageTable} -- tabela z liczbą i zajętością miejsc parkingowych dla typów pojazdów wybranych w ustawieniach
+\end{enumerate}
+\begin{figure}[h]
+\caption{Struktura plików aplikacji mobilnej Mopsik}
+\dirtree{%
+.1 mopsik mobile.
+.2 src.
+.3 components.
+.4 stacks.
+.5 FavouritesStack.js.
+.5 MapStack.js.
+.5 SearchStack.js.
+.4 tools.
+.5 DrawerContent.js.
+.5 Header.js.
+.5 UsageCircle.js.
+.5 UsageTable.js.
+.4 views.
+.5 FavouritesView.js.
+.5 HomeView.js.
+.5 MapView.js.
+.5 MopDetailsView.js.
+.5 SearchView.js.
+.5 SettingsView.js.
+.3 config.
+.4 facilities.js.
+.4 favourites.js.
+.4 mops.js.
+.4 settings.js.
+.4 styles.js.
+.4 themes.js.
+.4 vehicles.js.
+.3 images.
+.4 ....
+.2 ....
+}\label{mopsik_mobile_structure}
+\end{figure}
+
+\subsection{Pliki konfiguracyjne i funkcje}
+W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dane statyczne oraz funkcje odpowiedzielne za przetwarzanie danych.
+\begin{enumerate}
+\item \textit{facilities} -- zdefiniowane usługi dostępne na MOP-ach, odpowiadające im polskie nazwy oraz ikony, funkcje generujące komplet ikon do wyświetlania w informacjach o MOP-ie
+\item \textit{favourites} -- funckje odpowiedzialne za pobieranie MOP-ów zapisanych do ulubionych, zapisywanie, usuwanie
+\item \textit{mops} -- funkcje pobierające informacje o MOP-ach z API, dobierające kolory według legendy
+\item \textit{settings} -- plik ze zmiennymi przechowującymi ustawienia aplikacji
+\item \textit{styles} -- zdefiniowane style komponentów
+\item \textit{themes} -- zdefiniowane motywy kolorystyczne
+\item \textit{vehicles} -- typy pojazdów wraz z polskimi nazwami i ikonami
 \end{enumerate}
 
-\subsection{Architektura}
-Na implementację API serwera składają się dwie części:
-\begin{enumerate}
-\item Skrypt cron
-\item Aplikacja Django
-\end{enumerate}
-\paragraph{Cron}\mbox{}\\
-Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $textit{update_mops_db}$, która aktualizuje bazę danych.
-\paragraph{Aplikacja Django}\mbox{}\\
-Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
-\begin{itemize}
-\item /mops - zwraca wszystkie dane o MOPach agregowane w bazie danych
-\item /taken - zwraca dane o zajętości MOPów agregowane w bazie danych
-\end{itemize}
-Planowane jest rozszerzenie o zapytanie:
-\begin{itemize}
-\item /forecast - zwraca przewidywane dane o zajętości MOPów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
-\end{itemize}
+\subsection{Zapisywanie danych}
+Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
+Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
+
 
 \chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
 
@@ -385,6 +570,13 @@ utajnieniu.
 Agent-based Computing from Multi-agent Systems to Agent-Based Models: A Visual Survey", 2011
 
 \bibitem[6]{wiki-agent} Wikipedia, \textit{System wieloagentowy},\\ \url{https://pl.wikipedia.org/wiki/System_wieloagentowy}
+
+\bibitem[7]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
+
+\bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
+    aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
+  1916.
+
 
 \bibitem[7]{matsim} Horni, A, Nagel, K and Axhausen, K W. 2016. Introducing MATSim. In: Horni, A, Nagel, K and
 Axhausen, K W. (eds.) The Multi-Agent Transport Simulation MATSim, Pp. 3–8. London: Ubiquity
