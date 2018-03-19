@@ -160,6 +160,62 @@ Inżynier GDDKiA może:
   \item Wyświetlić wyniki symulacji za pomocą GUI programu \textbf{Mopnik}.
 \end{enumerate}
 
+\section{Architektura}
+
+\subsubsection{Modele mikro-, makroskopowe}
+Modelem obliczeniowym w informatyce nazywamy model matematyczny, wykorzystujący zasoby komputerowe do zbadania zachowania złożonego systemu za pomocą symulacji\cite{model}. Modele obliczeniowe są obecnie wykorzystywane w bardzo wielu dziedzinach, m.in. do prognozy pogody, badania zmian klimatycznych, symulacji ruchu planet, a także w biologii czy medycynie. Jednym ze sposobów klasyfikacji modeli jest podział na modele mikro- i makroskopowe\cite{micmac}:
+\begin{itemize}
+\item w modelu mikroskopowym każda jednostka jest opisywana przez jej charakterystyczne atrybuty i zachowania
+\item w modelu makroskopowym analizuje się zagregowane cechy grupy jednostek i ich oddziaływanie na cały system
+\end{itemize}
+\subsubsection{Model obliczeniowy oparty na agentach}
+Jednym z intensywnie stosowanych i rozwijanych modeli obliczeniowych jest model oparty na agentach (ang. \textit{agent-based model}).
+Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonomicznych agentów, w celu badania ich wpływ na cały system\cite{agent-based}. Zwykle agentom przyporządkowuje się uproszczone zachowania, a następnie umieszcza w pewnym miejscu i czasie. Następnie symuluje się podejmowane przez nich działania i oddziaływania między sobą w celu odtworzenia lub próby wyjaśnienia bardziej złożonych zjawisk. Modele obliczeniowe oparte na agentach stosuje się m.in. w biologii, ekologii czy naukach społecznych.
+\subsubsection{System wieloagentowy}
+    Nieco innym, choć pokrewnym pojeciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
+    \begin{figure}[h]
+        \caption{Schemat działania systemu wieloagentowego}
+        \includegraphics[width=\textwidth]{images/multi-agent.png}
+    \end{figure}
+\subsubsection{MATSim -- symulator ruchu drogowego}
+MATSim (\textit{Multi-Agent Transport Simulation}) to open-sourcowy, rozszerzalny framework napisany w Javie służący do przeprowadzania symulacji ruchu drogowego. Jego głównymi założeniami jest mikroskopowe modelowanie ruchu oraz oparte na agentach symulowanie dziennych planów poszczególnych jednostek\cite{matsim}. MATSim został zaprojektowany, by modelować aktywności podczas pojedynczego dnia. MATSim oparty jest o zasadę koewolucyjności. Każdy z agentów, reprezentujących pojedynczych uczestników ruchu drogowego, optymalizuje swój codzienny plan, rywalizując z innymi agentami w różnych aspektach korzystania z infrastruktury drogowej.\\
+Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu. Od tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy badania emisji spalin.
+    \begin{figure}[h]
+        \caption{Logo MATSim}
+        \includegraphics[width=\textwidth]{images/matsim_logo.png}
+    \end{figure}
+\subsubsection{MATSim -- pętla programu}
+Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
+    \begin{figure}[h]
+        \caption{Schemat działania MATSim}
+        \includegraphics[width=\textwidth]{images/matsim-workflow.png}
+    \end{figure}
+\newpage
+\subsubsection{Dlaczego MATSim?}
+Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do symulowania ruchu na drogach w Polsce, w celu zbadania zajętości MOP-ów. Co istotne, wstępne symulacje pokazały, że już jedna iteracja działania głównej pętli programu jest wystarczająca -- wynik jest bardzo zbliżony do optymalnego. Jest to zgodne z intuicją -- w ruchu krajowym należy oczekiwać, że najkrótsza droga spośród dróg danego typu jest najbardziej optymalną, a tworzące się korki nie są tak częste i regularne, jak w intensywnym ruchu miejskim. Czynniki, które nas przekonały do wyboru frameworku MATSim to między innymi:
+\begin{itemize}
+\item licencja open-source
+\item możliwość łatwego rozszerzenia o dodatkowe funkcjonalności, wiele gotowych przykładów
+\item obszerna dokumentacja i dostęp do kodu źródłowego
+\item możliwość zrównoleglania
+\end{itemize}
+
+\subsubsection{Mopsim -- schemat działania programu}
+    \begin{figure}[h]
+        \caption{Schemat działania programu Mopsim}
+        \includegraphics[width=\textwidth]{images/mopsim-workflow.png}
+    \end{figure}
+Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania symulacji. Poniższy schemat pokazuje zarys jego działania. Użytkownik programu Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv, macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie csv oraz mapę sieci drogowej w formacie osm (\textit{OpenStreetMap}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOPów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne, część których może być przekazana do programu Mopnik w celu wizualizacji.
+\newpage
+\subsubsection{Mopsim -- technologie}
+W programie Mopsim wykorzystano następujące technologie:
+\begin{itemize}
+\item MATSim -- opisany wyżej
+\item Java -- choć MATSim umożliwia też pisanie rozszerzeń w innym języku, zdecydowaliśmy się na wykorzystanie Javy jako języka programowania z uwagi na jej największą integrację z MATSimem. Dodatkowym atutem było nasze doświadczenie z pracy w tym języku, także w aspekcie programowania współbieżnego.
+\item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na format używany do opisu dróg w symulacji.
+\end{itemize}
+
+
 \chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
 
 Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOPach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
@@ -506,15 +562,24 @@ utajnieniu.
 
 \bibitem[2]{gddkia-mop} GDDKiA, \textit{Generalna Dyrekcja Dróg Krajowych i Autostrad -- Serwis Informacyjny}, \url{https://www.gddkia.gov.pl/pl/963/miejsca-obslugi-podroznych-mop}
 
-\bibitem[3]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
+\bibitem[3]{model}Melnik, Roderick, Mathematical and Computational Modeling: With Applications in Natural and Social Sciences, Engineering, and the Arts. Wiley. ISBN 978-1-118-85398-6., 2015
+
+\bibitem[4]{micmac}Gustafsson, Leif; Sternad, Mikael. "Bringing consistency to simulation of population models: Poisson Simulation as a bridge between micro and macro simulation". Mathematical Biosciences. 209: 361–385, 2007
+
+\bibitem[5]{agent-based} Niazi, Muaz; Hussain, Amir,
+Agent-based Computing from Multi-agent Systems to Agent-Based Models: A Visual Survey", 2011
+
+\bibitem[6]{wiki-agent} Wikipedia, \textit{System wieloagentowy},\\ \url{https://pl.wikipedia.org/wiki/System_wieloagentowy}
+
+\bibitem[7]{matsim} Horni, A, Nagel, K and Axhausen, K W. 2016. Introducing MATSim. In: Horni, A, Nagel, K and
+Axhausen, K W. (eds.) The Multi-Agent Transport Simulation MATSim, Pp. 3–8. London: Ubiquity
+Press. DOI: http://dx.doi.org/10.5334/baw.1. License: CC-BY 4.0
+
+\bibitem[8]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
 
 \bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
     aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
   1916.
-
-\bibitem[Fif00]{ffgg} Filigran Fifak, Gizbert Gryzogrzechotalski,
-  \textit{O blabalii fetorycznej}, Materiały Konferencji Euroblabal
-  2000.
 
 \bibitem[Fif01]{ff-sr} Filigran Fifak, \textit{O fetorach
     $\sigma$-$\rho$}, Acta Fetorica, 2001.
