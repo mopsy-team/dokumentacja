@@ -16,7 +16,7 @@
   parkingowych na~Miejscach Obsługi Podróżnych. Pozostałe dwie części to
   aplikacja mobilna oraz strona internetowa przeznaczone dla kierowców
   poruszających się po drogach. Informują one o~zajętości miejsc parkingowych
-  na każdym MOPie w danym momencie oraz predykcji ich zajętości w niedalekiej
+  na każdym MOP-ie w danym momencie oraz predykcji ich zajętości w niedalekiej
   przyszłości.  
   %TODO napisać coś jak będzie co streszczać 
 \end{abstract}
@@ -133,14 +133,14 @@ Inżynier GDDKiA może:
   \item Wyświetlić wprowadzone dane na mapie.
   \item Wybrać metodykę, ustawić jej parametry i na jej podstawie wyznaczyć
     liczbę potrzebnych miejsc parkingowych na odcinku drogi oraz na konkretnym
-    MOPie.
+    MOP-ie.
   \item Wyświetlić wyniki na mapie.
   \item Edytować sieć drogową. 
   \item Wyświetlić wyniki symulacji przeprowadzonych za pomocą systemu
     \textbf{Mopsim} dotyczących:
     \begin{enumerate}
       \item Długo- i krótkoterminowych predykcji \textbf{SDR}.
-      \item Krótkoterminowej predykcji zajętości MOPów.
+      \item Krótkoterminowej predykcji zajętości MOP-ów.
     \end{enumerate}
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
 \end{enumerate}
@@ -205,7 +205,7 @@ Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do sym
         \caption{Schemat działania programu Mopsim}
         \includegraphics[width=\textwidth]{images/mopsim-workflow.png}
     \end{figure}
-Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania symulacji. Poniższy schemat pokazuje zarys jego działania. Użytkownik programu Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv, macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie csv oraz mapę sieci drogowej w formacie osm (\textit{OpenStreetMap}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOPów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne, część których może być przekazana do programu Mopnik w celu wizualizacji.
+Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania symulacji. Poniższy schemat pokazuje zarys jego działania. Użytkownik programu Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv, macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie csv oraz mapę sieci drogowej w formacie osm (\textit{OpenStreetMap}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne, część których może być przekazana do programu Mopnik w celu wizualizacji.
 \newpage
 \subsubsection{Mopsim -- technologie}
 W programie Mopsim wykorzystano następujące technologie:
@@ -218,15 +218,15 @@ W programie Mopsim wykorzystano następujące technologie:
 
 \chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
 
-Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOPach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
-Predykcja zajętości MOPów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOPach oraz danych zbieranych za pomocą kamer.
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
+Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
 Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
 \section{Przypadki użycia}
 Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
 \begin{enumerate}
-\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOPach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
-\item Pobrać dane o bieżącej zajętości MOPów.
-\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOPów generowane na podstawie metodyk predykcji.
+\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOP-ach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
+\item Pobrać dane o bieżącej zajętości MOP-ów.
+\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOP-ów generowane na podstawie metodyk predykcji.
 \end{enumerate}
 
 \section{Architektura}
@@ -236,16 +236,16 @@ Na implementację API serwera składają się dwie części:
 \item Aplikacja Django
 \end{enumerate}
 \paragraph{Cron}\mbox{}\\
-Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOPami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $\textit{update\_mops\_db}$, która aktualizuje bazę danych.
+Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOP-ami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $\textit{update\_mops\_db}$, która aktualizuje bazę danych.
 \paragraph{Aplikacja Django}\mbox{}\\
 Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
 \begin{itemize}
-\item /mops - zwraca wszystkie dane o MOPach agregowane w bazie danych
-\item /taken - zwraca dane o zajętości MOPów agregowane w bazie danych
+\item /mops - zwraca wszystkie dane o MOP-ach agregowane w bazie danych
+\item /taken - zwraca dane o zajętości MOP-ów agregowane w bazie danych
 \end{itemize}
 Planowane jest rozszerzenie o zapytanie:
 \begin{itemize}
-\item /forecast - zwraca przewidywane dane o zajętości MOPów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
+\item /forecast - zwraca przewidywane dane o zajętości MOP-ów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
 \end{itemize}
 
 \chapter{Mopsik -- Aplikacja mobilna}
