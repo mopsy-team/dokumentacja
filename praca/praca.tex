@@ -103,7 +103,7 @@ gdzie:
 \end{itemize}
 Program \textbf{Mopnik} będzie miał za zadanie umożliwienie korzystania z
 takich metodyk -- ich kalibracji (ręcznego wprowadzania niektórych parametrów),
-wczytywania potrzebnych danych (np. średniodobowego natężęnia ruchu)
+wczytywania potrzebnych danych (np. średniodobowego natężenia ruchu)
 oraz obliczania liczby potrzebnych miejsc parkingowych. \\
 Program będzie też umożliwiał integrację z systemem \textbf{Mopsim} dzięki
 czemu możliwe będzie zastosowanie wyżej wymienionych metodyk do danych
@@ -145,13 +145,63 @@ Inżynier GDDKiA może:
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
 \end{enumerate}
 
+\section{Architektura}
+\textbf{Mopnik} jest napisany w języku Java z użyciem narzędzia Apache
+Maven automatyzującego budowę programu.
+\subsubsection{Wykorzystywanie biblioteki}
+Implementacja opiera się na wykorzystaniu następujących bibliotek dla języka
+Java:
+\begin{itemize}
+\item Swing -- biblioteka graficzna służąca do stworzenia GUI aplikacji.
+\item JXMapViewer2 -- biblioteka zapewniająca swingowy JPanel renderujący
+  kafelki mapy (\url{https://github.com/msteiger/jxmapviewer2}).
+\item osm-parser -- biblioteka parsująca pliki .osm do obiektów w Javie
+  (\url{https://github.com/imintel/osm-parser}).
+\item opencsv -- biblioteka do parsowania plików CSV
+  (\url{http://opencsv.sourceforge.net/})
+\end{itemize}
+Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
+projektu biblioteki \textbf{Mopsim}. 
+\subsubsection{Dane wejściowe}
+Użytkownik programu ma możliwość wprowadzenia danych dotyczących \textbf{SDR}
+oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
+założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
+wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
+formacie OSM. Parsowaniem obu rodzajów plików zajmują się odpowiednie
+biblioteki wymienione w poprzedniej sekcji.
+\subsubsection{Wyświetlanie mapy}
+\paragraph{} 
+Mapa Polski, która jest wyświetlana po otwarciu programu, pochodzi z
+serwisu \mbox{OpenStreetMap}. Kafelki są ściągane i renderowane według potrzeby, czyli
+przy każdym przesunięciu czy przybliżeniu mapy. Takie rozwiązanie sprawia, że
+użytkownik musi być przez cały czas korzystania z programu podłączony
+do internetu. Jest możliwość stworzenia lokalnego serwera, hostującego
+kafelki
+\footnote{\url{https://switch2osm.org/manually-building-a-tile-server-16-04-2-lts/}}, a
+następnie zmiany w kodzie adresu serwera na \textit{localhost}. Ze względu na
+powszechny dostęp do internetu zrezygnowaliśmy z tego rozwiązania, ale warto
+wiedzieć, że ono istnieje. 
+\paragraph{}
+Wczytywanie plików OSM daje następujące możliwości:
+\begin{enumerate}
+  \item Nanoszenie własnych oznaczeń na mapę -- na przykład kolorowanie
+    konkretnych dróg.
+  \item Modyfikowanie sieci drogowej. W tym wypadku zmiany nie zostaną
+    wyświetlone tak jak istniejące drogi, ponieważ kafelki pochodzą z innego
+    źródła. Wymagałoby to renderowania map w czasie działania programu, co
+    spowolniłoby jego działanie. Zamiast tego, nowe drogi wizualizowane są
+    za pomocą prostych odcinków łączących punkty wyznaczone przez użytkownika. 
+    Możliwe jest jednak wprowadzanie własnych oznaczeń na dodanych
+    odcinkach, tak jak na istniejących. 
+\end{enumerate}
+
 \chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
 Inżynier GDDKiA może:
 \begin{enumerate}
   \item Wprowadzać dane dotyczące sieci drogowej z pliku osm.
-  \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików csv.
+  \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików CSV.
   \item Edytować sieć drogową i dodawać lub usuwać MOP-y.
   \item Przeprowadzać symulację ruchu drogowego.
   \item Wyznaczać przewidywane natężenie ruchu na danym odcinku drogi.
@@ -215,6 +265,23 @@ W programie Mopsim wykorzystano następujące technologie:
 \item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na format używany do opisu dróg w symulacji.
 \end{itemize}
 
+\section{Przypadki użycia}
+Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
+\begin{enumerate}
+\item Znaleźć MOP-a w wyszukiwarce lub na mapie.
+\item Poznać procentową zajętość miejsc parkingowych na MOP-ie dla każdego z trzech typów pojazdów (samochód osobowy, samochód ciężarowy, autobus).
+\item Poznać liczbę wolnych miejsc parkingowych oraz ich liczbę ogółem.
+\item Poznać predykcję zajętości miejsc parkingowych na najbliższą godzinę.
+\item Znaleźć kontakt do operatora MOP-a.
+\item Sprawdzić jakie usługi znajdują się na MOP-ie.
+\item Wyświetlić wizualizację danych o zajętości miejsc parkingowych.
+\item Edytować preferencje wyświetlania danych dla konkretnych typów pojazdów.
+\end{enumerate}
+Dodatkowo, w aplikacji mobilnej:
+\begin{enumerate}
+\item Mapa wyświetla aktualną lokalizację użytkownika, co umożliwia wybranie najbliższego MOP-a. 
+\item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z listy zapisanych.
+\end{enumerate}
 
 \chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
 
