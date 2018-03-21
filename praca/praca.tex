@@ -100,7 +100,7 @@ gdzie:
 \end{itemize}
 Program \textbf{Mopnik} będzie miał za zadanie umożliwienie korzystania z
 takich metodyk -- ich kalibracji (ręcznego wprowadzania niektórych parametrów),
-wczytywania potrzebnych danych (np. średniodobowego natężęnia ruchu)
+wczytywania potrzebnych danych (np. średniodobowego natężenia ruchu)
 oraz obliczania liczby potrzebnych miejsc parkingowych. \\
 Program będzie też umożliwiał integrację z systemem \textbf{Mopsim} dzięki
 czemu możliwe będzie zastosowanie wyżej wymienionych metodyk do danych
@@ -160,7 +160,7 @@ Java:
 Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
 projektu biblioteki \textbf{Mopsim}. 
 \subsubsection{Dane wejściowe}
-Użytkownik programu ma możliwość wprowadzeia danych dotyczących \textbf{SDR}
+Użytkownik programu ma możliwość wprowadzenia danych dotyczących \textbf{SDR}
 oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
 założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
 wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
@@ -176,7 +176,7 @@ do internetu. Jest możliwość stworzenia lokalnego serwera, hostującego
 kafelki
 \footnote{\url{https://switch2osm.org/manually-building-a-tile-server-16-04-2-lts/}}, a
 następnie zmiany w kodzie adresu serwera na \textit{localhost}. Ze względu na
-powszechny dostęp do internetu, zrezygnowaliśmy z tego rozwiazania, ale warto
+powszechny dostęp do internetu zrezygnowaliśmy z tego rozwiązania, ale warto
 wiedzieć, że ono istnieje. 
 \paragraph{}
 Wczytywanie plików OSM daje następujące możliwości:
@@ -185,8 +185,11 @@ Wczytywanie plików OSM daje następujące możliwości:
     konkretnych dróg.
   \item Modyfikowanie sieci drogowej. W tym wypadku zmiany nie zostaną
     wyświetlone tak jak istniejące drogi, ponieważ kafelki pochodzą z innego
-    źródła. Możliwe jest jednak wprowadzanie własnych oznaczeń na dodanych
-    odcinkach, tak jak na istiejących. 
+    źródła. Wymagałoby to renderowania map w czasie działania programu, co
+    spowolniłoby jego działanie. Zamiast tego, nowe drogi wizualizowane są
+    za pomocą prostych odcinków łączących punkty wyznaczone przez użytkownika. 
+    Możliwe jest jednak wprowadzanie własnych oznaczeń na dodanych
+    odcinkach, tak jak na istniejących. 
 \end{enumerate}
 
 \chapter{Mopsim}\label{r:Mopsim}
@@ -195,7 +198,7 @@ Wczytywanie plików OSM daje następujące możliwości:
 Inżynier GDDKiA może:
 \begin{enumerate}
   \item Wprowadzać dane dotyczące sieci drogowej z pliku osm.
-  \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików csv.
+  \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików CSV.
   \item Edytować sieć drogową i dodawać lub usuwać MOP-y.
   \item Przeprowadzać symulację ruchu drogowego.
   \item Wyznaczać przewidywane natężenie ruchu na danym odcinku drogi.
@@ -215,8 +218,8 @@ Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
 \item Poznać predykcję zajętości miejsc parkingowych na najbliższą godzinę.
 \item Znaleźć kontakt do operatora MOP-a.
 \item Sprawdzić jakie usługi znajdują się na MOP-ie.
-\item Wyświetlić wizualizację danych o zajętośći miejsc parkingowych.
-\item Edytować preferencje wyświetlania danych dla konretnych typów pojazdów.
+\item Wyświetlić wizualizację danych o zajętości miejsc parkingowych.
+\item Edytować preferencje wyświetlania danych dla konkretnych typów pojazdów.
 \end{enumerate}
 Dodatkowo, w aplikacji mobilnej:
 \begin{enumerate}
@@ -324,7 +327,7 @@ utajnieniu.
   \begin{tabular}{rrr}
     $\alpha$ & $\beta$ & $\gamma_7$ \\
     901384 & 13784 & 1341\\
-68746546 & 13498& 09165\\
+    68746546 & 13498& 09165\\
     918324719& 1789 & 1310 \\
     9089 & 91032874& 1873 \\
     1 & 9187 & 19032874193 \\
