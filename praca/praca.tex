@@ -314,6 +314,7 @@ Typy pojazdów
 \end{enumerate}
 Podział został wykonany w oparciu o zróżnicowane potrzeby użytkowników tych pojazdów, a także znaczące różnice w gabarytach, a co za tym idzie -- wymiarach potrzebnych miejsc parkingowych.
 Konfigurację aplikacji można zmienić w każdej chwili w zakładce \emph{Ustawienia}.
+W ustawieniach znajduję się także przycisk \textit{Zresetuj ustawienia}, który wymazuje z urządzenia wszystkie informacje zapisane przez aplikację i uruchamia ją ponownie. 
 
 \subsection{Google Maps}
 \subsubsection{Warunki}
@@ -325,6 +326,7 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 \begin{enumerate}
 \item Do mapy dodawane są tylko markery znajdujące się w obecnie widocznym obszarze. Wraz z przesuwaniem mapy ładowane są kolejne.
 \item Mapa przeładowywana jest nie częściej niż co 2 sekundy. Zapobiega to ciągłemu odświeżaniu gdy odczyty GPS urządzenia są niedokładne i nieprzerwanie drgają.
+\item Wykorzystanie \textit{onRegionChangeComplete} zamiast \textit{onRegionChange} -- obie funkcje wywoływane są gdy użytkownik porusza mapą, czyli przy zmianie aktualnie widocznego fragmentu. \textit{onRegionChangeComplete} wywoływane jest tylko raz -- po zakończonym przeciągnięciu. Animacje są nieco mniej płynne, ale aplikacja nie zawiesza się przez ciągłe przeładowywanie mapy i znaczników MOP-ów.
 %TODO  \item  optymalizacja, której jeszcze nie wymyśliliśmy 
 \end{enumerate}
 \subsubsection{Bezpieczeństwo}
@@ -349,6 +351,10 @@ Biblioteka zawierająca wiele gotowych komponentów. Skorzystaliśmy m.in. z \te
 \item \textbf{react-native-maps} \\
 \url{https://github.com/react-community/react-native-maps}\\
 Biblioteka umożliwiająca połączenie do Google Maps API i renderowanie map.
+
+\item \textbf{react-native-restart} \\
+\url{https://github.com/avishayil/react-native-restart}\\
+Biblioteka umożliwia restart aplikacji z poziomu kodu. Wykorzystana przy resetowaniu ustawień.
 
 \item \textbf{react-native-svg} \\
 \url{https://github.com/react-native-community/react-native-svg}\\
@@ -383,17 +389,22 @@ Otoczka całej aplikacji. Odpowiada za nawigowanie wewnątrz aplikacji i porusza
 \end{figure}
 W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik_nav}.\\
 
-Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodane są do niego widoki \textit{HomeView} oraz \textit{SettingsView}, a także stosy \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
+Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodany jest do niego widok \textit{SettingsView}, a także stosy \textit{HomeStack}, \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
 
-Z zakładek \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}. Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie w nagłówku pojawia się przycisk cofania. \\
+Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}. Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie w nagłówku pojawia się przycisk cofania. \\
 
-Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po dwóch widokach - głównym i szczegółowym. W widokach głównych (tj. mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. 
+Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po dwóch widokach - głównym i szczegółowym. W widokach głównych (tj. domowym, mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. 
 
 \subsection{Pozostałe komponenty}
 Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plików Mopsika. Poza komponentami opisanymi w poprzednim punkcie, aplikacja korzysta z narzędzi znajdujących się folderze \textit{tools}.
 \begin{enumerate}
 \item \textit{DrawerContent} -- menu boczne
 \item \textit{Header} -- nagłówek
+\item \textit{LastViewedMops} -- komponent wyświetlający do trzech ostatnio wyświetlanych MOP-ów
+\item \textit{MopListItem} -- element listy wyświetlający nazwę, drogę, kierunek i zajętość dla głównego typu pojazdu; wykorzystywany w \textit{Ulubionych}, \textit{Wyszukiwarce} i \textit{Ostatnio wyświetlanych}
+\item \textit{NearestMops} -- komponent wyświetlający dwa MOP-y znajdujące się najbliżej aktualnej lokalizacji użytkownika
+\item \textit{SplashScreen} -- ekran powitalny; w trakcie jego wyświetlania aplikacja pobiera dane o MOP-ach z api oraz zapisane informacje z AsyncStorage
+\item \textit{SubHeader} -- nagłówek sekcji; używany w ekranie domowym
 \item \textit{UsageCircle} -- wykres kołowy zajętości miejsc parkingowych
 \item \textit{UsageTable} -- tabela z liczbą i zajętością miejsc parkingowych dla typów pojazdów wybranych w ustawieniach
 \end{enumerate}
@@ -405,11 +416,17 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 .3 components.
 .4 stacks.
 .5 FavouritesStack.js.
+.5 HomeStack.js.
 .5 MapStack.js.
 .5 SearchStack.js.
 .4 tools.
 .5 DrawerContent.js.
 .5 Header.js.
+.5 LastViewedMops.js.
+.5 MopListItem.js.
+.5 NearestMops.js.
+.5 SplashScreen.js.
+.5 SubHeader.js.
 .5 UsageCircle.js.
 .5 UsageTable.js.
 .4 views.
@@ -422,6 +439,7 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 .3 config.
 .4 facilities.js.
 .4 favourites.js.
+.4 findNearestMop.js.
 .4 mops.js.
 .4 settings.js.
 .4 styles.js.
@@ -437,7 +455,8 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dane statyczne oraz funkcje odpowiedzielne za przetwarzanie danych.
 \begin{enumerate}
 \item \textit{facilities} -- zdefiniowane usługi dostępne na MOP-ach, odpowiadające im polskie nazwy oraz ikony, funkcje generujące komplet ikon do wyświetlania w informacjach o MOP-ie
-\item \textit{favourites} -- funckje odpowiedzialne za pobieranie MOP-ów zapisanych do ulubionych, zapisywanie, usuwanie
+\item \textit{favourites} -- funkcje odpowiedzialne za pobieranie MOP-ów zapisanych do ulubionych, zapisywanie, usuwanie
+\item \textit{findNearestMop} -- funkcja, która po otrzymaniu współrzędnych punktu, zwraca dwa MOP-y znajdujące się najbliżej tego punktu oraz odległości do niego w kilometrach
 \item \textit{mops} -- funkcje pobierające informacje o MOP-ach z API, dobierające kolory według legendy
 \item \textit{settings} -- plik ze zmiennymi przechowującymi ustawienia aplikacji
 \item \textit{styles} -- zdefiniowane style komponentów
