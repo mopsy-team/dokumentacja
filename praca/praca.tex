@@ -195,6 +195,8 @@ Wczytywanie plików OSM daje następujące możliwości:
     odcinkach, tak jak na istniejących. 
 \end{enumerate}
 
+\section{Dokumentacja użytkowa i opis implementacji}
+
 \chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
@@ -265,6 +267,8 @@ W programie Mopsim wykorzystano następujące technologie:
 \item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na format używany do opisu dróg w symulacji.
 \end{itemize}
 
+\section{Dokumentacja użytkowa i opis implementacji}
+
 \chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
 
 Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
@@ -296,6 +300,8 @@ Planowane jest rozszerzenie o zapytanie:
 \begin{itemize}
 \item /forecast - zwraca przewidywane dane o zajętości MOP-ów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
 \end{itemize}
+
+\section{Dokumentacja użytkowa i opis implementacji}
 
 \chapter{Mopsik -- Aplikacja mobilna}
 
@@ -517,111 +523,11 @@ W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dan
 Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
 Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
 
+\section{Dokumentacja użytkowa i opis implementacji}
 
-\chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
+\chapter{Podział zadań}
 
-Program przygotowany dla systemu operacyjnego M\$ Windows uruchamia
-się energicznym dwumlaskiem na jego ikonce w~folderze
-\verb+\\FIDO\FOO\BLABA+.  Następnie kolistym ruchem ręki należy
-naprowadzić kursor na menu \texttt{Blabaliza} i~uaktywnić pozycję
-\texttt{Otwórz plik}.  Po wybraniu pliku i~zatwierdzeniu wyboru
-przyciskiem \texttt{OK} rozpocznie się proces blabalizy.  Wyniki
-zostaną zapisane w~pliku o~nazwie \texttt{99-1a.tx.43} w~bieżącym
-folderze.
-
-
-\chapter{Podsumowanie}
-
-W~pracy przedstawiono pierwszą efektywną implementację blabalizatora
-różnicowego.  Umiejętność wykonania blabalizy numerycznej dla danych
-,,z życia'' stanowi dla blabalii fetorycznej podobny przełom, jak dla
-innych dziedzin wiedzy stanowiło ogłoszenie teorii Mikołaja Kopernika
-i~Gryzybór Głombaskiego.  Z~pewnością w~rozpocznynającym się XXI wieku
-będziemy obserwować rozkwit blabalii fetorycznej.
-
-Trudno przewidzieć wszystkie nowe możliwości, ale te co bardziej
-oczywiste można wskazać już teraz.  Są to:
-\begin{itemize}
-\item degryzmolizacja wieńców telecentrycznych,
-\item realizacja zimnej reakcji lambliarnej,
-\item loty celulityczne,
-\item dokładne obliczenie wieku Wszechświata.
-\end{itemize}
-
-\section{Perspektywy wykorzystania w~przemyśle}
-
-Ze względu na znaczenie strategiczne wyników pracy ten punkt uległ
-utajnieniu.
-
-\appendix
-
-\chapter{Główna pętla programu zapisana w~języku T\=oFoo}
-
-\begin{verbatim}
-[[foo]{,}[[a3,(([(,),{[[]]}]),
-  [1; [{,13},[[[11],11],231]]].
-  [13;[!xz]].
-  [42;[{,x},[[2],{'a'},14]]].
-  [br;[XQ*10]].
- ), 2q, for, [1,]2, [..].[7]{x}],[(((,[[1{{123,},},;.112]],
-        else 42;
-   . 'b'.. '9', [[13141],{13414}], 11),
- [1; [[134,sigma],22]].
- [2; [[rho,-],11]].
- )[14].
- ), {1234}],]. [map [cc], 1, 22]. [rho x 1]. {22; [22]},
-       dd.
- [11; sigma].
-        ss.4.c.q.42.b.ll.ls.chmod.aux.rm.foo;
- [112.34; rho];
-        001110101010101010101010101010101111101001@
- [22%f4].
- cq. rep. else 7;
- ]. hlt
-\end{verbatim}
-
-\chapter{Przykładowe dane wejściowe algorytmu}
-
-\begin{center}
-  \begin{tabular}{rrr}
-    $\alpha$ & $\beta$ & $\gamma_7$ \\
-    901384 & 13784 & 1341\\
-    68746546 & 13498& 09165\\
-    918324719& 1789 & 1310 \\
-    9089 & 91032874& 1873 \\
-    1 & 9187 & 19032874193 \\
-    90143 & 01938 & 0193284 \\
-    309132 & $-1349$ & $-149089088$ \\
-    0202122 & 1234132 & 918324098 \\
-    11234 & $-109234$ & 1934 \\
-  \end{tabular}
-\end{center}
-
-\chapter{Przykładowe wyniki blabalizy
-    (ze~współczynnikami~$\sigma$-$\rho$)}
-
-\begin{center}
-  \begin{tabular}{lrrrr}
-    & Współczynniki \\
-    & Głombaskiego & $\rho$ & $\sigma$ & $\sigma$-$\rho$\\
-    $\gamma_{0}$ & 1,331 & 2,01 & 13,42 & 0,01 \\
-    $\gamma_{1}$ & 1,331 & 113,01 & 13,42 & 0,01 \\
-    $\gamma_{2}$ & 1,332 & 0,01 & 13,42 & 0,01 \\
-    $\gamma_{3}$ & 1,331 & 51,01 & 13,42 & 0,01 \\
-    $\gamma_{4}$ & 1,332 & 3165,01 & 13,42 & 0,01 \\
-    $\gamma_{5}$ & 1,331 & 1,01 & 13,42 & 0,01 \\
-    $\gamma_{6}$ & 1,330 & 0,01 & 13,42 & 0,01 \\
-    $\gamma_{7}$ & 1,331 & 16435,01 & 13,42 & 0,01 \\
-    $\gamma_{8}$ & 1,332 & 865336,01 & 13,42 & 0,01 \\
-    $\gamma_{9}$ & 1,331 & 34,01 & 13,42 & 0,01 \\
-    $\gamma_{10}$ & 1,332 & 7891432,01 & 13,42 & 0,01 \\
-    $\gamma_{11}$ & 1,331 & 8913,01 & 13,42 & 0,01 \\
-    $\gamma_{12}$ & 1,331 & 13,01 & 13,42 & 0,01 \\
-    $\gamma_{13}$ & 1,334 & 789,01 & 13,42 & 0,01 \\
-    $\gamma_{14}$ & 1,331 & 4897453,01 & 13,42 & 0,01 \\
-    $\gamma_{15}$ & 1,329 & 783591,01 & 13,42 & 0,01 \\
-  \end{tabular}
-\end{center}
+\chapter{Napotkane problemy i niezrealizowane pomysły}
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliografia}
@@ -644,39 +550,6 @@ Axhausen, K W. (eds.) The Multi-Agent Transport Simulation MATSim, Pp. 3–8. Lo
 Press. DOI: http://dx.doi.org/10.5334/baw.1. License: CC-BY 4.0
 
 \bibitem[8]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
-
-\bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
-    aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
-  1916.
-
-\bibitem[Fif01]{ff-sr} Filigran Fifak, \textit{O fetorach
-    $\sigma$-$\rho$}, Acta Fetorica, 2001.
-
-\bibitem[Głomb04]{grglo} Gryzybór Głombaski, \textit{Parazytonikacja
-    blabiczna fetorów -- nowa teoria wszystkiego}, Warszawa 1904.
-
-\bibitem[Hopp96]{hopp} Claude Hopper, \textit{On some $\Pi$-hedral
-    surfaces in quasi-quasi space}, Omnius University Press, 1996.
-
-\bibitem[Leuk00]{leuk} Lechoslav Leukocyt, \textit{Oval mappings ab ovo},
-  Materiały Białostockiej Konferencji Hodowców Drobiu, 2000.
-
-\bibitem[Rozk93]{JR} Josip A.~Rozkosza, \textit{O pewnych własnościach
-    pewnych funkcji}, Północnopomorski Dziennik Matematyczny 63491
-  (1993).
-
-\bibitem[Spy59]{spyrpt} Mrowclaw Spyrpt, \textit{A matrix is a matrix
-    is a matrix}, Mat. Zburp., 91 (1959) 28--35.
-
-\bibitem[Sri64]{srinis} Rajagopalachari Sriniswamiramanathan,
-  \textit{Some expansions on the Flausgloten Theorem on locally
-    congested lutches}, J. Math.  Soc., North Bombay, 13 (1964) 72--6.
-
-\bibitem[Whi25]{russell} Alfred N. Whitehead, Bertrand Russell,
-  \textit{Principia Mathematica}, Cambridge University Press, 1925.
-
-\bibitem[Zen69]{heu} Zenon Zenon, \textit{Użyteczne heurystyki
-    w~blabalizie}, Młody Technik, nr~11, 1969.
 
 \end{thebibliography}
 
