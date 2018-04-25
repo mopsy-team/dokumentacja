@@ -2,6 +2,8 @@
 \usepackage{graphicx}
 \usepackage[breaklinks=true]{hyperref}
 \usepackage{dirtree}
+\usepackage{graphicx,wrapfig,lipsum}
+\usepackage{caption}
 \begin{document}
 
 \maketitle
@@ -344,16 +346,28 @@ Z komponentów budujemy widoki, czyli wszystko co jest widoczne na ekranie w dan
 
 Cała aplikacja objęta jest nawigatorem, który odpowiedzialny jest za generowanie menu bocznego oraz przechodzenie między widokami zgodnie z wolą użytkownika. \\
 
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.6\textwidth}
 \subsection{Zakładki}
 Menu boczne zawiera 5 zakładek: 
 \begin{enumerate}
 \item \textit{Konfiguracja/Ustawienia} -- umożliwia wybór typów pojazdów, którymi jest zainteresowany użytkownik
-\item \textit{Home} -- TODO %TODO
+\item \textit{Home} -- wyświetla dwa najbliższe i trzy ostatnio wyświetlane MOP-y
 \item \textit{Mapa} -- wyświetla mapę z zaznaczonymi MOP-ami
 \item \textit{Ulubione MOP-y} -- wyświetla listę MOP-ów zapisanych do ulubionych
 \item \textit{Wyszukiwarka MOP-ów} -- umożliwia wyszukiwanie MOP-a po nazwie, miejscowości, numerze drogi
 \end{enumerate}
 Istnieje także szósty widok - \textit{Szczegółowe informacje o MOP-ie}, do którego można przejść z \textit{Ulubionych}, \textit{Wyszukiwarki} i \textit{Mapy}. Zawiera on wszystkie informacje o MOP-ie, jego wyposażenie oraz zajętości i liczby miejsc parkingowych dla różnych typów pojazdów.
+\end{minipage}%
+\begin{minipage}{.4\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/menu.png}
+  \captionof{figure}{Menu boczne}
+  \label{mopsik_menu}
+\end{minipage}
+\end{figure}
+
 
 \subsection{Konfiguracja aplikacji i ustawienia}
 Przy pierwszym uruchomieniu aplikacji otwiera się panel konfiguracyjny, w którym należy ustawić dwa parametry:
@@ -371,6 +385,55 @@ Podział został wykonany w oparciu o zróżnicowane potrzeby użytkowników tyc
 Konfigurację aplikacji można zmienić w każdej chwili w zakładce \emph{Ustawienia}.
 W ustawieniach znajduję się także przycisk \textit{Zresetuj ustawienia}, który wymazuje z urządzenia wszystkie informacje zapisane przez aplikację i uruchamia ją ponownie. 
 
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/home.png}
+  \captionof{figure}{Panel główny}
+  \label{mopsik_home}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/settings.png}
+  \captionof{figure}{Ustawienia}
+  \label{mopsik_settings}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/map.png}
+  \captionof{figure}{Mapa}
+  \label{mopsik_map}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/favourites.png}
+  \captionof{figure}{Ulubione}
+  \label{mopsik_favourites}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/search.png}
+  \captionof{figure}{Wyszukiwarka}
+  \label{mopsik_search}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/details.png}
+  \captionof{figure}{Szczegóły}
+  \label{mopsik_details}
+\end{minipage}
+\end{figure}
+
+
 \subsection{Google Maps}
 \subsubsection{Warunki}
 Jedną z podstawowych funkcji aplikacji Mopsik jest wyświetlanie mapy Polski z zaznaczonymi MOP-ami. Do tego celu wykorzystaliśmy Google Maps API. Dostęp do samej mapy i oznaczania na niej punktów jest nieodpłatny, dopóki aplikacja jest darmowa i ogólnodostępna\cite{google-api-faq}.
@@ -382,7 +445,6 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 \item Do mapy dodawane są tylko markery znajdujące się w obecnie widocznym obszarze. Wraz z przesuwaniem mapy ładowane są kolejne.
 \item Mapa przeładowywana jest nie częściej niż co 2 sekundy. Zapobiega to ciągłemu odświeżaniu gdy odczyty GPS urządzenia są niedokładne i nieprzerwanie drgają.
 \item Wykorzystanie \textit{onRegionChangeComplete} zamiast \textit{onRegionChange} -- obie funkcje wywoływane są gdy użytkownik porusza mapą, czyli przy zmianie aktualnie widocznego fragmentu. \textit{onRegionChangeComplete} wywoływane jest tylko raz -- po zakończonym przeciągnięciu. Animacje są nieco mniej płynne, ale aplikacja nie zawiesza się przez ciągłe przeładowywanie mapy i znaczników MOP-ów.
-%TODO  \item  optymalizacja, której jeszcze nie wymyśliliśmy 
 \end{enumerate}
 \subsubsection{Bezpieczeństwo}
 Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
@@ -435,20 +497,20 @@ Dostęp do ikon z \url{https://material.io/icons/}.
 \url{https://reactnavigation.org}\\
 Otoczka całej aplikacji. Odpowiada za nawigowanie wewnątrz aplikacji i poruszanie pomiędzy widokami.
 \end{enumerate}
-%TODO - dodawać nowe
 
 \subsection{Nawigacja}
-\begin{figure}[h]
-\caption{Schemat nawigacji aplikacji mobilnej Mopsik}
-\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
-\end{figure}
 W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik_nav}.\\
 
 Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodany jest do niego widok \textit{SettingsView}, a także stosy \textit{HomeStack}, \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
 
-Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}. Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie w nagłówku pojawia się przycisk cofania. \\
+Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}, a stamtąd do \textit{MapView} w trybie \textit{Pokaż MOP-a na mapie} (focused). Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie i skupionej mapie w nagłówku pojawia się przycisk cofania.\\
 
-Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po dwóch widokach - głównym i szczegółowym. W widokach głównych (tj. domowym, mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. 
+Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po trzech widokach - głównym, szczegółowym i mapie (wyśrodkowanej na wybranym MOP-ie, z otwartym dymkiem). W widokach głównych (tj. domowym, mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. Ze szczegółów można poprzez kliknięcie w przycisk \textit{Pokaż na mapie} przejść do \textit{MapView} -- o ile wcześniej nie przyszliśmy z mapy. \newline Czyli nie jest możliwe poruszanie się\\	\indent mapa --> szczegóły(A) --> mapa --> szczegóły(B) -/-> mapa --> ... ,\\ponieważ w widoku szczegóły(B) nie pojawia się przycisk \textit{Pokaż na mapie}.
+
+\begin{figure}[!htb]
+\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
+\caption{Schemat nawigacji aplikacji mobilnej Mopsik}
+\end{figure}
 
 \subsection{Pozostałe komponenty}
 Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plików Mopsika. Poza komponentami opisanymi w poprzednim punkcie, aplikacja korzysta z narzędzi znajdujących się folderze \textit{tools}.
@@ -463,7 +525,7 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 \item \textit{UsageCircle} -- wykres kołowy zajętości miejsc parkingowych
 \item \textit{UsageTable} -- tabela z liczbą i zajętością miejsc parkingowych dla typów pojazdów wybranych w ustawieniach
 \end{enumerate}
-\begin{figure}[h]
+\begin{figure}[!htb]
 \caption{Struktura plików aplikacji mobilnej Mopsik}
 \dirtree{%
 .1 mopsik mobile.
@@ -506,6 +568,8 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 }\label{mopsik_mobile_structure}
 \end{figure}
 
+
+
 \subsection{Pliki konfiguracyjne i funkcje}
 W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dane statyczne oraz funkcje odpowiedzielne za przetwarzanie danych.
 \begin{enumerate}
@@ -525,9 +589,58 @@ Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do 
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
+\chapter{Organizacja pracy}
+%TODO
+\paragraph{Slack}
+
+\paragraph{GitHub}
+
+\paragraph{Todoist}
+
+
+
 \chapter{Podział zadań}
+\paragraph{Mopnik}
+\begin{enumerate}
+\item Magdalena Grabowska
+\end{enumerate}
+
+\paragraph{Mopsim}
+\begin{enumerate}
+\item Michał Kukuła
+\item Przemysław Perkowski - generowanie planów podróży
+\end{enumerate}
+
+\paragraph{Mopsik - serwer}
+\begin{enumerate}
+\item Przemysław Perkowski
+\end{enumerate}
+
+\paragraph{Mopsik - aplikacja mobilna}
+\begin{enumerate}
+\item Klaudia Laks
+\item Przemysław Perkowski - code review, poprawki
+\end{enumerate}
+
+\paragraph{Mopsik - strona internetowa}
+\begin{enumerate}
+\item Klaudia Laks
+\item Przemysław Perkowski
+\end{enumerate}
+
+\paragraph{Dokumentacja / Praca licencjacka}
+\begin{enumerate}
+\item Magdalena Grabowska
+\item Michał Kukuła
+\item Klaudia Laks
+\item Przemysław Perkowski
+\end{enumerate}
 
 \chapter{Napotkane problemy i niezrealizowane pomysły}
+%TODO
+
+\chapter{Zawartość płyty}
+%TODO
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliografia}
