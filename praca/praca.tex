@@ -8,7 +8,6 @@
 
 \maketitle
 
-%tu idzie streszczenie na strone poczatkowa
 \begin{abstract}
   W~pracy opisano implementację systemu dotyczącego Miejsc Obsługi Podróżnych
   przy autostradach i~drogach ekspresowych w Polsce. Podstawowe składowe tego
@@ -38,13 +37,13 @@
   \item\emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org)
   \item\emph{RN} -- React Native
   \item\emph{API} -- Interfejs programowania aplikacji (ang. Application programming interface)
+  \item\emph{ZPP} -- Zespołowy Projekt Programistyczny
 \end{enumerate}
 
 \chapter{Wprowadzenie}
-
 \section{Rozwój sieci drogowej w Polsce}
-Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w okresie PRL i pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
-Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
+Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i~dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w~okresie PRL i~pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
+Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w~Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
 \begin{figure}[h]
 \caption{Rozwój sieci dróg ekspresowych i autostrad w Polsce na początku XX w.}
 \includegraphics[width=\textwidth]{images/1024px-PL-Motorways.png}
@@ -60,9 +59,8 @@ Miejsce Obsługi Podróżnych (\textbf{MOP}) to teren wydzielony w pasie drogowy
 MOP-y w Polsce dzielimy na trzy kategorie:
 \begin{enumerate}
     \item \textbf{MOP kategorii I} -- o funkcji wypoczynkowej, wyposażony w stanowiska postojowe (parking), jezdnie manewrowe, urządzenia wypoczynkowe, sanitarne i oświetlenie; dopuszcza się wyposażenie w obiekty małej gastronomii.
-    \item \textbf{MOP kategorii II} -- o funkcji wypoczynkowo-usługowej, wyposażony w obiekty, o których mowa
-w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastronomiczno-handlowe, punkty informacji turystycznej.
-    \item \textbf{MOP kategorii III} -- o funkcji wypoczynkowej i usługowej, wyposażony w obiekty, o których mowa w punkcie 2., obiekty noclegowe oraz inne obiekty handlowo-usługowe w zależności od potrzeb.
+    \item \textbf{MOP kategorii II} -- o funkcji wypoczynkowo-usługowej, wyposażony w obiekty, o~których mowa w~punkcie 1. oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastronomiczno-handlowe, punkty informacji turystycznej.
+    \item \textbf{MOP kategorii III} -- o funkcji wypoczynkowej i usługowej, wyposażony w~obiekty, o~których mowa w~punkcie 2., obiekty noclegowe oraz inne obiekty handlowo-usługowe w zależności od potrzeb.
 \end{enumerate}
 \begin{figure}[h]
 \caption{Aktualne (styczeń 2018r.) pozycje MOP-ów w Polsce (na niebiesko). MOP-y planowane (na czerwono).}
@@ -70,15 +68,15 @@ w punkcie 1., oraz w stację paliw, stanowiska obsługi pojazdów, obiekty gastr
 \end{figure}
 
 \section{Problemy związane z budową MOP-ów}
-Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w Polsce stwarza szereg problemów z nimi związanych:
+Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w~Polsce, stwarza szereg problemów z nimi związanych:
 \begin{enumerate}
-    \item \textbf{Problemy administracyjno-prawne} -- GDDKIA systematycznie prowadzi kolejne przetargi na dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub lokalizacja punktu mogą zniechęcać potencjalnych najemców.
+    \item \textbf{Problemy administracyjno-prawne} -- GDDKiA systematycznie prowadzi kolejne przetargi na~dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub~lokalizacja punktu mogą zniechęcać potencjalnych najemców.
     \item \textbf{Lokalizacja MOP-ów} -- efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
     \item \textbf{Liczba miejsc parkingowych i ich układ} -- MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
 \end{enumerate}
 
 \section{Symulacja ruchu drogowego w Polsce}
-Efektywne rozmieszczenie coraz większej liczby MOP-ów jest jednym z głównych wyzwań, stojących przed planistami dróg. Powinno ono uwzględniać wszystkie kwestie poruszone w poprzednim rozdziale. Jednak rozwój sieci drogowej w Polsce na niespotykaną wcześniej skalę sprawia, że zadanie to jest coraz trudniejsze. Może się okazać, że dane dotyczące natężenia ruchu na danym odcinku drogi, odległości od najbliższych MOP-ów czy węzłów komunikacyjnych są niewystarczające i trudno na ich podstawie określić wykorzystanie MOP-a w okresach wzmożonego ruchu sezonowego lub w przyszłości, wraz z dalszym rozwojem infrastruktury drogowej. Przydatnymi danymi, wykorzystywanymi w modelowaniu ruchu drogowego, są macierze podróży, określające liczbę pojazdów poruszających się pomiędzy danymi parami punktów w zadanym okresie. Planista dróg, wyposażony w macierze podróży, chciałby na ich podstawie wiedzieć:
+Efektywne rozmieszczenie coraz większej liczby MOP-ów jest jednym z głównych wyzwań stojących przed planistami dróg. Powinno ono uwzględniać wszystkie kwestie poruszone w~poprzednim rozdziale. Jednak rozwój sieci drogowej w Polsce na niespotykaną wcześniej skalę sprawia, że zadanie to jest coraz trudniejsze. Może się okazać, że dane dotyczące natężenia ruchu na danym odcinku drogi, odległości od najbliższych MOP-ów czy węzłów komunikacyjnych są niewystarczające i trudno na ich podstawie określić wykorzystanie MOP-a w okresach wzmożonego ruchu sezonowego lub w przyszłości, wraz z dalszym rozwojem infrastruktury drogowej. Przydatnymi danymi, wykorzystywanymi w modelowaniu ruchu drogowego, są macierze podróży, określające liczbę pojazdów poruszających się pomiędzy danymi parami punktów w zadanym okresie. Planista dróg, wyposażony w macierze podróży, chciałby na ich podstawie wiedzieć:
 \begin{enumerate}
 	\item Jakie jest natężenie ruchu na poszczególnych odcinkach drogi?
 	\item Jak dodanie lub usunięcie (np. w wyniku tymczasowego zatrzymania ruchu) odcinka drogi wpłynie na to natężenie?
@@ -115,17 +113,21 @@ niepełne.
 
 \section{Zajętość MOP-ów i dostępne usługi}
 
-Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest dobór odpowiedniej liczby miejsc parkingowych. Dodatkowo, miejsca te należy odpowiednio podzielić pomiędzy różne typy pojazdów: samochody osobowe, samochody ciężarowe, autobusy, pojazdy przewożące substancje niebezpieczne itd. Podróżni mają też różne potrzeby związane z postojem -- od szybkiego zatankowania samochodu, przez obiad z rodziną na świeżym powietrzu, do spędzenia nocy w kabinie. \newline Aktualnie informację o znajdujących się na MOP-ie usługach można uzyskać ze znaków informacyjnych umieszczonych kilka kilometrów przed zjazdem. Jednak takie oznaczenia nie odpowiadają na kilka ważnych pytań, które możemy mieć na dowolnym etapie podróży:
+Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest dobór odpowiedniej liczby miejsc parkingowych. Dodatkowo, miejsca te należy odpowiednio podzielić pomiędzy różne typy pojazdów: samochody osobowe, samochody ciężarowe, autobusy, pojazdy przewożące substancje niebezpieczne itd. Podróżni mają też różne potrzeby związane z postojem -- od szybkiego zatankowania samochodu, przez obiad z rodziną na świeżym powietrzu, do spędzenia nocy w kabinie. \newline Aktualnie informację o znajdujących się na MOP-ie usługach można uzyskać ze znaków informacyjnych umieszczonych kilka kilometrów przed zjazdem. Jednak takie oznaczenia nie~odpowiadają na kilka ważnych pytań, które możemy mieć na dowolnym etapie podróży:
 \begin{enumerate}
 	\item Za ile kilometrów znajduje się najbliższa stacja benzynowa? 
 	\item Czy starczy mi paliwa do następnej, ponieważ tutaj jest duża kolejka?
 	\item Czy na tym MOP-ie jest monitoring?
-	\item Czy na tym MOP-ie są wolne miejsca parkingowe? (ten problem jest ważniejszy z punktu widzenia kierowców pojazdów wielkogabarytowych)
-	\item Jaka będzie zajętość miejsc parkingowych za godzinę?
+	\item Czy na tym MOP-ie są wolne miejsca parkingowe? (ten problem jest ważniejszy z~punktu widzenia kierowców pojazdów wielkogabarytowych)
+	\item Jaka będzie zajętość miejsc parkingowych za~godzinę?
 \end{enumerate}
 
 Odpowiedzią na te pytania będzie \textbf{Mopsik} (MOP -- System Informowania Kierowców) -- aplikacja mobilna i strona internetowa.
 
+
+\section{Nasze zadanie}
+W ramach zajęć ZPP postanowiliśmy podjąć się implementacji prototypów wyżej opisanych programów.
+Badania są finansowane ze środków projektu pt. ,,Miejsca parkingowe na MOP'' finansowanego przez NCBiR/GDDKiA w ramach wspólnego przedsięwzięcia ,,RID'', umowa DZP/RID-I-44/8/NCBR/2016.
 \chapter{Mopnik}\label{r:Mopnik}
 
 \section{Przypadki użycia}
@@ -223,7 +225,7 @@ Modelem obliczeniowym w informatyce nazywamy model matematyczny, wykorzystujący
 \item w modelu makroskopowym analizuje się zagregowane cechy grupy jednostek i ich oddziaływanie na cały system
 \end{itemize}
 \subsubsection{Model obliczeniowy oparty na agentach}
-Jednym z intensywnie stosowanych i rozwijanych modeli obliczeniowych jest model oparty na agentach (ang. \textit{agent-based model}).
+Jednym z intensywnie stosowanych i rozwijanych modeli obliczeniowych jest model oparty na~agentach (ang. \textit{agent-based model}).
 Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonomicznych agentów, w celu badania ich wpływ na cały system\cite{agent-based}. Zwykle agentom przyporządkowuje się uproszczone zachowania, a następnie umieszcza w pewnym miejscu i czasie. Następnie symuluje się podejmowane przez nich działania i oddziaływania między sobą w celu odtworzenia lub próby wyjaśnienia bardziej złożonych zjawisk. Modele obliczeniowe oparte na agentach stosuje się m.in. w biologii, ekologii czy naukach społecznych.
 \subsubsection{System wieloagentowy}
     Nieco innym, choć pokrewnym pojeciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
@@ -233,20 +235,20 @@ Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonom
     \end{figure}
 \subsubsection{MATSim -- symulator ruchu drogowego}
 MATSim (\textit{Multi-Agent Transport Simulation}) to open-sourcowy, rozszerzalny framework napisany w Javie służący do przeprowadzania symulacji ruchu drogowego. Jego głównymi założeniami jest mikroskopowe modelowanie ruchu oraz oparte na agentach symulowanie dziennych planów poszczególnych jednostek\cite{matsim}. MATSim został zaprojektowany, by modelować aktywności podczas pojedynczego dnia. MATSim oparty jest o zasadę koewolucyjności. Każdy z agentów, reprezentujących pojedynczych uczestników ruchu drogowego, optymalizuje swój codzienny plan, rywalizując z innymi agentami w różnych aspektach korzystania z infrastruktury drogowej.\\
-Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu. Od tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy badania emisji spalin.
+Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu. Od~tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w~Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w~Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy~badania emisji spalin.
     \begin{figure}[h]
         \caption{Logo MATSim}
         \includegraphics[width=\textwidth]{images/matsim_logo.png}
     \end{figure}
 \subsubsection{MATSim -- pętla programu}
-Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
+Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i~wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze~swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
     \begin{figure}[h]
         \caption{Schemat działania MATSim}
         \includegraphics[width=\textwidth]{images/matsim-workflow.png}
     \end{figure}
 \newpage
 \subsubsection{Dlaczego MATSim?}
-Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do symulowania ruchu na drogach w Polsce, w celu zbadania zajętości MOP-ów. Co istotne, wstępne symulacje pokazały, że już jedna iteracja działania głównej pętli programu jest wystarczająca -- wynik jest bardzo zbliżony do optymalnego. Jest to zgodne z intuicją -- w ruchu krajowym należy oczekiwać, że najkrótsza droga spośród dróg danego typu jest najbardziej optymalną, a tworzące się korki nie są tak częste i regularne, jak w intensywnym ruchu miejskim. Czynniki, które nas przekonały do wyboru frameworku MATSim to między innymi:
+Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do symulowania ruchu na drogach w Polsce, w celu zbadania zajętości MOP-ów. Co istotne, wstępne symulacje pokazały, że już jedna iteracja działania głównej pętli programu jest wystarczająca -- wynik jest bardzo zbliżony do optymalnego. Jest to zgodne z~intuicją -- w ruchu krajowym należy oczekiwać, że najkrótsza droga spośród dróg danego typu jest najbardziej optymalną, a~tworzące się korki nie są tak częste i~regularne, jak w intensywnym ruchu miejskim. Czynniki, które nas przekonały do wyboru frameworku MATSim to między innymi:
 \begin{itemize}
 \item licencja open-source
 \item możliwość łatwego rozszerzenia o dodatkowe funkcjonalności, wiele gotowych przykładów
@@ -266,24 +268,25 @@ W programie Mopsim wykorzystano następujące technologie:
 \begin{itemize}
 \item MATSim -- opisany wyżej
 \item Java -- choć MATSim umożliwia też pisanie rozszerzeń w innym języku, zdecydowaliśmy się na wykorzystanie Javy jako języka programowania z uwagi na jej największą integrację z MATSimem. Dodatkowym atutem było nasze doświadczenie z pracy w tym języku, także w aspekcie programowania współbieżnego.
-\item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na format używany do opisu dróg w symulacji.
+\item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na~format używany do opisu dróg w symulacji.
 \end{itemize}
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
 \chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
 
-Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na stronie internetowej.
-Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych - ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
+Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych -- ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
 Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
+
+Podczas tworzenia aplikacji pewnym problemem stało się posługiwanie różnymi układami współrzędnych przez różne komponenty, z~których korzystamy. Na~przykład dane na temat MOP-ów przez GDDKiA są w \href{https://pl.wikipedia.org/wiki/Uk\%C5\%82ad_wsp\%C3\%B3\%C5\%82rz\%C4\%99dnych_1992}{układzie 92}, Google Maps, którego używamy w naszej aplikacji mobilnej przyjmuje danych w układzie \href{https://pl.wikipedia.org/wiki/System_odniesienia_WGS_84}{WSG84}. Postanowiliśmy dodać do naszego API konwerter pomiędzy tymi układami.
 \section{Przypadki użycia}
 Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
 \begin{enumerate}
-\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOP-ach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA
+\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOP-ach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA.
 \item Pobrać dane o bieżącej zajętości MOP-ów.
 \item Pobrać dane o przewidywanej krótkoterminowo zajętości MOP-ów generowane na podstawie metodyk predykcji.
 \end{enumerate}
-
 \section{Architektura}
 Na implementację API serwera składają się dwie części:
 \begin{enumerate}
@@ -293,7 +296,7 @@ Na implementację API serwera składają się dwie części:
 \paragraph{Cron}\mbox{}\\
 Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOP-ami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $\textit{update\_mops\_db}$, która aktualizuje bazę danych.
 \paragraph{Aplikacja Django}\mbox{}\\
-Implementacja oparta jest o wersję 2.1 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
+Implementacja oparta jest o wersję 2.0 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
 \begin{itemize}
 \item /mops - zwraca wszystkie dane o MOP-ach agregowane w bazie danych
 \item /taken - zwraca dane o zajętości MOP-ów agregowane w bazie danych
@@ -322,7 +325,7 @@ Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
 Dodatkowo, w aplikacji mobilnej:
 \begin{enumerate}
 \item Mapa wyświetla aktualną lokalizację użytkownika, co umożliwia wybranie najbliższego MOP-a. 
-\item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z listy zapisanych.
+\item Istnieje możliwość dodanie MOP-a do ulubionych i późniejsze wybranie go z~listy zapisanych.
 \end{enumerate}
 
 
@@ -438,7 +441,7 @@ W ustawieniach znajduję się także przycisk \textit{Zresetuj ustawienia}, któ
 \subsubsection{Warunki}
 Jedną z podstawowych funkcji aplikacji Mopsik jest wyświetlanie mapy Polski z zaznaczonymi MOP-ami. Do tego celu wykorzystaliśmy Google Maps API. Dostęp do samej mapy i oznaczania na niej punktów jest nieodpłatny, dopóki aplikacja jest darmowa i ogólnodostępna\cite{google-api-faq}.
 \subsubsection{Działanie}
-Połączenie do API uwierzytelniane jest przez klucz wygenerowany na stronie \url{https://console.developers.google.com/apis/credentials}. Z każdym przeładowaniem widoku z mapą do API wysyłane jest zapytanie z prośbą o konkretny fragment mapy świata, który jest zwracany w odpowiedzi, a następnie wyświetlany w aplikacji. Na mapie znajdują się markery oznaczające MOP-y. Kolor markera jest uzależniony od zajętości MOP-a dla wybranego \textit{głównego typu pojazdu}. Aplikacja wyświetla aktualną lokalizację użytkownika oraz umożliwia jej śledzenia (mapa porusza się wraz z użytkownikiem). 
+Połączenie do API uwierzytelniane jest przez klucz wygenerowany na stronie \url{https://console.developers.google.com/apis/credentials}. Z każdym przeładowaniem widoku z mapą do~API wysyłane jest zapytanie z prośbą o konkretny fragment mapy świata, który jest zwracany w odpowiedzi, a następnie wyświetlany w aplikacji. Na mapie znajdują się markery oznaczające MOP-y. Kolor markera jest uzależniony od zajętości MOP-a dla wybranego \textit{głównego typu pojazdu}. Aplikacja wyświetla aktualną lokalizację użytkownika oraz umożliwia jej śledzenia (mapa porusza się wraz z użytkownikiem). 
 \subsubsection{Wydajność}
 Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco obniża wydajność mapy. Aby ją poprawić zastosowaliśmy kilka zabiegów:
 \begin{enumerate}
@@ -452,10 +455,10 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 \subsection{Zapytanie do API}
 Po otwarciu aplikacji wykonywane jest zapytanie do API \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
 Po wciśnięciu przycisku \textit{odśwież} oraz po otwarciu każdej z zakładek, wykonywane jest zapytanie \textit{/taken} zwracające tylko aktualną liczbę zajętych miejsc parkingowych dla każdego z MOP-ów. Aplikacja aktualizuje te dane w zapisanych MOP-ach oraz przelicza nowe zajętości dla wszystkich typów pojazdów.
-Do każdego typu pojazdu, w każdym MOP-ie, przyporządkowywany jest kolor zgodnie z ustaloną legendą (np. dla małej zajętości, do 30\% - zielony, a dla największej - czerwony). Ten kolor jest następnie wykorzystywany przy wizualizacji danych.
+Do każdego typu pojazdu, w każdym MOP-ie, przyporządkowywany jest kolor zgodnie z ustaloną legendą (np. dla małej zajętości, do 30\% -- zielony, a dla największej -- czerwony). Ten kolor jest następnie wykorzystywany przy wizualizacji danych.
 
 \subsection{Użyte biblioteki}
-W aplikacji skorzystaliśmy z gotowych bibliotek RN, co znacząco przyspieszyło i ułatwiło pracę.
+W aplikacji skorzystaliśmy z gotowych bibliotek RN, co znacząco przyspieszyło i~ułatwiło pracę.
 \begin{enumerate}
 \item \textbf{lodash} \\
 \url{https://www.npmjs.com/package/lodash}\\
@@ -501,11 +504,13 @@ Otoczka całej aplikacji. Odpowiada za nawigowanie wewnątrz aplikacji i porusza
 \subsection{Nawigacja}
 W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik_nav}.\\
 
+
 Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodany jest do niego widok \textit{SettingsView}, a także stosy \textit{HomeStack}, \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
 
 Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}, a stamtąd do \textit{MapView} w trybie \textit{Pokaż MOP-a na mapie} (focused). Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie i skupionej mapie w nagłówku pojawia się przycisk cofania.\\
 
 Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po trzech widokach - głównym, szczegółowym i mapie (wyśrodkowanej na wybranym MOP-ie, z otwartym dymkiem). W widokach głównych (tj. domowym, mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. Ze szczegółów można poprzez kliknięcie w przycisk \textit{Pokaż na mapie} przejść do \textit{MapView} -- o ile wcześniej nie przyszliśmy z mapy. \newline Czyli nie jest możliwe poruszanie się\\	\indent mapa --> szczegóły(A) --> mapa --> szczegóły(B) -/-> mapa --> ... ,\\ponieważ w widoku szczegóły(B) nie pojawia się przycisk \textit{Pokaż na mapie}.
+
 
 \begin{figure}[!htb]
 \includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
@@ -649,18 +654,16 @@ Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do 
 
 \bibitem[2]{gddkia-mop} GDDKiA, \textit{Generalna Dyrekcja Dróg Krajowych i Autostrad -- Serwis Informacyjny}, \url{https://www.gddkia.gov.pl/pl/963/miejsca-obslugi-podroznych-mop}
 
-\bibitem[3]{model}Melnik, Roderick, Mathematical and Computational Modeling: With Applications in Natural and Social Sciences, Engineering, and the Arts. Wiley. ISBN 978-1-118-85398-6., 2015
+\bibitem[3]{model}Melnik, Roderick. ``Mathematical and Computational Modeling: With Applications in Natural and Social Sciences, Engineering, and the Arts. Wiley.'' ISBN 978-1-118-85398-6., 2015
 
-\bibitem[4]{micmac}Gustafsson, Leif; Sternad, Mikael. "Bringing consistency to simulation of population models: Poisson Simulation as a bridge between micro and macro simulation". Mathematical Biosciences. 209: 361–385, 2007
+\bibitem[4]{micmac}Gustafsson, Leif; Sternad, Mikael. ``Bringing consistency to simulation of population models: Poisson Simulation as a bridge between micro and macro simulation''. Mathematical Biosciences. 209: 361–385, 2007
 
-\bibitem[5]{agent-based} Niazi, Muaz; Hussain, Amir,
-Agent-based Computing from Multi-agent Systems to Agent-Based Models: A Visual Survey", 2011
+\bibitem[5]{agent-based} Niazi, Muaz; Hussain, Amir. ``Agent-based Computing from Multi-agent Systems to Agent-Based Models: A Visual Survey'', 2011
 
 \bibitem[6]{wiki-agent} Wikipedia, \textit{System wieloagentowy},\\ \url{https://pl.wikipedia.org/wiki/System_wieloagentowy}
 
-\bibitem[7]{matsim} Horni, A, Nagel, K and Axhausen, K W. 2016. Introducing MATSim. In: Horni, A, Nagel, K and
-Axhausen, K W. (eds.) The Multi-Agent Transport Simulation MATSim, Pp. 3–8. London: Ubiquity
-Press. DOI: http://dx.doi.org/10.5334/baw.1. License: CC-BY 4.0
+\bibitem[7]{matsim} Horni, A, Nagel, K and Axhausen, K W. 2016. ``Introducing MATSim.'' In: Horni, A, Nagel, K and
+Axhausen, K W. (eds.) ``The Multi-Agent Transport Simulation MATSim'', Pp. 3–8. London: Ubiquity Press. DOI: http://dx.doi.org/10.5334/baw \\ License: CC-BY 4.0
 
 \bibitem[8]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
 
