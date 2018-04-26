@@ -329,7 +329,7 @@ Dodatkowo, w aplikacji mobilnej:
 \end{enumerate}
 
 
-\section{Architektura}
+\section{Architektura i opis implementacji}
 
 \subsection{Technologia}
 \begin{figure}[!htb]
@@ -592,16 +592,30 @@ W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dan
 Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
 Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
 
-\section{Dokumentacja użytkowa i opis implementacji}
+\section{Dokumentacja użytkowa}
 
 \chapter{Organizacja pracy}
-%TODO
-\paragraph{Slack}
+Nasz projekt składa z się z pięciu częściowo niezależnych programów. Niektóre z nich komunikują lub łączą się ze sobą, ale duża część kodu mogła być napisana bez znajomości szczegółowej implementacji pozostałych aplikacji. Dlatego powstał u nas dość wyraźny podział pracy -- każdy program posiadał swojego koordynatora, który był autorem większości kodu i nadzorował rozwój aplikacji. Dokładny podział prac został przedstawiony w następnym rozdziale. 
 
-\paragraph{GitHub}
+\paragraph{Slack}(komunikacja)
 
-\paragraph{Todoist}
+Do komunikacji wewnątrz zespołu używaliśmy komunikatora Slack. Daje on możliwość utworzenia wielu kanałów - publicznych i prywatnych, dzięki czemu mogliśmy łatwo rozdzielić rozmowy na poszczególne tematy. Slack umożliwia także przesyłanie plików, do których łatwo dotrzeć w przyszłości. Komunikator można zintegrować z innymi serwisami, np. GitHubem, z którego można dostawać powiadomienia o zmianach w repozytorium.
 
+\paragraph{GitHub}(repozytorium)
+
+Kody źródłowe naszych aplikacji przechowywaliśmy na GitHubie. Utworzyliśmy tam zespół \href{https://github.com/mopsy-team}{\textit{mopsy-team}}, w którym powstało sześć repozytoriów:
+\begin{enumerate}
+\item Mopnik
+\item Mopsim
+\item Mopsik-Server
+\item Mopsik-Mobile
+\item Mopsik-WWW
+\item dokumentacja (m.in. praca licencjacka)
+\end{enumerate}
+
+\paragraph{Todoist}(menedżer zadań)
+
+Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podprojektów. Wewnątrz każdego z nich można wyznaczać zadania o różnym priorytecie i hierarchii. Każde zadanie można przydzielić jednemu z użytkowników, ustawić termin w jakim ma być wykonane, dodać etykiety i komentować. Aplikacja umożliwia wysyłanie powiadomień o nadchodzących terminach i wykonanych zadaniach.
 
 
 \chapter{Podział zadań}
@@ -624,7 +638,7 @@ Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do 
 \paragraph{Mopsik - aplikacja mobilna}
 \begin{enumerate}
 \item Klaudia Laks
-\item Przemysław Perkowski - code review, poprawki
+\item Przemysław Perkowski - testowanie, code review, poprawki
 \end{enumerate}
 
 \paragraph{Mopsik - strona internetowa}
