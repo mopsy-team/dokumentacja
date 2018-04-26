@@ -2,6 +2,8 @@
 \usepackage{graphicx}
 \usepackage[breaklinks=true]{hyperref}
 \usepackage{dirtree}
+\usepackage{graphicx,wrapfig,lipsum}
+\usepackage{caption}
 \begin{document}
 
 \maketitle
@@ -101,7 +103,7 @@ gdzie:
 \end{itemize}
 Program \textbf{Mopnik} będzie miał za zadanie umożliwienie korzystania z
 takich metodyk -- ich kalibracji (ręcznego wprowadzania niektórych parametrów),
-wczytywania potrzebnych danych (np. średniodobowego natężęnia ruchu)
+wczytywania potrzebnych danych (np. średniodobowego natężenia ruchu)
 oraz obliczania liczby potrzebnych miejsc parkingowych. \\
 Program będzie też umożliwiał integrację z systemem \textbf{Mopsim} dzięki
 czemu możliwe będzie zastosowanie wyżej wymienionych metodyk do danych
@@ -147,13 +149,65 @@ Inżynier GDDKiA może:
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
 \end{enumerate}
 
+\section{Architektura}
+\textbf{Mopnik} jest napisany w języku Java z użyciem narzędzia Apache
+Maven automatyzującego budowę programu.
+\subsubsection{Wykorzystywanie biblioteki}
+Implementacja opiera się na wykorzystaniu następujących bibliotek dla języka
+Java:
+\begin{itemize}
+\item Swing -- biblioteka graficzna służąca do stworzenia GUI aplikacji.
+\item JXMapViewer2 -- biblioteka zapewniająca swingowy JPanel renderujący
+  kafelki mapy (\url{https://github.com/msteiger/jxmapviewer2}).
+\item osm-parser -- biblioteka parsująca pliki .osm do obiektów w Javie
+  (\url{https://github.com/imintel/osm-parser}).
+\item opencsv -- biblioteka do parsowania plików CSV
+  (\url{http://opencsv.sourceforge.net/})
+\end{itemize}
+Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
+projektu biblioteki \textbf{Mopsim}. 
+\subsubsection{Dane wejściowe}
+Użytkownik programu ma możliwość wprowadzenia danych dotyczących \textbf{SDR}
+oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
+założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
+wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
+formacie OSM. Parsowaniem obu rodzajów plików zajmują się odpowiednie
+biblioteki wymienione w poprzedniej sekcji.
+\subsubsection{Wyświetlanie mapy}
+\paragraph{} 
+Mapa Polski, która jest wyświetlana po otwarciu programu, pochodzi z
+serwisu \mbox{OpenStreetMap}. Kafelki są ściągane i renderowane według potrzeby, czyli
+przy każdym przesunięciu czy przybliżeniu mapy. Takie rozwiązanie sprawia, że
+użytkownik musi być przez cały czas korzystania z programu podłączony
+do internetu. Jest możliwość stworzenia lokalnego serwera, hostującego
+kafelki
+\footnote{\url{https://switch2osm.org/manually-building-a-tile-server-16-04-2-lts/}}, a
+następnie zmiany w kodzie adresu serwera na \textit{localhost}. Ze względu na
+powszechny dostęp do internetu zrezygnowaliśmy z tego rozwiązania, ale warto
+wiedzieć, że ono istnieje. 
+\paragraph{}
+Wczytywanie plików OSM daje następujące możliwości:
+\begin{enumerate}
+  \item Nanoszenie własnych oznaczeń na mapę -- na przykład kolorowanie
+    konkretnych dróg.
+  \item Modyfikowanie sieci drogowej. W tym wypadku zmiany nie zostaną
+    wyświetlone tak jak istniejące drogi, ponieważ kafelki pochodzą z innego
+    źródła. Wymagałoby to renderowania map w czasie działania programu, co
+    spowolniłoby jego działanie. Zamiast tego, nowe drogi wizualizowane są
+    za pomocą prostych odcinków łączących punkty wyznaczone przez użytkownika. 
+    Możliwe jest jednak wprowadzanie własnych oznaczeń na dodanych
+    odcinkach, tak jak na istniejących. 
+\end{enumerate}
+
+\section{Dokumentacja użytkowa i opis implementacji}
+
 \chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
 Inżynier GDDKiA może:
 \begin{enumerate}
   \item Wprowadzać dane dotyczące sieci drogowej z pliku osm.
-  \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików csv.
+  \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików CSV.
   \item Edytować sieć drogową i dodawać lub usuwać MOP-y.
   \item Przeprowadzać symulację ruchu drogowego.
   \item Wyznaczać przewidywane natężenie ruchu na danym odcinku drogi.
@@ -217,6 +271,7 @@ W programie Mopsim wykorzystano następujące technologie:
 \item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na~format używany do opisu dróg w symulacji.
 \end{itemize}
 
+\section{Dokumentacja użytkowa i opis implementacji}
 
 \chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
 
@@ -250,6 +305,8 @@ Planowane jest rozszerzenie o zapytanie:
 \begin{itemize}
 \item /forecast - zwraca przewidywane dane o zajętości MOP-ów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
 \end{itemize}
+
+\section{Dokumentacja użytkowa i opis implementacji}
 
 \chapter{Mopsik -- Aplikacja mobilna}
 
@@ -292,16 +349,28 @@ Z komponentów budujemy widoki, czyli wszystko co jest widoczne na ekranie w dan
 
 Cała aplikacja objęta jest nawigatorem, który odpowiedzialny jest za generowanie menu bocznego oraz przechodzenie między widokami zgodnie z wolą użytkownika. \\
 
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.6\textwidth}
 \subsection{Zakładki}
 Menu boczne zawiera 5 zakładek: 
 \begin{enumerate}
 \item \textit{Konfiguracja/Ustawienia} -- umożliwia wybór typów pojazdów, którymi jest zainteresowany użytkownik
-\item \textit{Home} -- TODO %TODO
+\item \textit{Home} -- wyświetla dwa najbliższe i trzy ostatnio wyświetlane MOP-y
 \item \textit{Mapa} -- wyświetla mapę z zaznaczonymi MOP-ami
 \item \textit{Ulubione MOP-y} -- wyświetla listę MOP-ów zapisanych do ulubionych
 \item \textit{Wyszukiwarka MOP-ów} -- umożliwia wyszukiwanie MOP-a po nazwie, miejscowości, numerze drogi
 \end{enumerate}
-Istnieje także szósty widok - \textit{Szczegółowe informacje o MOP-ie}, do którego można przejść z~\textit{Ulubionych}, \textit{Wyszukiwarki} i \textit{Mapy}. Zawiera on wszystkie informacje o MOP-ie, jego wyposażenie oraz zajętości i liczby miejsc parkingowych dla różnych typów pojazdów.
+Istnieje także szósty widok - \textit{Szczegółowe informacje o MOP-ie}, do którego można przejść z \textit{Ulubionych}, \textit{Wyszukiwarki} i \textit{Mapy}. Zawiera on wszystkie informacje o MOP-ie, jego wyposażenie oraz zajętości i liczby miejsc parkingowych dla różnych typów pojazdów.
+\end{minipage}%
+\begin{minipage}{.4\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/menu.png}
+  \captionof{figure}{Menu boczne}
+  \label{mopsik_menu}
+\end{minipage}
+\end{figure}
+
 
 \subsection{Konfiguracja aplikacji i ustawienia}
 Przy pierwszym uruchomieniu aplikacji otwiera się panel konfiguracyjny, w którym należy ustawić dwa parametry:
@@ -317,6 +386,56 @@ Typy pojazdów
 \end{enumerate}
 Podział został wykonany w oparciu o zróżnicowane potrzeby użytkowników tych pojazdów, a także znaczące różnice w gabarytach, a co za tym idzie -- wymiarach potrzebnych miejsc parkingowych.
 Konfigurację aplikacji można zmienić w każdej chwili w zakładce \emph{Ustawienia}.
+W ustawieniach znajduję się także przycisk \textit{Zresetuj ustawienia}, który wymazuje z urządzenia wszystkie informacje zapisane przez aplikację i uruchamia ją ponownie. 
+
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/home.png}
+  \captionof{figure}{Panel główny}
+  \label{mopsik_home}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/settings.png}
+  \captionof{figure}{Ustawienia}
+  \label{mopsik_settings}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/map.png}
+  \captionof{figure}{Mapa}
+  \label{mopsik_map}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/favourites.png}
+  \captionof{figure}{Ulubione}
+  \label{mopsik_favourites}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/search.png}
+  \captionof{figure}{Wyszukiwarka}
+  \label{mopsik_search}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=5cm]{images/mopsik_mobile/details.png}
+  \captionof{figure}{Szczegóły}
+  \label{mopsik_details}
+\end{minipage}
+\end{figure}
+
 
 \subsection{Google Maps}
 \subsubsection{Warunki}
@@ -328,7 +447,7 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 \begin{enumerate}
 \item Do mapy dodawane są tylko markery znajdujące się w obecnie widocznym obszarze. Wraz z przesuwaniem mapy ładowane są kolejne.
 \item Mapa przeładowywana jest nie częściej niż co 2 sekundy. Zapobiega to ciągłemu odświeżaniu gdy odczyty GPS urządzenia są niedokładne i nieprzerwanie drgają.
-%TODO  \item  optymalizacja, której jeszcze nie wymyśliliśmy 
+\item Wykorzystanie \textit{onRegionChangeComplete} zamiast \textit{onRegionChange} -- obie funkcje wywoływane są gdy użytkownik porusza mapą, czyli przy zmianie aktualnie widocznego fragmentu. \textit{onRegionChangeComplete} wywoływane jest tylko raz -- po zakończonym przeciągnięciu. Animacje są nieco mniej płynne, ale aplikacja nie zawiesza się przez ciągłe przeładowywanie mapy i znaczników MOP-ów.
 \end{enumerate}
 \subsubsection{Bezpieczeństwo}
 Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
@@ -352,6 +471,10 @@ Biblioteka zawierająca wiele gotowych komponentów. Skorzystaliśmy m.in. z \te
 \item \textbf{react-native-maps} \\
 \url{https://github.com/react-community/react-native-maps}\\
 Biblioteka umożliwiająca połączenie do Google Maps API i renderowanie map.
+
+\item \textbf{react-native-restart} \\
+\url{https://github.com/avishayil/react-native-restart}\\
+Biblioteka umożliwia restart aplikacji z poziomu kodu. Wykorzystana przy resetowaniu ustawień.
 
 \item \textbf{react-native-svg} \\
 \url{https://github.com/react-native-community/react-native-svg}\\
@@ -377,30 +500,37 @@ Dostęp do ikon z \url{https://material.io/icons/}.
 \url{https://reactnavigation.org}\\
 Otoczka całej aplikacji. Odpowiada za nawigowanie wewnątrz aplikacji i poruszanie pomiędzy widokami.
 \end{enumerate}
-%TODO - dodawać nowe
 
 \subsection{Nawigacja}
-\begin{figure}[h]
-\caption{Schemat nawigacji aplikacji mobilnej Mopsik}
-\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
-\end{figure}
 W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik_nav}.\\
 
-Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodane są do niego widoki \textit{HomeView} oraz \textit{SettingsView}, a także stosy \textit{MapStack}, \textit{FavouritesStack} i~\textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
 
-Z zakładek \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}. Za~tę~część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie, w nagłówku pojawia się przycisk cofania. \\
+Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodany jest do niego widok \textit{SettingsView}, a także stosy \textit{HomeStack}, \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
 
-Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po dwóch widokach - głównym i szczegółowym. W widokach głównych (tj. mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. 
+Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}, a stamtąd do \textit{MapView} w trybie \textit{Pokaż MOP-a na mapie} (focused). Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie i skupionej mapie w nagłówku pojawia się przycisk cofania.\\
+
+Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po trzech widokach - głównym, szczegółowym i mapie (wyśrodkowanej na wybranym MOP-ie, z otwartym dymkiem). W widokach głównych (tj. domowym, mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. Ze szczegółów można poprzez kliknięcie w przycisk \textit{Pokaż na mapie} przejść do \textit{MapView} -- o ile wcześniej nie przyszliśmy z mapy. \newline Czyli nie jest możliwe poruszanie się\\	\indent mapa --> szczegóły(A) --> mapa --> szczegóły(B) -/-> mapa --> ... ,\\ponieważ w widoku szczegóły(B) nie pojawia się przycisk \textit{Pokaż na mapie}.
+
+
+\begin{figure}[!htb]
+\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
+\caption{Schemat nawigacji aplikacji mobilnej Mopsik}
+\end{figure}
 
 \subsection{Pozostałe komponenty}
 Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plików Mopsika. Poza komponentami opisanymi w poprzednim punkcie, aplikacja korzysta z narzędzi znajdujących się folderze \textit{tools}.
 \begin{enumerate}
 \item \textit{DrawerContent} -- menu boczne
 \item \textit{Header} -- nagłówek
+\item \textit{LastViewedMops} -- komponent wyświetlający do trzech ostatnio wyświetlanych MOP-ów
+\item \textit{MopListItem} -- element listy wyświetlający nazwę, drogę, kierunek i zajętość dla głównego typu pojazdu; wykorzystywany w \textit{Ulubionych}, \textit{Wyszukiwarce} i \textit{Ostatnio wyświetlanych}
+\item \textit{NearestMops} -- komponent wyświetlający dwa MOP-y znajdujące się najbliżej aktualnej lokalizacji użytkownika
+\item \textit{SplashScreen} -- ekran powitalny; w trakcie jego wyświetlania aplikacja pobiera dane o MOP-ach z api oraz zapisane informacje z AsyncStorage
+\item \textit{SubHeader} -- nagłówek sekcji; używany w ekranie domowym
 \item \textit{UsageCircle} -- wykres kołowy zajętości miejsc parkingowych
 \item \textit{UsageTable} -- tabela z liczbą i zajętością miejsc parkingowych dla typów pojazdów wybranych w ustawieniach
 \end{enumerate}
-\begin{figure}[h]
+\begin{figure}[!htb]
 \caption{Struktura plików aplikacji mobilnej Mopsik}
 \dirtree{%
 .1 mopsik mobile.
@@ -408,11 +538,17 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 .3 components.
 .4 stacks.
 .5 FavouritesStack.js.
+.5 HomeStack.js.
 .5 MapStack.js.
 .5 SearchStack.js.
 .4 tools.
 .5 DrawerContent.js.
 .5 Header.js.
+.5 LastViewedMops.js.
+.5 MopListItem.js.
+.5 NearestMops.js.
+.5 SplashScreen.js.
+.5 SubHeader.js.
 .5 UsageCircle.js.
 .5 UsageTable.js.
 .4 views.
@@ -425,6 +561,7 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 .3 config.
 .4 facilities.js.
 .4 favourites.js.
+.4 findNearestMop.js.
 .4 mops.js.
 .4 settings.js.
 .4 styles.js.
@@ -436,11 +573,14 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 }\label{mopsik_mobile_structure}
 \end{figure}
 
+
+
 \subsection{Pliki konfiguracyjne i funkcje}
 W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dane statyczne oraz funkcje odpowiedzielne za przetwarzanie danych.
 \begin{enumerate}
 \item \textit{facilities} -- zdefiniowane usługi dostępne na MOP-ach, odpowiadające im polskie nazwy oraz ikony, funkcje generujące komplet ikon do wyświetlania w informacjach o MOP-ie
-\item \textit{favourites} -- funckje odpowiedzialne za pobieranie MOP-ów zapisanych do ulubionych, zapisywanie, usuwanie
+\item \textit{favourites} -- funkcje odpowiedzialne za pobieranie MOP-ów zapisanych do ulubionych, zapisywanie, usuwanie
+\item \textit{findNearestMop} -- funkcja, która po otrzymaniu współrzędnych punktu, zwraca dwa MOP-y znajdujące się najbliżej tego punktu oraz odległości do niego w kilometrach
 \item \textit{mops} -- funkcje pobierające informacje o MOP-ach z API, dobierające kolory według legendy
 \item \textit{settings} -- plik ze zmiennymi przechowującymi ustawienia aplikacji
 \item \textit{styles} -- zdefiniowane style komponentów
@@ -452,111 +592,60 @@ W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dan
 Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
 Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
 
+\section{Dokumentacja użytkowa i opis implementacji}
 
-\chapter{Dokumentacja użytkowa i~opis implementacji}\label{r:impl}
+\chapter{Organizacja pracy}
+%TODO
+\paragraph{Slack}
 
-Program przygotowany dla systemu operacyjnego M\$ Windows uruchamia
-się energicznym dwumlaskiem na jego ikonce w~folderze
-\verb+\\FIDO\FOO\BLABA+.  Następnie kolistym ruchem ręki należy
-naprowadzić kursor na menu \texttt{Blabaliza} i~uaktywnić pozycję
-\texttt{Otwórz plik}.  Po wybraniu pliku i~zatwierdzeniu wyboru
-przyciskiem \texttt{OK} rozpocznie się proces blabalizy.  Wyniki
-zostaną zapisane w~pliku o~nazwie \texttt{99-1a.tx.43} w~bieżącym
-folderze.
+\paragraph{GitHub}
+
+\paragraph{Todoist}
 
 
-\chapter{Podsumowanie}
 
-W~pracy przedstawiono pierwszą efektywną implementację blabalizatora
-różnicowego.  Umiejętność wykonania blabalizy numerycznej dla danych
-,,z życia'' stanowi dla blabalii fetorycznej podobny przełom, jak dla
-innych dziedzin wiedzy stanowiło ogłoszenie teorii Mikołaja Kopernika
-i~Gryzybór Głombaskiego.  Z~pewnością w~rozpocznynającym się XXI wieku
-będziemy obserwować rozkwit blabalii fetorycznej.
+\chapter{Podział zadań}
+\paragraph{Mopnik}
+\begin{enumerate}
+\item Magdalena Grabowska
+\end{enumerate}
 
-Trudno przewidzieć wszystkie nowe możliwości, ale te co bardziej
-oczywiste można wskazać już teraz.  Są to:
-\begin{itemize}
-\item degryzmolizacja wieńców telecentrycznych,
-\item realizacja zimnej reakcji lambliarnej,
-\item loty celulityczne,
-\item dokładne obliczenie wieku Wszechświata.
-\end{itemize}
+\paragraph{Mopsim}
+\begin{enumerate}
+\item Michał Kukuła
+\item Przemysław Perkowski - generowanie planów podróży
+\end{enumerate}
 
-\section{Perspektywy wykorzystania w~przemyśle}
+\paragraph{Mopsik - serwer}
+\begin{enumerate}
+\item Przemysław Perkowski
+\end{enumerate}
 
-Ze względu na znaczenie strategiczne wyników pracy ten punkt uległ
-utajnieniu.
+\paragraph{Mopsik - aplikacja mobilna}
+\begin{enumerate}
+\item Klaudia Laks
+\item Przemysław Perkowski - code review, poprawki
+\end{enumerate}
 
-\appendix
+\paragraph{Mopsik - strona internetowa}
+\begin{enumerate}
+\item Klaudia Laks
+\item Przemysław Perkowski
+\end{enumerate}
 
-\chapter{Główna pętla programu zapisana w~języku T\=oFoo}
+\paragraph{Dokumentacja / Praca licencjacka}
+\begin{enumerate}
+\item Magdalena Grabowska
+\item Michał Kukuła
+\item Klaudia Laks
+\item Przemysław Perkowski
+\end{enumerate}
 
-\begin{verbatim}
-[[foo]{,}[[a3,(([(,),{[[]]}]),
-  [1; [{,13},[[[11],11],231]]].
-  [13;[!xz]].
-  [42;[{,x},[[2],{'a'},14]]].
-  [br;[XQ*10]].
- ), 2q, for, [1,]2, [..].[7]{x}],[(((,[[1{{123,},},;.112]],
-        else 42;
-   . 'b'.. '9', [[13141],{13414}], 11),
- [1; [[134,sigma],22]].
- [2; [[rho,-],11]].
- )[14].
- ), {1234}],]. [map [cc], 1, 22]. [rho x 1]. {22; [22]},
-       dd.
- [11; sigma].
-        ss.4.c.q.42.b.ll.ls.chmod.aux.rm.foo;
- [112.34; rho];
-        001110101010101010101010101010101111101001@
- [22%f4].
- cq. rep. else 7;
- ]. hlt
-\end{verbatim}
+\chapter{Napotkane problemy i niezrealizowane pomysły}
+%TODO
 
-\chapter{Przykładowe dane wejściowe algorytmu}
-
-\begin{center}
-  \begin{tabular}{rrr}
-    $\alpha$ & $\beta$ & $\gamma_7$ \\
-    901384 & 13784 & 1341\\
-    68746546 & 13498& 09165\\
-    918324719& 1789 & 1310 \\
-    9089 & 91032874& 1873 \\
-    1 & 9187 & 19032874193 \\
-    90143 & 01938 & 0193284 \\
-    309132 & $-1349$ & $-149089088$ \\
-    0202122 & 1234132 & 918324098 \\
-    11234 & $-109234$ & 1934 \\
-  \end{tabular}
-\end{center}
-
-\chapter{Przykładowe wyniki blabalizy
-    (ze~współczynnikami~$\sigma$-$\rho$)}
-
-\begin{center}
-  \begin{tabular}{lrrrr}
-    & Współczynniki \\
-    & Głombaskiego & $\rho$ & $\sigma$ & $\sigma$-$\rho$\\
-    $\gamma_{0}$ & 1,331 & 2,01 & 13,42 & 0,01 \\
-    $\gamma_{1}$ & 1,331 & 113,01 & 13,42 & 0,01 \\
-    $\gamma_{2}$ & 1,332 & 0,01 & 13,42 & 0,01 \\
-    $\gamma_{3}$ & 1,331 & 51,01 & 13,42 & 0,01 \\
-    $\gamma_{4}$ & 1,332 & 3165,01 & 13,42 & 0,01 \\
-    $\gamma_{5}$ & 1,331 & 1,01 & 13,42 & 0,01 \\
-    $\gamma_{6}$ & 1,330 & 0,01 & 13,42 & 0,01 \\
-    $\gamma_{7}$ & 1,331 & 16435,01 & 13,42 & 0,01 \\
-    $\gamma_{8}$ & 1,332 & 865336,01 & 13,42 & 0,01 \\
-    $\gamma_{9}$ & 1,331 & 34,01 & 13,42 & 0,01 \\
-    $\gamma_{10}$ & 1,332 & 7891432,01 & 13,42 & 0,01 \\
-    $\gamma_{11}$ & 1,331 & 8913,01 & 13,42 & 0,01 \\
-    $\gamma_{12}$ & 1,331 & 13,01 & 13,42 & 0,01 \\
-    $\gamma_{13}$ & 1,334 & 789,01 & 13,42 & 0,01 \\
-    $\gamma_{14}$ & 1,331 & 4897453,01 & 13,42 & 0,01 \\
-    $\gamma_{15}$ & 1,329 & 783591,01 & 13,42 & 0,01 \\
-  \end{tabular}
-\end{center}
+\chapter{Zawartość płyty}
+%TODO
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliografia}
