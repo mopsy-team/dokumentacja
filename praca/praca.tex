@@ -4,10 +4,29 @@
 \usepackage{dirtree}
 \usepackage{graphicx,wrapfig,lipsum}
 \usepackage{caption}
+\usepackage[acronym,nonumberlist]{glossaries}
+
+%\renewcommand{\glossarysection}[2][]{}
+
+\makeglossaries
+
+\newacronym{gddkia}{GDDKiA}{Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)}
+\newacronym{mop}{MOP}{Miejsce Obsługi Podróżnych}
+
+\newacronym{sdr}{SDR}{Średniodobowe natężenie ruchu}
+
+\newacronym{gui}{GUI}{Graficzny interfejs użytkownika}
+
+\newacronym{rn}{RN}{React Native}
+
+\newacronym{api}{API}{Interfejs programowania aplikacji (ang. Application programming interface)}
+
+\newacronym{zpp}{ZPP}{Zespołowy Projekt Programistyczny}
+
+
 \begin{document}
 
 \maketitle
-
 \begin{abstract}
   W~pracy opisano implementację systemu dotyczącego Miejsc Obsługi Podróżnych
   przy autostradach i~drogach ekspresowych w Polsce. Podstawowe składowe tego
@@ -26,22 +45,15 @@
 %\listoffigures
 %\listoftables
 
-\chapter*{Słowniczek}\label{r:pojecia}
-\addcontentsline{toc}{chapter}{Słowniczek}
 
-\begin{enumerate}
-  \item\emph{GDDKiA} -- Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)
-  \item\emph{MOP} -- Miejsce Obsługi Podróżnych
-  \item\emph{SDR} -- Średniodobowe natężenie ruchu
-  \item\emph{GUI} -- Graficzny interfejs użytkownika
-  \item\emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org)
-  \item\emph{RN} -- React Native
-  \item\emph{API} -- Interfejs programowania aplikacji (ang. Application programming interface)
-  \item\emph{ZPP} -- Zespołowy Projekt Programistyczny
-\end{enumerate}
+\printglossaries
+
+\chapter{Słowniczek}
+\printglossaries
 
 \chapter{Wprowadzenie}
 \section{Rozwój sieci drogowej w Polsce}
+
 Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i~dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w~okresie PRL i~pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
 Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w~Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
 \begin{figure}[h]
