@@ -29,7 +29,7 @@
 \contentsline {subsubsection}{Mopsim -- schemat dzia\IeC {\l }ania programu}{18}{section*.19}
 \contentsline {subsubsection}{Mopsim -- technologie}{19}{section*.21}
 \contentsline {section}{\numberline {4.3}Dokumentacja u\IeC {\.z}ytkowa i opis implementacji}{19}{section.4.3}
-\contentsline {chapter}{\numberline {5}Mopsik -- Strona serwerowa - API}{21}{chapter.5}
+\contentsline {chapter}{\numberline {5}Mopsik -- Strona serwerowa - \acrshort {api}}{21}{chapter.5}
 \contentsline {section}{\numberline {5.1}Przypadki u\IeC {\.z}ycia}{21}{section.5.1}
 \contentsline {section}{\numberline {5.2}Architektura}{21}{section.5.2}
 \contentsline {paragraph}{Cron}{21}{section*.22}

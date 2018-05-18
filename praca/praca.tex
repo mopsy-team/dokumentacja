@@ -39,7 +39,7 @@
   parkingowych na~Miejscach Obsługi Podróżnych. Pozostałe dwie części to
   aplikacja mobilna oraz strona internetowa przeznaczone dla kierowców
   poruszających się po drogach. Informują one o~zajętości miejsc parkingowych
-  na każdym MOP-ie w danym momencie oraz predykcji ich zajętości w niedalekiej
+  na każdym \acrshort{mop}-ie w danym momencie oraz predykcji ich zajętości w niedalekiej
   przyszłości.
 \end{abstract}
 
@@ -82,7 +82,7 @@ MOP-y w Polsce dzielimy na trzy kategorie:
 \section{Problemy związane z budową MOP-ów}
 Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w~Polsce, stwarza szereg problemów z nimi związanych:
 \begin{enumerate}
-    \item \textbf{Problemy administracyjno-prawne} -- GDDKiA systematycznie prowadzi kolejne przetargi na~dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub~lokalizacja punktu mogą zniechęcać potencjalnych najemców.
+    \item \textbf{Problemy administracyjno-prawne} -- \acrshort{gddkia} systematycznie prowadzi kolejne przetargi na~dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub~lokalizacja punktu mogą zniechęcać potencjalnych najemców.
     \item \textbf{Lokalizacja MOP-ów} -- efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
     \item \textbf{Liczba miejsc parkingowych i ich układ} -- MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
 \end{enumerate}
@@ -138,14 +138,14 @@ Odpowiedzią na te pytania będzie \textbf{Mopsik} (MOP -- System Informowania K
 
 
 \section{Nasze zadanie}
-W ramach zajęć ZPP postanowiliśmy podjąć się implementacji prototypów wyżej opisanych programów.
+W ramach zajęć \acrshort{zpp} postanowiliśmy podjąć się implementacji prototypów wyżej opisanych programów.
 Badania są finansowane ze środków projektu pt. ,,Miejsca parkingowe na MOP'' finansowanego przez NCBiR/GDDKiA w ramach wspólnego przedsięwzięcia ,,RID'', umowa DZP/RID-I-44/8/NCBR/2016.
 \chapter{Mopnik}\label{r:Mopnik}
 
 \section{Przypadki użycia}
-Inżynier GDDKiA może:
+Inżynier \acrshort{gddkia} może:
 \begin{enumerate}
-  \item Wprowadzać dane dotyczące \textbf{SDR} oraz położenie MOP-ów z pliku.
+  \item Wprowadzać dane dotyczące \acrshort{sdr} oraz położenie MOP-ów z pliku.
   \item Wyświetlić wprowadzone dane na mapie.
   \item Wybrać metodykę, ustawić jej parametry i na jej podstawie wyznaczyć
     liczbę potrzebnych miejsc parkingowych na odcinku drogi oraz na konkretnym
@@ -155,7 +155,7 @@ Inżynier GDDKiA może:
   \item Wyświetlić wyniki symulacji przeprowadzonych za pomocą systemu
     \textbf{Mopsim} dotyczących:
     \begin{enumerate}
-      \item Długo- i krótkoterminowych predykcji \textbf{SDR}.
+      \item Długo- i krótkoterminowych predykcji \acrshort{sdr}.
       \item Krótkoterminowej predykcji zajętości MOP-ów.
     \end{enumerate}
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
@@ -168,7 +168,7 @@ Maven automatyzującego budowę programu.
 Implementacja opiera się na wykorzystaniu następujących bibliotek dla języka
 Java:
 \begin{itemize}
-\item Swing -- biblioteka graficzna służąca do stworzenia GUI aplikacji.
+\item Swing -- biblioteka graficzna służąca do stworzenia \acrshort{gui} aplikacji.
 \item JXMapViewer2 -- biblioteka zapewniająca swingowy JPanel renderujący
   kafelki mapy (\url{https://github.com/msteiger/jxmapviewer2}).
 \item osm-parser -- biblioteka parsująca pliki .osm do obiektów w Javie
@@ -179,7 +179,7 @@ Java:
 Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
 projektu biblioteki \textbf{Mopsim}. 
 \subsubsection{Dane wejściowe}
-Użytkownik programu ma możliwość wprowadzenia danych dotyczących \textbf{SDR}
+Użytkownik programu ma możliwość wprowadzenia danych dotyczących \acrshort{sdr}
 oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
 założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
 wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
@@ -216,7 +216,7 @@ Wczytywanie plików OSM daje następujące możliwości:
 \chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
-Inżynier GDDKiA może:
+Inżynier \acrshort{gddkia} może:
 \begin{enumerate}
   \item Wprowadzać dane dotyczące sieci drogowej z pliku osm.
   \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików CSV.
@@ -225,7 +225,7 @@ Inżynier GDDKiA może:
   \item Wyznaczać przewidywane natężenie ruchu na danym odcinku drogi.
   \item Wyznaczać przewidywaną zajętość MOP-ów i liczbę potrzebnych miejsc parkingowych.
   \item Generować raporty.
-  \item Wyświetlić wyniki symulacji za pomocą GUI programu \textbf{Mopnik}.
+  \item Wyświetlić wyniki symulacji za pomocą \acrshort{gui} programu \textbf{Mopnik}.
 \end{enumerate}
 
 \section{Architektura}
@@ -285,9 +285,9 @@ W programie Mopsim wykorzystano następujące technologie:
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
-\chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
+\chapter{Mopsik -- Strona serwerowa - \acrshort{api}}\label{r:apka} 
 
-Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
 Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych -- ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
 Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
 
@@ -355,7 +355,7 @@ Aplikacja mobilna została napisana w języku \textbf{JavaScript} z użyciem bib
     \end{minipage}
 \end{figure}
 
-Aplikacja w RN zbudowana jest z komponentów, które posiadają stan (obiekt słownikowy) inicjowany w konstruktorze. Funkcja \textit{render()} wywoływana jest przy pierwszym ładowaniu komponentu oraz przy każdej zmianie jego stanu. 
+Aplikacja w \acrshort{rn} zbudowana jest z komponentów, które posiadają stan (obiekt słownikowy) inicjowany w konstruktorze. Funkcja \textit{render()} wywoływana jest przy pierwszym ładowaniu komponentu oraz przy każdej zmianie jego stanu. 
 
 Z komponentów budujemy widoki, czyli wszystko co jest widoczne na ekranie w danym momencie.
 
@@ -465,12 +465,12 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
 
 \subsection{Zapytanie do API}
-Po otwarciu aplikacji wykonywane jest zapytanie do API \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
+Po otwarciu aplikacji wykonywane jest zapytanie do \acrshort{api} \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
 Po wciśnięciu przycisku \textit{odśwież} oraz po otwarciu każdej z zakładek, wykonywane jest zapytanie \textit{/taken} zwracające tylko aktualną liczbę zajętych miejsc parkingowych dla każdego z MOP-ów. Aplikacja aktualizuje te dane w zapisanych MOP-ach oraz przelicza nowe zajętości dla wszystkich typów pojazdów.
 Do każdego typu pojazdu, w każdym MOP-ie, przyporządkowywany jest kolor zgodnie z ustaloną legendą (np. dla małej zajętości, do 30\% -- zielony, a dla największej -- czerwony). Ten kolor jest następnie wykorzystywany przy wizualizacji danych.
 
 \subsection{Użyte biblioteki}
-W aplikacji skorzystaliśmy z gotowych bibliotek RN, co znacząco przyspieszyło i~ułatwiło pracę.
+W aplikacji skorzystaliśmy z gotowych bibliotek \acrshort{rn}, co znacząco przyspieszyło i~ułatwiło pracę.
 \begin{enumerate}
 \item \textbf{lodash} \\
 \url{https://www.npmjs.com/package/lodash}\\
@@ -656,7 +656,6 @@ Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podpr
 \paragraph{Mopsik - strona internetowa}
 \begin{enumerate}
 \item Klaudia Laks
-\item Przemysław Perkowski
 \end{enumerate}
 
 \paragraph{Dokumentacja / Praca licencjacka}
