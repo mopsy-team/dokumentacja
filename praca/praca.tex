@@ -6,11 +6,13 @@
 \usepackage{caption}
 \usepackage[acronym,nonumberlist]{glossaries}
 
-%\renewcommand{\glossarysection}[2][]{}
+\renewcommand{\glossarysection}[2][]{}
+\renewcommand{\glsgroupskip}{}
 
 \makeglossaries
 
 \newacronym{gddkia}{GDDKiA}{Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)}
+
 \newacronym{mop}{MOP}{Miejsce Obsługi Podróżnych}
 
 \newacronym{sdr}{SDR}{Średniodobowe natężenie ruchu}
@@ -23,6 +25,7 @@
 
 \newacronym{zpp}{ZPP}{Zespołowy Projekt Programistyczny}
 
+\glsaddall
 
 \begin{document}
 
@@ -37,16 +40,13 @@
   aplikacja mobilna oraz strona internetowa przeznaczone dla kierowców
   poruszających się po drogach. Informują one o~zajętości miejsc parkingowych
   na każdym MOP-ie w danym momencie oraz predykcji ich zajętości w niedalekiej
-  przyszłości.  
-  %TODO napisać coś jak będzie co streszczać 
+  przyszłości.
 \end{abstract}
 
 \tableofcontents
 %\listoffigures
 %\listoftables
 
-
-\printglossaries
 
 \chapter{Słowniczek}
 \printglossaries
