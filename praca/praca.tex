@@ -679,14 +679,13 @@ Aplikacja pobiera wszystkie dane o MOP-ach z opisanego wcześniej API. Wykonuje 
 \item \textit{Usage} -- zawiera zajętość miejsc parkingowych w \% (w formacie \textit{double} i \textit{string}) oraz odpowiadające tej wartości: kolor tła i kolor tekstu.
 \end{enumerate}
 
-%TODO
 \paragraph{Modele widoków}
 \begin{enumerate}
 \item \textit{DetailsViewModel} -- zawiera \textit{MopViewModel} dla wybranego MOP-a, niezmienny obiekt \textit{FacilitiesConfig} oraz cztery słowniki z odpowiednimi kolorami ikon i tekstu w zależności od obecności usługi
 \item \textit{MapViewModel} -- zawiera obiekt klasy \textit{MopListViewModel} z informacjami o wszystkich MOP-ach, aktualny typ pojazdu, dla którego mają być wyświetlane zajętości oraz HTML-owe klasy dla wszystkich trzech przycisków typów pojazdów
 \item \textit{MopListViewModel} -- przerabia listę obiektów klasy \textit{Mop} na listę obiektów klasy \textit{MopViewModel}
-\item \textit{MopViewModel}
-\item \textit{SearchViewModel}
+\item \textit{MopViewModel} -- obudowuje informacje zawarte w klasie \textit{Mop} i przygotowuje je do wyświetlania w widokach
+\item \textit{SearchViewModel} -- zawiera m.in informacje o wszystkich MOP-ach, aktualnie wyszukiwane hasło, aktualny stan zaznaczonych ikon w filtrach
 \end{enumerate}
 
 \subsection{Kontrolery i widoki}
@@ -696,7 +695,7 @@ Dla każdego kontrolera (plik \textit{*Controller.cs}) istnieje w plik z HTML (\
 \item \textit{Map}
 \item \textit{Search}
 \end{enumerate}
-%TODO
+
 \subsection{Użyte biblioteki}
 \begin{enumerate}
 \item \textbf{OpenLayers} \\
