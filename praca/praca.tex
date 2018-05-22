@@ -660,7 +660,7 @@ W tej zakładce wyświetlane są szczegółowe informacje o konkretnym MOP-ie:
 Aplikacja pobiera wszystkie dane o MOP-ach z opisanego wcześniej API. Wykonuje zapytania do \textit{/mops} i zapisuje je w pamięci aplikacji. Przy każdym przeładowaniu wyświetlanej strony sprawdzane jest jak dawno było wykonane ostatnie zapytanie do API. Jeśli czas ten jest większy niż 2 minuty, zapytanie jest wykonywane ponownie. W przeciwnym przypadku, dane są pobierane z pamięci aplikacji.
 
 \subsubsection{Parsowanie danych z API}
-%TODO
+Klasy \textit{Mop}, \textit{Operator}, \textit{FacilitiesParser}, \textit{CoordinatesParser} i \textit{SpacesCount} biorą udział w parsowaniu danych z API, które są w formacie JSON. Przy każdym swoim polu zawierają \textit{JsonProperty} z nazwą pod jaką występują w danych. Dzięki temu, metoda \textit{JsonConvert.DeserializeObject} może sparsować dane w formacie JSON i utworzyć odpowiednie klasy.
 
 \subsection{Modele i modele widoków}
 \paragraph{Modele}
