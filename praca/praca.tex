@@ -614,13 +614,13 @@ Aplikacja internetowa została napisana w technologii ASP.NET MVC, w języku obi
 \subsection{Zakładki}
 W górnej części strony znajduje się menu, w którym są dwie zakładki: \textit{Mapa} i \textit{Wyszukiwarka}. \textit{Mapa} jest zakładką domyślną. Jest także trzeci widok -- \textit{Szczegóły}, do którego można przejść z obu zakładek, po wyborze jednego z MOP-ów.
 \subsubsection{Mapa}
-W tej zakładce znajduje się mapa Polski z OpenStreetMap. Do jej wyświetlania wykorzystane zostały OpenLayers - biblioteka JavaScript do dynamicznych map. Na mapie oznaczone są MOP-y, a kolor znacznika odpowiada zajętości miejsc parkingowych dla wybranego typu pojazdu (skala analogiczna jak w aplikacji mobilnej). Typ pojazdu mozna zmienić w prawym, górnym rogu mapy, wybierając odpowiednią ikonę. Wysyła to zapytanie POST z odpowiednią wartością typu pojazdu i odswieża stronę z naniesionymi zmianami. 
+W tej zakładce znajduje się mapa Polski z OpenStreetMap. Do jej wyświetlania wykorzystane zostały OpenLayers - biblioteka JavaScript do dynamicznych map. Na mapie oznaczone są MOP-y, a kolor znacznika odpowiada zajętości miejsc parkingowych dla wybranego typu pojazdu (skala analogiczna jak w aplikacji mobilnej). Typ pojazdu można zmienić w prawym, górnym rogu mapy, wybierając odpowiednią ikonę. Wysyła to zapytanie POST z odpowiednią wartością typu pojazdu i odświeża stronę z naniesionymi zmianami. 
 Po kliknięciu w znacznik wyświetla się dymek z podstawowymi informacjami o MOP-ie, a guzik z ikoną informacji przenosi do szczegółów -- wywołuje \textit{DetailsController} z akcją \textit{Details} oraz parametrem id MOP-a.
 
 
 \subsubsection{Wyszukiwarka}
 Aplikacja umożliwia wyszukiwanie MOP-ów po nazwie, miejscowości, numerze drogi i kierunku oraz filtrowanie po obecnych usługach. Przyciski \textit{Szukaj} i \textit{Filtruj} wysyłają zapytanie POST wraz z aktualną frazą wyszukiwania i zaznaczonymi usługami.
-Wyszukiwarka posiada swój \textit{form} w HTML z polem \textit{input} na wyszukiwany tekst oraz ukrytym polem \textit{input}, które przesyła aktualnie zaznaczone filtry. W formularzu odpowiadającym za filtrowanie jest odwrotnie.  
+Wyszukiwarka posiada \textit{form} z polem \textit{input} na wyszukiwany tekst oraz ukrytym polem \textit{input}, które przesyła aktualnie zaznaczone filtry. W formularzu odpowiadającym za filtrowanie jest odwrotnie.  
 MOP uznawany jest za pasujący do zapytania jeśli:
 \begin{enumerate}
 \item oferuje wszystkie usługi zaznaczone w filtrach
@@ -667,8 +667,8 @@ Klasy \textit{Mop}, \textit{Operator}, \textit{FacilitiesParser}, \textit{Coordi
 \begin{enumerate}
 \item \textit{ApiManager} -- odpowiedzialny za zapytania do API, pobiera dane w formacie JSON i zwraca w postaci listy modeli \textit{Mop}
 \item \textit{AppDataStorage} -- istnieje jeden obiekt tej klasy, zapisany w aplikacji, można traktować go jako zbiór zmiennych globalnych. Wartości są przechowywane na serwerze, czyli ich wartość jest taka sama dla wszystkich użytkowników. Przechowuje zapisane dane z API oraz czas ostatniego zapytania.
-\item \textit{Coordinates} -- dla obu współrzędnych przechowuje ich wartość w formacie double oraz w formacie string w dwóch wersjach -- zaokrągloną do 4 miejsc po przecinku (do wyświetlania) oraz z pełną dokładnością (do używania w JavaScript). 
-\item \textit{CoordinatesParser} -- zawiera tylko obie współrzędne w formacie \textit{double}, używane tylko w parsowaniu danych z API
+\item \textit{Coordinates} -- dla obu współrzędnych przechowuje ich wartość w formacie \textit{double} oraz w formacie \textit{string} w dwóch wersjach -- zaokrągloną do 4 miejsc po przecinku (do wyświetlania) oraz z pełną dokładnością (do używania w JavaScript). 
+\item \textit{CoordinatesParser} -- zawiera obie współrzędne w formacie \textit{double}, używane tylko w parsowaniu danych z API
 \item \textit{FacilitiesConfig} -- słownik, który dla kodu symbolizującego usługę na MOP-ie, zwraca obiekt klasy \textit{Facility}
 \item \textit{FacilitiesParser} -- zawiera pola \textit{bool} dla każdej usługi, używana tylko w parsowaniu danych z API
 \item \textit{Facility} -- zawiera dwie informacje: polską nazwę usługi oraz nazwę ikony
@@ -676,7 +676,7 @@ Klasy \textit{Mop}, \textit{Operator}, \textit{FacilitiesParser}, \textit{Coordi
 \item \textit{Operator} -- zawiera pola dla nazwy operatora i kontaktu do niego
 \item \textit{SpacesCount} -- zawiera trzy pola \textit{int} (dla każdego z typów pojazdów)
 \item \textit{SpacesUsage} -- dla każdego z typów pojazdów zawiera pole klasy \textit{Usage}
-\item \textit{Usage} -- zawiera zajętość miejsc parkingowych w \% (w formacie \textit{double} i \textit{string}) oraz odpowiadające tej wartości: kolor tła i kolor tekstu.
+\item \textit{Usage} -- zawiera zajętość miejsc parkingowych w \% (w formacie \textit{double} i \textit{string}) oraz odpowiadające tej wartości: kolor tła i tekstu.
 \end{enumerate}
 
 \paragraph{Modele widoków}
@@ -689,7 +689,7 @@ Klasy \textit{Mop}, \textit{Operator}, \textit{FacilitiesParser}, \textit{Coordi
 \end{enumerate}
 
 \subsection{Kontrolery i widoki}
-Dla każdego kontrolera (plik \textit{*Controller.cs}) istnieje w plik z HTML (\textit{*.cshtml})
+Dla każdego kontrolera (plik \textit{*Controller.cs}) istnieje plik z HTML (\textit{*.cshtml})
 \begin{enumerate}
 \item \textit{Details}
 \item \textit{Map}
@@ -700,11 +700,11 @@ Dla każdego kontrolera (plik \textit{*Controller.cs}) istnieje w plik z HTML (\
 \begin{enumerate}
 \item \textbf{OpenLayers} \\
 \url{https://openlayers.org}\\
-iblioteka napisana w języku JavaScript, ułatwiająca dodawanie dynamicznych map na stronach internetowych.
+Biblioteka napisana w języku JavaScript, umożliwiająca dodawanie dynamicznych map na stronach internetowych.
 
 \item \textbf{Material Design Lite} \\
 \url{https://getmdl.io}\\
-Biblioteka CSS udostępniająca gotowe style podstawowych elementów HTML. Gwarantuje, czysty, spójny wygląd strony internetowej.
+Biblioteka CSS udostępniająca gotowe style podstawowych elementów HTML. Gwarantuje czysty, spójny wygląd strony internetowej.
 
 \item \textbf{ProgressBar.js} \\
 \url{https://github.com/kimmobrunfeldt/progressbar.js?files=1}\\
