@@ -607,7 +607,7 @@ Aplikacja internetowa została napisana w technologii ASP.NET MVC, w języku obi
     \end{minipage}%
     \begin{minipage}{.3\textwidth}
         \centering
-        \includegraphics[width=5cm]{images/mvc.png}\label{RN_logo}
+        \includegraphics[width=5cm]{images/mvc.png}\label{MVC_logo}
     \end{minipage}
 \end{figure}
 
@@ -617,6 +617,12 @@ W górnej części strony znajduje się menu, w którym są dwie zakładki: \tex
 W tej zakładce znajduje się mapa Polski z OpenStreetMap. Do jej wyświetlania wykorzystane zostały OpenLayers - biblioteka JavaScript do dynamicznych map. Na mapie oznaczone są MOP-y, a kolor znacznika odpowiada zajętości miejsc parkingowych dla wybranego typu pojazdu (skala analogiczna jak w aplikacji mobilnej). Typ pojazdu można zmienić w prawym, górnym rogu mapy, wybierając odpowiednią ikonę. Wysyła to zapytanie POST z odpowiednią wartością typu pojazdu i odświeża stronę z naniesionymi zmianami. 
 Po kliknięciu w znacznik wyświetla się dymek z podstawowymi informacjami o MOP-ie, a guzik z ikoną informacji przenosi do szczegółów -- wywołuje \textit{DetailsController} z akcją \textit{Details} oraz parametrem id MOP-a.
 
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/mopsik_www/map.png}
+\captionof{figure}{Mapa}
+\label{mopsik_www_map}
+\end{figure}
 
 \subsubsection{Wyszukiwarka}
 Aplikacja umożliwia wyszukiwanie MOP-ów po nazwie, miejscowości, numerze drogi i kierunku oraz filtrowanie po obecnych usługach. Przyciski \textit{Szukaj} i \textit{Filtruj} wysyłają zapytanie POST wraz z aktualną frazą wyszukiwania i zaznaczonymi usługami.
@@ -634,6 +640,13 @@ MOP uznawany jest za pasujący do zapytania jeśli:
 (wielkość liter nie jest istotna)
 \end{enumerate}
 W liście rezultatów znajdują się wszystkie MOP-y, które spełniają warunki zapytania. Dla każdego z nich wyświetlane są: nazwa, numer drogi, kierunek, miejscowość oraz zajętość dla wszystkich trzech typów pojazdów. Kliknięcie w wiersz z MOP-em przenosi na stronę ze szczegółami.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/mopsik_www/search.png}
+\captionof{figure}{Wyszukiwarka}
+\label{mopsik_www_search}
+\end{figure}
 
 \subsubsection{Szczegóły}
 W tej zakładce wyświetlane są szczegółowe informacje o konkretnym MOP-ie:
@@ -655,6 +668,13 @@ W tej zakładce wyświetlane są szczegółowe informacje o konkretnym MOP-ie:
 \item liczba miejsc parkingowych ogółem
 \end{enumerate}
 \end{enumerate}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/mopsik_www/details1.png}
+\captionof{figure}{Szczegóły}
+\label{mopsik_www_details}
+\end{figure}
 
 \subsection{Zapytania do API i zapisywanie danych}
 Aplikacja pobiera wszystkie dane o MOP-ach z opisanego wcześniej API. Wykonuje zapytania do \textit{/mops} i zapisuje je w pamięci aplikacji. Przy każdym przeładowaniu wyświetlanej strony sprawdzane jest jak dawno było wykonane ostatnie zapytanie do API. Jeśli czas ten jest większy niż 2 minuty, zapytanie jest wykonywane ponownie. W przeciwnym przypadku, dane są pobierane z pamięci aplikacji.
