@@ -65,5 +65,13 @@
 \contentsline {paragraph}{Mopsik - strona internetowa}{35}{section*.42}
 \contentsline {paragraph}{Dokumentacja / Praca licencjacka}{35}{section*.43}
 \contentsline {chapter}{\numberline {9}Napotkane problemy i niezrealizowane pomys\IeC {\l }y}{37}{chapter.9}
-\contentsline {chapter}{\numberline {10}Zawarto\IeC {\'s}\IeC {\'c} p\IeC {\l }yty}{39}{chapter.10}
-\contentsline {chapter}{Bibliografia}{41}{chapter*.44}
+\contentsline {section}{\numberline {9.1}Napotkane problemy}{37}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Problemy z danymi i komunikacj\IeC {\k a} w zespole}{37}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}Problemy techniczne}{38}{subsection.9.1.2}
+\contentsline {section}{\numberline {9.2}Niezrealizowane pomys\IeC {\l }y}{38}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Predycje kr\IeC {\'o}tkoterminowe}{38}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Zr\IeC {\'o}wnoleganie symulacji}{38}{subsection.9.2.2}
+\contentsline {subsection}{\numberline {9.2.3}Rozszerzona interakcja u\IeC {\.z}ytkownik\IeC {\'o}w z aplikacj\IeC {\k a} mobiln\IeC {\k a}}{38}{subsection.9.2.3}
+\contentsline {subsection}{\numberline {9.2.4}Precyzyjne dodawanie planowanych dr\IeC {\'o}g do programu Mopnik}{39}{subsection.9.2.4}
+\contentsline {chapter}{\numberline {10}Zawarto\IeC {\'s}\IeC {\'c} p\IeC {\l }yty}{41}{chapter.10}
+\contentsline {chapter}{Bibliografia}{43}{chapter*.44}
