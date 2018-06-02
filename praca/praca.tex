@@ -4,10 +4,34 @@
 \usepackage{dirtree}
 \usepackage{graphicx,wrapfig,lipsum}
 \usepackage{caption}
+\usepackage[acronym,nonumberlist]{glossaries}
+
+\renewcommand{\glossarysection}[2][]{}
+\renewcommand{\glsgroupskip}{}
+
+\makeglossaries
+
+\newacronym{gddkia}{GDDKiA}{Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)}
+
+\newacronym{mop}{MOP}{Miejsce Obsługi Podróżnych}
+
+\newacronym{sdr}{SDR}{Średniodobowe natężenie ruchu}
+
+\newacronym{gui}{GUI}{Graficzny interfejs użytkownika}
+
+\newacronym{rn}{RN}{React Native}
+
+\newacronym{api}{API}{Interfejs programowania aplikacji (ang. Application programming interface)}
+
+\newacronym{zpp}{ZPP}{Zespołowy Projekt Programistyczny}
+
+\newacronym{rid}{RID}{Rozwój Innowacji Drogowych}
+
+\glsaddall
+
 \begin{document}
 
 \maketitle
-
 \begin{abstract}
   W~pracy opisano implementację systemu dotyczącego Miejsc Obsługi Podróżnych
   przy autostradach i~drogach ekspresowych w Polsce. Podstawowe składowe tego
@@ -17,31 +41,21 @@
   parkingowych na~Miejscach Obsługi Podróżnych. Pozostałe dwie części to
   aplikacja mobilna oraz strona internetowa przeznaczone dla kierowców
   poruszających się po drogach. Informują one o~zajętości miejsc parkingowych
-  na każdym MOP-ie w danym momencie oraz predykcji ich zajętości w niedalekiej
-  przyszłości.  
-  %TODO napisać coś jak będzie co streszczać 
+  na każdym \acrshort{mop}-ie w danym momencie oraz predykcji ich zajętości w niedalekiej
+  przyszłości.
 \end{abstract}
 
 \tableofcontents
 %\listoffigures
 %\listoftables
 
-\chapter*{Słowniczek}\label{r:pojecia}
-\addcontentsline{toc}{chapter}{Słowniczek}
 
-\begin{enumerate}
-  \item\emph{GDDKiA} -- Generalna Dyrekcja Dróg Krajowych i Autostrad (nasz klient)
-  \item\emph{MOP} -- Miejsce Obsługi Podróżnych
-  \item\emph{SDR} -- Średniodobowe natężenie ruchu
-  \item\emph{GUI} -- Graficzny interfejs użytkownika
-  \item\emph{OSM} -- Serwis OpenStreetMap (http://openstreetmap.org)
-  \item\emph{RN} -- React Native
-  \item\emph{API} -- Interfejs programowania aplikacji (ang. Application programming interface)
-  \item\emph{ZPP} -- Zespołowy Projekt Programistyczny
-\end{enumerate}
+\chapter{Słowniczek}
+\printglossaries
 
 \chapter{Wprowadzenie}
 \section{Rozwój sieci drogowej w Polsce}
+
 Jeszcze pod koniec XX w. w Polsce znajdowało się zaledwie ok. 500km autostrad i~dróg ekspresowych. Pomimo licznych planów rozwojowych, które przyjmowane były w~okresie PRL i~pierwszych latach III RP, większość dróg budowana była z dużymi opóźnieniami, a niektórych odcinków nie realizowano wcale.\newline
 Dopiero przyjęty pod koniec lat 90. program budowy sieci autostrad i dróg ekspresowych w~Polsce, mimo wielu modyfikacji jest na bieżąco realizowany. Jako przyczyny\cite{siec-drogowa-IIIrp} przyspieszenia budowy dróg szybkiego ruchu w Polsce wymienia się między innymi: duże zainteresowanie problemem, wzrost liczby pojazdów, dotacje z europejskiego Funduszu Spójności, a także dotacje Unii Europejskiej. Dodatkowym impulsem mobilizującym instytucje rządowe do przyspieszenia prac w tym kierunku stało się przyznanie organizacji Euro 2012 Polsce i Ukrainie.\newline
 \begin{figure}[h]
@@ -70,7 +84,7 @@ MOP-y w Polsce dzielimy na trzy kategorie:
 \section{Problemy związane z budową MOP-ów}
 Intensywny rozwój sieci drogowej, a co za tym idzie również szybki wzrost liczby MOP-ów w~Polsce, stwarza szereg problemów z nimi związanych:
 \begin{enumerate}
-    \item \textbf{Problemy administracyjno-prawne} -- GDDKiA systematycznie prowadzi kolejne przetargi na~dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub~lokalizacja punktu mogą zniechęcać potencjalnych najemców.
+    \item \textbf{Problemy administracyjno-prawne} -- \acrshort{gddkia} systematycznie prowadzi kolejne przetargi na~dzierżawę MOP zlokalizowanych zarówno przy autostradach jak i drogach ekspresowych. Dzierżawa nieruchomości MOP generuje przychody, które systematycznie zasilają budżet Krajowego Funduszu Drogowego. Nieatrakcyjne warunki umowy lub~lokalizacja punktu mogą zniechęcać potencjalnych najemców.
     \item \textbf{Lokalizacja MOP-ów} -- efektywne rozmieszczenie MOP-ów powinno uwzględniać takie parametry jak: odległość od najbliższych MOP-ów, natężenie odcinka drogi, odległość od węzłów komunikacyjnych.
     \item \textbf{Liczba miejsc parkingowych i ich układ} -- MOP-y powinny dysponować taką liczbą miejsc parkingowych, by zapewnić możliwość odpoczynku podróżującym także w warunkach wzmożonego ruchu. Rozmieszczenie miejsc parkingowych powinno zapewnić kierowcom komfort podczas poruszania się pojazdem na terenie punktu.
 \end{enumerate}
@@ -126,14 +140,14 @@ Odpowiedzią na te pytania będzie \textbf{Mopsik} (MOP -- System Informowania K
 
 
 \section{Nasze zadanie}
-W ramach zajęć ZPP postanowiliśmy podjąć się implementacji prototypów wyżej opisanych programów.
+W ramach zajęć \acrshort{zpp} postanowiliśmy podjąć się implementacji prototypów wyżej opisanych programów.
 Badania są finansowane ze środków projektu pt. ,,Miejsca parkingowe na MOP'' finansowanego przez NCBiR/GDDKiA w ramach wspólnego przedsięwzięcia ,,RID'', umowa DZP/RID-I-44/8/NCBR/2016.
 \chapter{Mopnik}\label{r:Mopnik}
 
 \section{Przypadki użycia}
-Inżynier GDDKiA może:
+Inżynier \acrshort{gddkia} może:
 \begin{enumerate}
-  \item Wprowadzać dane dotyczące \textbf{SDR} oraz położenie MOP-ów z pliku.
+  \item Wprowadzać dane dotyczące \acrshort{sdr} oraz położenie MOP-ów z pliku.
   \item Wyświetlić wprowadzone dane na mapie.
   \item Wybrać metodykę, ustawić jej parametry i na jej podstawie wyznaczyć
     liczbę potrzebnych miejsc parkingowych na odcinku drogi oraz na konkretnym
@@ -143,7 +157,7 @@ Inżynier GDDKiA może:
   \item Wyświetlić wyniki symulacji przeprowadzonych za pomocą systemu
     \textbf{Mopsim} dotyczących:
     \begin{enumerate}
-      \item Długo- i krótkoterminowych predykcji \textbf{SDR}.
+      \item Długo- i krótkoterminowych predykcji \acrshort{sdr}.
       \item Krótkoterminowej predykcji zajętości MOP-ów.
     \end{enumerate}
   \item Zapisać wyniki przeprowadzanych analiz do pliku.
@@ -156,7 +170,7 @@ Maven automatyzującego budowę programu.
 Implementacja opiera się na wykorzystaniu następujących bibliotek dla języka
 Java:
 \begin{itemize}
-\item Swing -- biblioteka graficzna służąca do stworzenia GUI aplikacji.
+\item Swing -- biblioteka graficzna służąca do stworzenia \acrshort{gui} aplikacji.
 \item JXMapViewer2 -- biblioteka zapewniająca swingowy JPanel renderujący
   kafelki mapy (\url{https://github.com/msteiger/jxmapviewer2}).
 \item osm-parser -- biblioteka parsująca pliki .osm do obiektów w Javie
@@ -167,7 +181,7 @@ Java:
 Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
 projektu biblioteki \textbf{Mopsim}. 
 \subsubsection{Dane wejściowe}
-Użytkownik programu ma możliwość wprowadzenia danych dotyczących \textbf{SDR}
+Użytkownik programu ma możliwość wprowadzenia danych dotyczących \acrshort{sdr}
 oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
 założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
 wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
@@ -204,7 +218,7 @@ Wczytywanie plików OSM daje następujące możliwości:
 \chapter{Mopsim}\label{r:Mopsim}
 
 \section{Przypadki użycia}
-Inżynier GDDKiA może:
+Inżynier \acrshort{gddkia} może:
 \begin{enumerate}
   \item Wprowadzać dane dotyczące sieci drogowej z pliku osm.
   \item Wprowadzać dane dotyczące MOP-ów i macierze podróży z plików CSV.
@@ -213,7 +227,7 @@ Inżynier GDDKiA może:
   \item Wyznaczać przewidywane natężenie ruchu na danym odcinku drogi.
   \item Wyznaczać przewidywaną zajętość MOP-ów i liczbę potrzebnych miejsc parkingowych.
   \item Generować raporty.
-  \item Wyświetlić wyniki symulacji za pomocą GUI programu \textbf{Mopnik}.
+  \item Wyświetlić wyniki symulacji za pomocą \acrshort{gui} programu \textbf{Mopnik}.
 \end{enumerate}
 
 \section{Architektura}
@@ -273,9 +287,9 @@ W programie Mopsim wykorzystano następujące technologie:
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
-\chapter{Mopsik -- Strona serwerowa - API}\label{r:apka} 
+\chapter{Mopsik -- Strona serwerowa - \acrshort{api}}\label{r:apka} 
 
-Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez GDDKiA w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
 Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych -- ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
 Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
 
@@ -300,10 +314,6 @@ Implementacja oparta jest o wersję 2.0 frameworku Django, Python 3.5 oraz bibli
 \begin{itemize}
 \item /mops - zwraca wszystkie dane o MOP-ach agregowane w bazie danych
 \item /taken - zwraca dane o zajętości MOP-ów agregowane w bazie danych
-\end{itemize}
-Planowane jest rozszerzenie o zapytanie:
-\begin{itemize}
-\item /forecast - zwraca przewidywane dane o zajętości MOP-ów w perspektywie krótkoterminowej, np. za 15, 30, 45 oraz 60min
 \end{itemize}
 
 \section{Dokumentacja użytkowa i opis implementacji}
@@ -342,7 +352,7 @@ Aplikacja mobilna została napisana w języku \textbf{JavaScript} z użyciem bib
     \end{minipage}
 \end{figure}
 
-Aplikacja w RN zbudowana jest z komponentów, które posiadają stan (obiekt słownikowy) inicjowany w konstruktorze. Funkcja \textit{render()} wywoływana jest przy pierwszym ładowaniu komponentu oraz przy każdej zmianie jego stanu. 
+Aplikacja w \acrshort{rn} zbudowana jest z komponentów, które posiadają stan (obiekt słownikowy) inicjowany w konstruktorze. Funkcja \textit{render()} wywoływana jest przy pierwszym ładowaniu komponentu oraz przy każdej zmianie jego stanu. 
 
 Z komponentów budujemy widoki, czyli wszystko co jest widoczne na ekranie w danym momencie.
 
@@ -452,12 +462,12 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
 
 \subsection{Zapytanie do API}
-Po otwarciu aplikacji wykonywane jest zapytanie do API \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
+Po otwarciu aplikacji wykonywane jest zapytanie do \acrshort{api} \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
 Po wciśnięciu przycisku \textit{odśwież} oraz po otwarciu każdej z zakładek, wykonywane jest zapytanie \textit{/taken} zwracające tylko aktualną liczbę zajętych miejsc parkingowych dla każdego z MOP-ów. Aplikacja aktualizuje te dane w zapisanych MOP-ach oraz przelicza nowe zajętości dla wszystkich typów pojazdów.
 Do każdego typu pojazdu, w każdym MOP-ie, przyporządkowywany jest kolor zgodnie z ustaloną legendą (np. dla małej zajętości, do 30\% -- zielony, a dla największej -- czerwony). Ten kolor jest następnie wykorzystywany przy wizualizacji danych.
 
 \subsection{Użyte biblioteki}
-W aplikacji skorzystaliśmy z gotowych bibliotek RN, co znacząco przyspieszyło i~ułatwiło pracę.
+W aplikacji skorzystaliśmy z gotowych bibliotek \acrshort{rn}, co znacząco przyspieszyło i~ułatwiło pracę.
 \begin{enumerate}
 \item \textbf{lodash} \\
 \url{https://www.npmjs.com/package/lodash}\\
@@ -794,7 +804,51 @@ Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podpr
 \end{enumerate}
 
 \chapter{Napotkane problemy i niezrealizowane pomysły}
-%TODO
+
+Przystępując do zadania, nasza wiedza z zakresu transportu drogowego, w szczególności ciężarowego, była nikła. Podczas realizacji projektu, wdrażając się  w tematykę ruchu na autostradach i drogach szybkiego ruchu, dopiero po pewnym czasie byliśmy w stanie zrozumieć dokładnie jakie funkcjonalności realnie może zapewnić tworzone przez nas oprogramowanie.
+
+W trakcie pisania programów napotkaliśmy wiele problemów oraz wraz z upływem czasu i postępem prac musieliśmy weryfikować, początkowo bardzo ambitny, plan zadań, które uda nam się wykonać.
+
+\section{Napotkane problemy}
+Główne problemy, które napotkaliśmy możemy podzielić na kilka podstawowych kategorii:
+\begin{enumerate}
+\item Problemy z danymi
+\item Problemy z komunikacją
+\item Problemy techniczne
+\end{enumerate}
+Po krótce opiszemy każdy z powyższych problemów:
+\subsection{Problemy z danymi i komunikacją w zespole}
+W ramach projektu RID współpracuje wiele osób, które są odpowiedzialne za różne elementy projektu. 
+Dane wymagane do działania naszych programów były pozyskiwane z wielu źródeł, za pośrednictwem wielu osób. Dane te często okazywały się niekompletne lub niewystarczające do naszych zastosowań.
+Jednym z przykładów są dane o długości postojów na MOP-ach. Były one zbierane między innymi z :
+-systemu viaTOLL, za pomocą którego były generowane rozkłady czasów przejazdu pomiędzy parą punktów kontroli
+-ankiet przeprowadzanych na MOP-ach. 
+Okazało się, że otrzymane zbiory danych nie były wystarczające do wiarygodnego wyznaczenia rozkładów czasu podróży. Jedną z czynności, które podjęliśmy w celu uzupełnienia tych danych było stworzenie ankiet internetowych i zamieszczenie ich w portalu Facebook na grupach poświęconych kierowcom samochodów ciężarowych.
+Innym przykładem są dane o zajętości MOP-ów na żywo. Po początkowych rozmowach z promotorem, jak i~innymi osobami z projektu, wydawało nam się, że do czerwca 2018r. (czyli momentu w którym oddajemy pracę) będą dostępne dane choć z kilku MOP-ów, zapewnione przez zespół z Politechniki Warszawskiej. Po jakimś czasie dowiedzieliśmy się, iż nasze przekonanie jest błędne i dane takie, o ile będą dostępne, to w dalszej przyszłości.
+\subsection{Problemy techniczne}
+Podczas pracy nad dużym projektem zawsze zdarzają się także problemy techniczne. Nie~inaczej było i tym razem. 
+Jednym z przykładów jest praca z React Native, podczas której korzystaliśmy z wielu zewnętrznych bibliotek. Czasem okazywało się, że kolejne wersje tych bibliotek, pobierane z Internetu podczas pracy nad programem zawierały nowe błędy lub luki bezpieczeństwa.
+
+\section{Niezrealizowane pomysły}
+Z wyżej wymienionych powodów, nie wszystkie planowane początkowo funkcjonalności udało się wdrożyć do naszych programów.
+\subsection{Predycje krótkoterminowe}
+Planowaliśmy zaangażować się w analizę danych o zajętości MOP-ów we współpracy z innymi członkami zespołu RID. Na tej podstawie nasza aplikacja mobilna mogłaby nie tylko pokazywać stan zajętości parkingów ,,na żywo'', ale także prognozowaną zajętość za 15, 30, 60 minut. Do analizy tych danych chcieliśmy wykorzystać algorytmy uczenia maszynowego, które dobrze działają przy analizowaniu odcinków czasu, jak np. rekurencyjne sieci neuronowe, czy LSTM. W związku z niewystarczającymi lub trudnymi do obrobienia danymi, nie zdecydowaliśmy się wprowadzać takiej możliwości.
+\subsection{Rozszerzona interakcja użytkowników z aplikacją mobilną}
+W końcowej fazie tworzenia projektu wpadliśmy na pomysł, jak rozszerzyć aplikację, aby była ona bardziej przydatna dla użytkowników. Można to zrobić w oparciu o crowdsourcing (czyli zaangażowanie dużej grupy ludzi -- użytkowników aplikacji do jakiegoś działania -- dzielenia się informacjami na temat parkingów. Przykładowe funkcjonalności, które sprawiałyby, że użytkownicy pomagaliby sobie wzajemnie byłoby np.
+\begin{itemize}
+\item ocenianie danego MOP-a poprzez przyznanie mu odpowiedniej liczby gwiazdek
+\item podanie jaka konkretnie restauracja znajduje się na danym MOP-ie
+\item możliwość dodawania komentarzy do MOP-ów
+\end{itemize}
+Jeśli pomyślimy o aplikacji w szerszym kontekście, to można byłoby np. dodać też opcję dodawania parkingów niebędących MOP-ami.
+Nie zdecydowaliśmy się na wprowadzenie takich usprawnień ze względu na duży czas potrzebny do~dobrego wykonania takiego zadania, biorąc pod uwagę, że do~dopracowania pozostało nam wiele innych funkcjonalności o~większym priorytecie.
+\subsection{Precyzyjne dodawanie planowanych dróg do programu Mopnik}
+W początkowych fazach projektu planowaliśmy, aby można było nanieść projekt planowanej drogi w~ustalonym formacie na mapę w~Mopniku. Okazało się, że jest to trudne:
+\begin{itemize}
+\item W początkowych fazach planowania \acrshort{gddkia} nie posiada dokładnych planów dróg.
+\item Nasz program musiałby obsługiwać nowy format plików wejściowych, co utrudniłoby implementację.
+\end{itemize}
+Jako rozwiązanie tego problemu wprowadziliśmy opcję dodawania prostych odcinków pomiędzy punktami A i B na mapie. Ta opcja okazała się o wiele mniej problematyczna w implementacji, a spełnia swój podstawowy cel, tzn. można uruchomić symulację na zmodyfikowanej sieci drogowej i wyznaczyć nowe obiążenia dla odcinków dróg.
 
 \chapter{Zawartość płyty}
 %TODO
