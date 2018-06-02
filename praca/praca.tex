@@ -316,7 +316,6 @@ Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
 \item Znaleźć MOP-a w wyszukiwarce lub na mapie.
 \item Poznać procentową zajętość miejsc parkingowych na MOP-ie dla każdego z trzech typów pojazdów (samochód osobowy, samochód ciężarowy, autobus).
 \item Poznać liczbę wolnych miejsc parkingowych oraz ich liczbę ogółem.
-\item Poznać predykcję zajętości miejsc parkingowych na najbliższą godzinę.
 \item Znaleźć kontakt do operatora MOP-a.
 \item Sprawdzić jakie usługi znajdują się na MOP-ie.
 \item Wyświetlić wizualizację danych o zajętośći miejsc parkingowych.
@@ -592,7 +591,146 @@ W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dan
 Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
 Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
 
-\section{Dokumentacja użytkowa}
+
+\chapter{Mopsik -- Strona internetowa}
+
+\section{Przypadki użycia}
+Przypadki użycia strony internetowej \textit{Mopsik} zostały przedstawione w poprzednim rozdziale, razem z przypadkami użycia aplikacji mobilnej.
+
+\section{Architektura i opis implementacji}
+
+\subsection{Technologia}
+\begin{figure}[!htb]
+    \centering
+    \begin{minipage}{.7\textwidth}
+Aplikacja internetowa została napisana w technologii ASP.NET MVC, w języku obiektowym C\#. Frontend wykorzystuje także HTML, JavaScript oraz CSS. W aplikacji znajdują się trzy kontrolery odpowiedzialne za poszczególne elementy: Mapa, Wyszukiwarka, Szczegóły. W każdym kontrolerze zdefiniowane są akcje. Na podstawie aktualnego adresu wywoływany jest odpowiedni kontroler i akcja:\\ \textit{<domena>/<nazwa kontrolera>/<nazwa akcji>/<parametry>}.
+    \end{minipage}%
+    \begin{minipage}{.3\textwidth}
+        \centering
+        \includegraphics[width=5cm]{images/mvc.png}\label{MVC_logo}
+    \end{minipage}
+\end{figure}
+
+\subsection{Zakładki}
+W górnej części strony znajduje się menu, w którym są dwie zakładki: \textit{Mapa} i \textit{Wyszukiwarka}. \textit{Mapa} jest zakładką domyślną. Jest także trzeci widok -- \textit{Szczegóły}, do którego można przejść z obu zakładek, po wyborze jednego z MOP-ów.
+\subsubsection{Mapa}
+W tej zakładce znajduje się mapa Polski z OpenStreetMap. Do jej wyświetlania wykorzystane zostały OpenLayers - biblioteka JavaScript do dynamicznych map. Na mapie oznaczone są MOP-y, a kolor znacznika odpowiada zajętości miejsc parkingowych dla wybranego typu pojazdu (skala analogiczna jak w aplikacji mobilnej). Typ pojazdu można zmienić w prawym, górnym rogu mapy, wybierając odpowiednią ikonę. Wysyła to zapytanie POST z odpowiednią wartością typu pojazdu i odświeża stronę z naniesionymi zmianami. 
+Po kliknięciu w znacznik wyświetla się dymek z podstawowymi informacjami o MOP-ie, a guzik z ikoną informacji przenosi do szczegółów -- wywołuje \textit{DetailsController} z akcją \textit{Details} oraz parametrem id MOP-a.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/mopsik_www/map.png}
+\captionof{figure}{Mapa}
+\label{mopsik_www_map}
+\end{figure}
+
+\subsubsection{Wyszukiwarka}
+Aplikacja umożliwia wyszukiwanie MOP-ów po nazwie, miejscowości, numerze drogi i kierunku oraz filtrowanie po obecnych usługach. Przyciski \textit{Szukaj} i \textit{Filtruj} wysyłają zapytanie POST wraz z aktualną frazą wyszukiwania i zaznaczonymi usługami.
+Wyszukiwarka posiada \textit{form} z polem \textit{input} na wyszukiwany tekst oraz ukrytym polem \textit{input}, które przesyła aktualnie zaznaczone filtry. W formularzu odpowiadającym za filtrowanie jest odwrotnie.  
+MOP uznawany jest za pasujący do zapytania jeśli:
+\begin{enumerate}
+\item oferuje wszystkie usługi zaznaczone w filtrach
+\item dla każdego ze słów zawartych w wyszukiwanym haśle, MOP zawiera to słowo w jednym z poniższych:
+\begin{enumerate}
+\item nazwa
+\item miejscowość
+\item numer drogi
+\item kierunek
+\end{enumerate}
+(wielkość liter nie jest istotna)
+\end{enumerate}
+W liście rezultatów znajdują się wszystkie MOP-y, które spełniają warunki zapytania. Dla każdego z nich wyświetlane są: nazwa, numer drogi, kierunek, miejscowość oraz zajętość dla wszystkich trzech typów pojazdów. Kliknięcie w wiersz z MOP-em przenosi na stronę ze szczegółami.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/mopsik_www/search.png}
+\captionof{figure}{Wyszukiwarka}
+\label{mopsik_www_search}
+\end{figure}
+
+\subsubsection{Szczegóły}
+W tej zakładce wyświetlane są szczegółowe informacje o konkretnym MOP-ie:
+\begin{enumerate}
+\item nazwa
+\item kierunek
+\item numer drogi
+\item miejscowość
+\item pikietaż
+\item współrzędne geograficzne
+\item operator i kontakt do niego -- numer telefonu oraz e-mail
+\item oferowane usługi
+\item położenie ma napie
+\item dla każdego typu pojazdu:
+\begin{enumerate}
+\item zajętość miejsc parkingowych w procentach + wizualizacja danych na wykresie
+\item liczba wolnych miejsc parkingowych
+\item liczba zajętych miejsc parkingowych
+\item liczba miejsc parkingowych ogółem
+\end{enumerate}
+\end{enumerate}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\textwidth]{images/mopsik_www/details1.png}
+\captionof{figure}{Szczegóły}
+\label{mopsik_www_details}
+\end{figure}
+
+\subsection{Zapytania do API i zapisywanie danych}
+Aplikacja pobiera wszystkie dane o MOP-ach z opisanego wcześniej API. Wykonuje zapytania do \textit{/mops} i zapisuje je w pamięci aplikacji. Przy każdym przeładowaniu wyświetlanej strony sprawdzane jest jak dawno było wykonane ostatnie zapytanie do API. Jeśli czas ten jest większy niż 2 minuty, zapytanie jest wykonywane ponownie. W przeciwnym przypadku, dane są pobierane z pamięci aplikacji.
+
+\subsubsection{Parsowanie danych z API}
+Klasy \textit{Mop}, \textit{Operator}, \textit{FacilitiesParser}, \textit{CoordinatesParser} i \textit{SpacesCount} biorą udział w parsowaniu danych z API, które są w formacie JSON. Przy każdym swoim polu zawierają \textit{JsonProperty} z nazwą pod jaką występują w danych. Dzięki temu, metoda \textit{JsonConvert.DeserializeObject} może sparsować dane w formacie JSON i utworzyć odpowiednie klasy.
+
+\subsection{Modele i modele widoków}
+\paragraph{Modele}
+\begin{enumerate}
+\item \textit{ApiManager} -- odpowiedzialny za zapytania do API, pobiera dane w formacie JSON i zwraca w postaci listy modeli \textit{Mop}
+\item \textit{AppDataStorage} -- istnieje jeden obiekt tej klasy, zapisany w aplikacji, można traktować go jako zbiór zmiennych globalnych. Wartości są przechowywane na serwerze, czyli ich wartość jest taka sama dla wszystkich użytkowników. Przechowuje zapisane dane z API oraz czas ostatniego zapytania.
+\item \textit{Coordinates} -- dla obu współrzędnych przechowuje ich wartość w formacie \textit{double} oraz w formacie \textit{string} w dwóch wersjach -- zaokrągloną do 4 miejsc po przecinku (do wyświetlania) oraz z pełną dokładnością (do używania w JavaScript). 
+\item \textit{CoordinatesParser} -- zawiera obie współrzędne w formacie \textit{double}, używane tylko w parsowaniu danych z API
+\item \textit{FacilitiesConfig} -- słownik, który dla kodu symbolizującego usługę na MOP-ie, zwraca obiekt klasy \textit{Facility}
+\item \textit{FacilitiesParser} -- zawiera pola \textit{bool} dla każdej usługi, używana tylko w parsowaniu danych z API
+\item \textit{Facility} -- zawiera dwie informacje: polską nazwę usługi oraz nazwę ikony
+\item \textit{Mop} -- przechowuje wszystkie informacje o MOP-ie; zawiera funkcję \textit{DeserializeMops}, która dla formatu JSON zwraca listę obiektów klasy \textit{Mop}
+\item \textit{Operator} -- zawiera pola dla nazwy operatora i kontaktu do niego
+\item \textit{SpacesCount} -- zawiera trzy pola \textit{int} (dla każdego z typów pojazdów)
+\item \textit{SpacesUsage} -- dla każdego z typów pojazdów zawiera pole klasy \textit{Usage}
+\item \textit{Usage} -- zawiera zajętość miejsc parkingowych w \% (w formacie \textit{double} i \textit{string}) oraz odpowiadające tej wartości: kolor tła i tekstu.
+\end{enumerate}
+
+\paragraph{Modele widoków}
+\begin{enumerate}
+\item \textit{DetailsViewModel} -- zawiera \textit{MopViewModel} dla wybranego MOP-a, niezmienny obiekt \textit{FacilitiesConfig} oraz cztery słowniki z odpowiednimi kolorami ikon i tekstu w zależności od obecności usługi
+\item \textit{MapViewModel} -- zawiera obiekt klasy \textit{MopListViewModel} z informacjami o wszystkich MOP-ach, aktualny typ pojazdu, dla którego mają być wyświetlane zajętości oraz HTML-owe klasy dla wszystkich trzech przycisków typów pojazdów
+\item \textit{MopListViewModel} -- przerabia listę obiektów klasy \textit{Mop} na listę obiektów klasy \textit{MopViewModel}
+\item \textit{MopViewModel} -- obudowuje informacje zawarte w klasie \textit{Mop} i przygotowuje je do wyświetlania w widokach
+\item \textit{SearchViewModel} -- zawiera m.in informacje o wszystkich MOP-ach, aktualnie wyszukiwane hasło, aktualny stan zaznaczonych ikon w filtrach
+\end{enumerate}
+
+\subsection{Kontrolery i widoki}
+Dla każdego kontrolera (plik \textit{*Controller.cs}) istnieje plik z HTML (\textit{*.cshtml})
+\begin{enumerate}
+\item \textit{Details}
+\item \textit{Map}
+\item \textit{Search}
+\end{enumerate}
+
+\subsection{Użyte biblioteki}
+\begin{enumerate}
+\item \textbf{OpenLayers} \\
+\url{https://openlayers.org}\\
+Biblioteka napisana w języku JavaScript, umożliwiająca dodawanie dynamicznych map na stronach internetowych.
+
+\item \textbf{Material Design Lite} \\
+\url{https://getmdl.io}\\
+Biblioteka CSS udostępniająca gotowe style podstawowych elementów HTML. Gwarantuje czysty, spójny wygląd strony internetowej.
+
+\item \textbf{ProgressBar.js} \\
+\url{https://github.com/kimmobrunfeldt/progressbar.js}\\
+Biblioteka JavaScript do tworzenia animowanych wykresów kołowych. Wykorzystana do rysowania wykresów zajętości MOP-ów.
+\end{enumerate}
+
 
 \chapter{Organizacja pracy}
 Nasz projekt składa z się z pięciu częściowo niezależnych programów. Niektóre z nich komunikują lub łączą się ze sobą, ale duża część kodu mogła być napisana bez znajomości szczegółowej implementacji pozostałych aplikacji. Dlatego powstał u nas dość wyraźny podział pracy -- każdy program posiadał swojego koordynatora, który był autorem większości kodu i nadzorował rozwój aplikacji. Dokładny podział prac został przedstawiony w następnym rozdziale. 
@@ -644,7 +782,7 @@ Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podpr
 \paragraph{Mopsik - strona internetowa}
 \begin{enumerate}
 \item Klaudia Laks
-\item Przemysław Perkowski
+\item Przemysław Perkowski - code review
 \end{enumerate}
 
 \paragraph{Dokumentacja / Praca licencjacka}
