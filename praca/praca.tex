@@ -679,7 +679,7 @@ Główne problemy, które napotkaliśmy możemy podzielić na kilka podstawowych
 \end{enumerate}
 Po krótce opiszemy każdy z powyższych problemów:
 \subsection{Problemy z danymi i komunikacją w zespole}
-W ramach projektu RID współracuje wiele osób, które są odpowiedzialne za różne elementy projektu. 
+W ramach projektu RID współpracuje wiele osób, które są odpowiedzialne za różne elementy projektu. 
 Dane wymagane do działania naszych programów były pozyskiwane z wielu źródeł, za pośrednictwem wielu osób. Dane te często okazywały się niekompletne lub niewystarczające do naszych zastosowań.
 Jednym z przykładów są dane o długości postojów na MOP-ach. Były one zbierane między innymi z :
 -systemu viaTOLL, za pomocą którego były generowane rozkłady czasów przejazdu pomiędzy parą punktów kontroli
@@ -694,8 +694,6 @@ Jednym z przykładów jest praca z React Native, podczas której korzystaliśmy 
 Z wyżej wymienionych powodów, nie wszystkie planowane początkowo funkcjonalności udało się wdrożyć do naszych programów.
 \subsection{Predycje krótkoterminowe}
 Planowaliśmy zaangażować się w analizę danych o zajętości MOP-ów we współpracy z innymi członkami zespołu RID. Na tej podstawie nasza aplikacja mobilna mogłaby nie tylko pokazywać stan zajętości parkingów ,,na żywo'', ale także prognozowaną zajętość za 15, 30, 60 minut. Do analizy tych danych chcieliśmy wykorzystać algorytmy uczenia maszynowego, które dobrze działają przy analizowaniu odcinków czasu, jak np. rekurencyjne sieci neuronowe, czy LSTM. W związku z niewystarczającymi lub trudnymi do obrobienia danymi, nie zdecydowaliśmy się wprowadzać takiej możliwości.
-\subsection{Zrównoleganie symulacji}
-Około 2(?) miliony samochodów dziennie odbywa w Polsce podróże (porusza się pomiędzy powiatami) (dane na rok 2015(?)). Symulacje przeprowadzane w programie MOPSim na bardzo dużej liczbie pojazdów trwają bardzo długo. Stąd mieliśmy pomysł, aby móc skrócić ten czas dzięki rozproszeniu obliczeń tego programu na wiele wątków. Stwierdziliśmy jednak, iż~możemy przeskalować liczbę pojazdów biorących udział w symulacji w taki sposób, aby obliczenia trwały akceptowalnie długo (np. mniej niż godzinę), a jednocześnie nie stracimy zbyt dużo dokładności (przy nieidealnych danych nie potrzebujemy idealnej dokładności symulacji)
 \subsection{Rozszerzona interakcja użytkowników z aplikacją mobilną}
 W końcowej fazie tworzenia projektu wpadliśmy na pomysł, jak rozszerzyć aplikację, aby była ona bardziej przydatna dla użytkowników. Można to zrobić w oparciu o crowdsourcing (czyli zaangażowanie dużej grupy ludzi -- użytkowników aplikacji do jakiegoś działania -- dzielenia się informacjami na temat parkingów. Przykładowe funkcjonalności, które sprawiałyby, że użytkownicy pomagaliby sobie wzajemnie byłoby np.
 \begin{itemize}
