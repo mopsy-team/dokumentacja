@@ -153,8 +153,8 @@ Inżynier \acrshort{gddkia} może:
     liczbę potrzebnych miejsc parkingowych na odcinku drogi.
   \item Wyświetlić wyniki na mapie.
   \item Edytować sieć drogową. 
-  \item Uruchomić symulacje przeprowadzane za pomocą systemu
-    \textbf{Mopsim} dotyczących:
+  \item Urochomić symulacje przeprowadzane za pomocą systemu
+    \textbf{Mopsim} dotyczące:
     \begin{enumerate}
       \item Predykcji \acrshort{sdr}.
       \item Predykcji zajętości MOP-ów.
@@ -181,7 +181,7 @@ Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią te
 projektu biblioteki \textbf{Mopsim}. 
 \subsubsection{Dane wejściowe}
 Użytkownik programu ma możliwość wprowadzenia danych dotyczących \acrshort{sdr}
-z plików w formacie CSV oraz położenia MOP-ów z pliku w formacie xml. Pliki te muszą spełniać pewne
+z plików w formacie CSV oraz położenia MOP-ów z pliku w formacie xlsx. Pliki te muszą spełniać pewne
 założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
 wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
 formacie OSM. Parsowaniem obu rodzajów plików zajmują się odpowiednie
@@ -241,28 +241,28 @@ W ostatecznej wersji programu zaimplementowana jest tylko jedna metodyka
 (nazwana metodyką domyślną),
 pochodząca z pracy dr. Malwiny Spławińskiej\cite{metodyki}.
 W pracy tej zaproponowane są konkretne parametry liczbowe dla tej metodyki,
-które w Mopniku są ustawione jako parametry domyślne, które mogą być zmienione
+które w Mopniku są ustawione jako parametry domyślne, ale mogą być zmienione
 z poziomu użytkownika.
 \subsubsection{Wyświetlanie wyników metodyk}
-Liczby miejsca parkingowych są obliczane dla konkretnych odcinków dróg.
+Liczby miejsc parkingowych są obliczane dla konkretnych odcinków dróg.
 Uwzględniana przy tym jest ich długość, ponieważ metodyka zwraca liczbę
 potrzebnych miejsc parkingowych na odcinku 15km. Dla konkretnego odcinka
 dysponujemy więc następującymi informacjami: 
 \begin{itemize}
   \item \acrshort{sdr}
   \item Liczba potrzebnych miejsc parkingowych
-  \item Liczba istniejących miejsca parkingowych (suma liczb miejsc
+  \item Liczba istniejących miejsc parkingowych (suma liczb miejsc
     parkingowych na MOP-ach znajdujących się na tym odcinku).
 \end{itemize}
-Informacje te pozwalają na ustalenie stref priorytetowych: odcinków dróg, na
+Informacje te pozwalają na ustalienie stref priorytetowych: odcinków dróg, na
 których liczba miejsc parkingowych nie jest wystarczająca. Realizowane jest to
-przy uruchomieniu programu -- wczytywane są domyślne dane i wyniki metodyk są
-obliczane na podstawie domyślnych parametrów. Przy wczytaniu nowych danych,
+przy uruchomieniu programu na podstawie domyślnych danych oraz domyślnych
+parametrów metodyk. Przy wczytaniu nowych danych,
 dodaniu MOP-a, lub zmianie parametrów metodyki następuje przeładowanie mapy. 
 
-\subsubsection{Dodatkowe metodyki} 
+\subsubsection{Dodatkwowe metodyki} 
 Istniejąca implementacja pozwala na dodanie nowych metodyk z poziomu
-programisty tak, aby użytkownik mógł mieć wybór.
+programisty tak.
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
