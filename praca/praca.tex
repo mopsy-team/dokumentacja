@@ -296,24 +296,24 @@ Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonom
     Nieco innym, choć pokrewnym pojeciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
     \begin{figure}[h]
         \caption{Schemat działania systemu wieloagentowego}
-        \includegraphics[width=\textwidth]{images/multi-agent.png}
+        \includegraphics[width=\textwidth]{images/mopsim/multi-agent.png}
     \end{figure}
 \subsubsection{MATSim -- symulator ruchu drogowego}
 MATSim (\textit{Multi-Agent Transport Simulation}) to open-sourcowy, rozszerzalny framework napisany w Javie służący do przeprowadzania symulacji ruchu drogowego. Jego głównymi założeniami jest mikroskopowe modelowanie ruchu oraz oparte na agentach symulowanie dziennych planów poszczególnych jednostek\cite{matsim}. MATSim został zaprojektowany, by modelować aktywności podczas pojedynczego dnia. MATSim oparty jest o zasadę koewolucyjności. Każdy z agentów, reprezentujących pojedynczych uczestników ruchu drogowego, optymalizuje swój codzienny plan, rywalizując z innymi agentami w różnych aspektach korzystania z infrastruktury drogowej.\\
 Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu. Od~tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w~Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w~Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy~badania emisji spalin.
     \begin{figure}[h]
         \caption{Logo MATSim}
-        \includegraphics[width=\textwidth]{images/matsim_logo.png}
+        \includegraphics[width=\textwidth]{images/mopsim/matsim_logo.png}
     \end{figure}
 \subsubsection{MATSim -- pętla programu}
 Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i~wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze~swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
     \begin{figure}[h]
         \caption{Schemat działania MATSim}
-        \includegraphics[width=\textwidth]{images/matsim-workflow.png}
+        \includegraphics[width=\textwidth]{images/mopsim/matsim-workflow.png}
     \end{figure}
 \newpage
 \subsubsection{Dlaczego MATSim?}
-Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do symulowania ruchu na drogach w Polsce, w celu zbadania zajętości MOP-ów. Co istotne, wstępne symulacje pokazały, że już jedna iteracja działania głównej pętli programu jest wystarczająca -- wynik jest bardzo zbliżony do optymalnego. Jest to zgodne z~intuicją -- w ruchu krajowym należy oczekiwać, że najkrótsza droga spośród dróg danego typu jest najbardziej optymalną, a~tworzące się korki nie są tak częste i~regularne, jak w intensywnym ruchu miejskim. Czynniki, które nas przekonały do wyboru frameworku MATSim to między innymi:
+Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do symulowania ruchu na drogach w Polsce, w celu zbadania zajętości MOP-ów. Co istotne, wstępne symulacje pokazały, że już jedna iteracja działania głównej pętli programu jest wystarczająca -- wynik jest bardzo zbliżony do optymalnego. Jest to zgodne z~intuicją -- w ruchu krajowym należy oczekiwać, że najkrótsza droga spośród dróg danego typu jest najbardziej optymalną, a~tworzące się korki nie są tak częste i regularne, jak w intensywnym ruchu miejskim. Czynniki, które nas przekonały do wyboru frameworku MATSim to między innymi:
 \begin{itemize}
 \item licencja open-source
 \item możliwość łatwego rozszerzenia o dodatkowe funkcjonalności, wiele gotowych przykładów
@@ -321,23 +321,234 @@ Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do sym
 \item możliwość zrównoleglania
 \end{itemize}
 
-\subsubsection{Mopsim -- schemat działania programu}
-    \begin{figure}[h]
-        \caption{Schemat działania programu Mopsim}
-        \includegraphics[width=\textwidth]{images/mopsim-workflow.png}
-    \end{figure}
-Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania symulacji. Poniższy schemat pokazuje zarys jego działania. Użytkownik programu Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv, macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie csv oraz mapę sieci drogowej w formacie osm (\textit{OpenStreetMap}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne, część których może być przekazana do programu Mopnik w celu wizualizacji.
-\newpage
 \subsubsection{Mopsim -- technologie}
 W programie Mopsim wykorzystano następujące technologie:
 \begin{itemize}
 \item MATSim -- opisany wyżej
 \item Java -- choć MATSim umożliwia też pisanie rozszerzeń w innym języku, zdecydowaliśmy się na wykorzystanie Javy jako języka programowania z uwagi na jej największą integrację z MATSimem. Dodatkowym atutem było nasze doświadczenie z pracy w tym języku, także w aspekcie programowania współbieżnego.
-\item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integracja z MATSimem, który posiada moduł umożliwiający konwersję na~format używany do opisu dróg w symulacji.
+\item OpenStreetMap -- Mopsim korzysta z map OpenStreetMap do opisu sieci drogowej. Jest to projekt społeczności internetowej mający na celu stworzenie darmowej, swobodnie dostępnej mapy całej kuli ziemskiej. Jej atutem są gotowe rozwiązania umożliwiające edycję oraz integrację z MATSimem, który posiada moduł umożliwiający konwersję na format używany do opisu dróg w symulacji.
+\end{itemize}
+\section{Mopsim - opis działania}
+    \begin{figure}[h]
+        \caption{Schemat działania programu Mopsim}
+        \includegraphics[width=\textwidth]{images/mopsim/mopsim-workflow.png}
+    \end{figure}
+Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania symulacji. Poniższy schemat pokazuje zarys jego działania. Użytkownik programu Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv, macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie csv oraz mapę sieci drogowej w formacie osm (\textit{OpenStreetMap}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne, część których może być przekazana do programu Mopnik w celu wizualizacji.
+
+\subsubsection{Generowanie planów podróży}
+    \begin{figure}[h]
+        \caption{Schemat działania generatora planów podróży}
+        \includegraphics[width=\textwidth]{images/mopsim/mopsim-travelplan.png}
+    \end{figure}
+Generowanie planów podróży odbywa się na podstawie macierzy dla trzech rodzajów pojazdów (samochody osobowe, pojazdy ciężarowe i autobusy), do których użytkownik podaje ścieżki w pliku konfiguracyjnym. Macierz podróży reprezentowana jest przez plik csv. Liczba w $n$-tym wierszu i $m$-tej komórce macierzy oznacza, ile pojazdów danego typu przejeżdża średnio w ciągu dnia z punktu $n$ do punktu $m$. Punkty o odpowiednich indeksach odpowiadają miastom powiatowym i przejściom granicznym. Ich współrzędne umieszczone są w oddzielnym pliku.\\
+W module generującym plan podroży macierze są traktowane jak rozkład prawdodobieństwa, według którego losowane są punkty startowe i końcowe dla poszczególnych agentów, których jest tyle, ile zostało określone w pliku konfiguracyjnym. Po wylosowaniu odpowiednich punktów, na podstawie zadanej strategii czasu wyjazdu wybierana jest godzina, o której agent wyjedzie w trasę. Następnie agent dodawany jest do symulacji. Opis wygenerowanych planów podróży agentów zostaje zapisany do pliku \texttt{travel\_plan.xml}.
+\newpage
+\subsubsection{Generowanie planu MOP-ów}
+Generowanie planu MOP-ów odbywa się na podstawie danego pliku csv, w którym kolejne kolumny oznaczają współrzędne MOP-a (w układzie 92 lub CH1903, w zależności od wybranej opcji w pliku konfiguracyjnym), lokalizację, nazwę, liczby miejsc parkingowych dla samochodów, pojazdów ciężarowych, busów i inne dane o obiektach znajdujących się na MOP-ie. Każdy z MOP-ów zostaje przyporządkowany do najbliższego odcinka drogi, który znajduje się po jego lewej stronie. Opis MOP-ów ze współrzędnymi zostaje zapisany w plku \texttt{facilities.xml}, zaś ich atrybutów -- w pliku \texttt{facilities\_attributes.xml}.
+\subsubsection{Opis działania agenta w czasie symulacji}
+    \begin{figure}[h]
+        \caption{Schemat działania agenta w czasie symulacji}
+        \includegraphics[width=\textwidth]{images/mopsim/agent-dzialanie.png}
+    \end{figure}
+Każdy z agentów biorących udział w symulacji wyposażony jest w dane początkowe:
+\begin{itemize}
+\item Trasę podróży, wygenerowaną na podstawie punktu startowego, końcowego i siatki drogowej przez moduł MATSima -- \textit{Router}. W pliku konfiguracyjnym istnieje możliwość określenia algorytmu wyboru ścieżki (Dijkstra, A*).
+\item Godzinę wyjazdu, na podstawie wygenerowanego planu.
+\item Typ pojazdu -- samochód osobowy, ciężarowy lub autobus.
+\end{itemize}
+Symulacja w MATSimie przeprowadzana jest w sekundowych iteracjach. Pojazd wyrusza w trasę o ustalonej godzinie i jedzie zgodnie z określoną trasą. Za każdym razem, gdy agent wjeżdża na nowy odcinek drogi sprawdzane jest, czy znajduje się przy nim MOP. Jeżeli tak, to na podstawie wybranej funkcji decyzyjnej, czasu od poprzedniego postoju i typu pojazdu podejmowana jest decyzja, czy pojazd zamierza skorzystać z MOP-a. Jeżeli tak, to na podstawie typu pojazdu, czasu od poprzedniego postoju, godziny i wybranej strategii ustalana jest długość postoju na MOP-ie. Plan agenta ulega modyfikacji -- zostaje do niego dodany pobyt na MOP-ie. Po ustalonym czasie agent wraca na trasę i podąża dalej zgodnie z pierwotnym planem. \\
+Końcowe dane symulacji zawierają informacje o zmodyfikowanych planach agentów, godzinie przyjazdu i innych wydarzeniach na drodze -- między innymi wjazdach na poszczególne odcinki drogi.
+\subsubsection{Mopsim - pliki wyjściowe}
+    \begin{figure}[h]
+        \centering
+        \caption{Podział plików wyjściowych symulacji}
+        \includegraphics[width=0.6\textwidth]{images/mopsim/dane-wyjsciowe.png}
+    \end{figure}
+Dla każdej symulacji w programie Mopsim tworzony jest katalog, w którym umieszczone są dane wyjściowe. Jest on nazwany podanym w pliku konfiguracyjnym id symulacji lub, jeżeli nie zostało ono określone, domyślną nazwą postaci \texttt{sim\_yyyyMMdd-HHmmss}, a zatem znacznikiem czasu. W folderze utworzone są dwa podkatalogi - \texttt{MOPs} i \texttt{simulation\_data}. W pierwszym z nich utworzony jest katalog dla każdego z MOP-ów. Umieszczone są w nim raport w postaci pliku tekstowego i csv, a także wykresy przedstawiające w podziale na godziny takie dane jak:
+    \begin{figure}[!b]
+        \centering
+        \caption{Zrzut ekranu z symulacji programem Via. Różowe trójkąty oznaczają Miejsca Obsługi Podróżnych,  zielone -- poruszające się pojazdy.}
+        \includegraphics[width=0.9\textwidth]{images/mopsim/sim-via.png} 
+    \end{figure}
+\begin{itemize}
+\item Liczba pojazdów danego typu, które wjechały na MOP-a.
+\item Liczba pojazdów przejeżdżających obok MOP-a.
+\item Procentowe wykorzystanie MOP-a.
+\item Procentowy udział pojazdów wjeżdżających na MOP-a wśród wszystkich uczestników ruchu.
+\end{itemize}
+W raportach umieszczone są zsumowane dane dla całego dnia.
+    \begin{figure}[h]
+        \centering
+        \caption{Przykładowy wykres wygenerowany podczas symulacji}
+        \includegraphics[width=0.8\textwidth]{images/mopsim/passingVehicles.png}
+    \end{figure}
+W folderze \texttt{simulation\_data} znajduje się raport, w którym znajdują się informacje o ustawieniach i ścieżki do plików wejściowych symulacji. Znajdują się w nim również dane dotyczące łącznej liczby pojazdów wjeżdżających na parkingi, przejeżdżających obok nich i
+średniej długości pobytu na MOP-ie. Oprócz tego w katalogu \texttt{simulation\_data} umieszczony jest folder z danymi wyjściowymi MATSima, w którym znajdują się między innymi:
+\begin{itemize}
+\item Plik z logiem symulacji, zawierający komunikaty o czasie działania, przejściach do kolejnych etapów, ostrzeżeniach i ewentualnych błędach.
+\item Wykres przedstawiający czas spędzony w poszczególnych etapach symulacji.
+\item Skompresowane pliki konfiguracyjne - główny, z siatką drogową, planami podróży, a także \textit{facilities}, czyli MOP-ami wykorzystanymi w symulacji.
+\item Skompresowany plik z \textit{eventami}, które miały miejsce podczas symulacji.
+\end{itemize}
+Pliki te mogą zostać wykorzystane w jednym z programów służących do wizualizacji danych z symulacji - Simunto Via lub OTF Visualizer. Pierwszy z nich to program komercyjny, który w bezpłatnej wersji próbnej umożliwia wizualizację maksymalnie pięciuset pojazdów. Jego zalety to prosty interfejs, bogate możliwości konfiguracji i ciekawe efekty graficzne. OTF Visualizer to program będący składową MATSima, będący aktualnie w fazie eksperymentalnej. Jego zaletą jest możliwość przeprowadzania symulacji z dowolną liczbą pojazdów, zaś wadami - częściowa niestabilność i mniejsze możliwości graficzne.
+
+\section{Mopsim - instrukcja użytkownika}
+% TODO dodać w odniesieniu do interfejsu graficznego z MOPNIKA
+\subsubsection{Konfiguracja}
+W celu przeprowadzenia symulacji należy poprawnie skonfigurować program Mopsim. Główny plik konfiguracyjny aplikacji znajduje się w katalogu \texttt{src/main/CONF} pod nazwą \texttt{config.xml}. Wybrane pola tego pliku mogą zostać zmodyfikowane przez użytkownika:
+\begin{itemize}
+\item Pod parametrem \texttt{inputNetworkFile} z modułu \texttt{network} należy podać ścieżkę do pliku z opisem sieci drogowej dla programu MATSim. Domyślna wartość parametru to \\\texttt{poland\_network.xml}. Pod tym adresem znajduje się wygenerowana siatka uwzględniająca wszystkie drogi krajowe w Polsce. W dalszej części tekstu znajduje się instrukcja, jak wygenerować własną siatkę.
+\item Parametr \texttt{numberOfThreads} z modułu \texttt{qsim} oznacza liczbę wątków wykorzystywanych przez symulację. Powinien zostać ustawiony z uwzględnieniem parametrów maszyny, na której ma zostać przeprowadzona symulacja.
+\item Parametr \texttt{inputCRS} z z modułu \texttt{facilities} powinien zostać ustawiony zgodnie z układem współrzędnych, jaki został wykorzystany w pliku z opisem MOP-ów. Układ jest określony na podstawie kodów \textbf{EPSG} (\textit{European Petroleum Survey Group}). Domyślną wartością parametru jest \texttt{EPSG:2180}, co odpowiada polskiemu układowi współrzędnych 92. Sieć drogowa opisana jest w układzie CH1903, posiadającym kod \texttt{EPSG:21781}. Współrzędne MOP-ów są automatycznie konwertowane przez aplikację na ten układ.
+\end{itemize}
+Oprócz powyższych parametrów, modyfikujących pracę biblioteki MATSim, oddzielny moduł \texttt{mopsim} służy do konfiguracji elementów ściśle powiązanych z Mopsimem. W module \texttt{mopsim} można ustawić wartości następujących parametrów:
+\begin{itemize}
+\item \texttt{simulationId} - id symulacji. Jeżeli nie zostanie podane, ustawione jest na opisany wcześniej znacznik czasu.
+\item \texttt{carNr}, \texttt{truckNr}, \texttt{busNr} - parametry określające liczbę pojazdów danego typu biorących udział w symulacji. Domyślne wartości -- 100000, 40000, 0.
+\item \texttt{carPath}, \texttt{truckPath}, \texttt{busPath} - ścieżki do plików z macierzami podróży dla poszczególnych pojazdów. Domyślna wartość -- \\\texttt{src/main/resources/travel\_matrices/car\_matrix.csv} i analogicznie dla pozostałych pojazdów.
+\item \texttt{timeDistribution} -- nazwa strategii wyboru czasu wyjazdu dla pojazdów. Domyślna wartość - \texttt{BASIC\_DISTRIBUTION}.
+\item \texttt{carEnter}, \texttt{truckEnter}, \texttt{busEnter} -- nazwy strategii decyzji o wjeździe na MOP-a dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{BASIC\_STRATEGY}, \\\texttt{TRUCK\_STRATEGY}, \texttt{TRUCK\_STRATEGY}.
+\item \texttt{carStay}, \texttt{truckStay}, \texttt{busStay} -- nazwy strategii długości czasu pobytu na MOP-ie dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{CAR\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}.
+\end{itemize}
+Więcej o poszczególnych strategiach, ich nazwach i dodawaniu nowych w podrozdziale Strategie.
+\subsubsection{Przeprowadzanie symulacji}
+Program Mopsim został napisany z wykorzystaniem \textbf{Apache Maven}. Aby pobrać i zainstalować Mavena na systemie Debian, należy w wierszu poleceń wpisać polecenia:\\
+\texttt{sudo apt-get install default-jdk}\\
+\texttt{sudo apt install maven}\\
+Szczegóły instalacji na inne platformy można znaleźć na oficjalnej stronie programu.\\
+Aby skompilować aplikację, należy w katalogu zawierającym plik \texttt{pom.xml} uruchomić polecenie \texttt{mvn compile}. Podczas pierwszego wykonania tej komendy zostają pobrane wszystkie wymagane przez aplikację pakiety.\\
+Po skompilowaniu, aplikację można uruchomić poleceniem \texttt{mvn exec:java}. W czasie wykonywania symulacji, na standardowe wyjście zostaną wypisane komunikaty, które będzie można odczytać po jej wykonaniu w logu. Folder danej symulacji, wraz z opisanymi wcześniej plikami wyjściowymi, został wygenerowany pod ścieżką \texttt{src/main/SIMULATIONS/id\_symulacji}.
+\subsubsection{Generowanie siatki drogowej}
+Sugerowanym sposobem generowania sieci drogowej jest użycie interfejsu graficznego programu Mopnik. Innym sposobem jest wygenerowanie siatki z poziomu programisty. Aby to zrobić, należy stworzyć obiekt klasy programu Mopsim o nazwie \textit{NetworkCreator}, znajdującej się w pakiecie \texttt{network}, podając jako parametry konstruktora ścieżkę do pliku wejściowego osm i ścieżkę, do której ma zostać zapisany wyjściowy plik.
+\subsubsection{Strategie}
+Kluczowymi elementami programu Mopsim, odgrywającymi ważną rolę w przeprowadzaniu symulacji są strategie:
+\begin{itemize}
+\item \textit{TimeDistribution} -- strategia wyboru godzin wyjazdu pojazdów. Obecnie zaimplementowana jest strategia \texttt{BASIC\_STRATEGY}, w której czasy wyjazdu kolejnych pojazdów są losowane zgodnie z rozkładem jednostajnym.
+\item \textit{MOPEnterStrategy} -- strategia decyzji o zjeździe na MOP-ie. Obecnie zaimplementowane strategie to:
+\begin{itemize}
+    \item \texttt{RANDOM\_STRATEGY}, która ma charakter testowy -- pojazdy zjeżdżają na MOP-a z prawdopodobieństwem równym $\frac{1}{2}$.
+    \item \texttt{BASIC\_STRATEGY} -- domyślna strategia dla samochodów. Losowana jest jedna liczba z przedziału 0-32400 według rozkładu jednostajnego. Pojazd wjeżdża na MOP, jeżeli od czasu poprzedniego zatrzymania minęło więcej sekund, niż wynosi wylosowana liczba.
+    \item \texttt{TRUCK\_STRATEGY} -- domyślna strategia dla pojazdów ciężarowych i autobusów. Losowana jest liczba według rozkład normalnego o średniej 14400 i odchyleniu standardowym 3600.  Pojazd wjeżdża na parking, jeżeli od poprzedniego zatrzymania minęło więcej czasu, niż wynosi wylosowana liczba.
+\end{itemize}
+\item \textit{MOPStayStrategy} -- strategia długości pobytu na MOP-ie. Obecnie zaimplementowane strategie:
+\begin{itemize}
+    \item \texttt{CAR\_STAY\_STRATEGY} -- domyślna strategia dla samochodów. Czas pobytu losowany jest według rozkładu wykładniczego o wartości oczekiwanej wynoszącej 23 minuty.
+    \item \texttt{TRUCK\_STAY\_STRATEGY} -- domyślna strategia dla pojazdów ciężarowych. Najpierw, ze względu na godzinę i czas od poprzedniego postoju, wybierany jest charakter postoju -- krótki (wymuszony przepisami, zwykle w celu tankowania, spożycia posiłku lub skorzystania z toalety) lub długi (zwykle połączony z noclegiem). Jeżeli został wybrany postój krótki, to długość pobytu jest losowana zgodnie z rozkładem normalnym o wartości oczekiwanej wynoszącej 45 minut i odchyleniu standardowym 15 minut. Dla pobytu długiego, parametry rozkładu normalnego wynoszą odpowiednio 9 godzin i półtorej godziny.
+\end{itemize}
+% TODO dopisać kolejne strategie, jeżeli powstaną
 \end{itemize}
 
-\section{Dokumentacja użytkowa i opis implementacji}
+\subsubsection{Mopsim - dodanie własnych strategii}
+By przeprowadzać efektywne symulacje, zachowanie agentów powinno jak najbardziej odpowiadać rzeczywistości. Z poziomu programisty do programu Mopsim można dodać kolejne strategie. W pakiecie \texttt{strategies} znajdują się interfejsy dla każdego z rodzajów strategii -- odpowiednio \textit{TimeDistribution}, \textit{MOPEnterStrategy} i \textit{MOPStayStrategy}. By dodać strategię, należy zaimplementować dany interfejs (w każdym przypadku składający się z dwóch metod -- \texttt{getIdentifier()}, zwracającej unikalny identyfikator strategii oraz odpowiedniej funkcji decyzyjnej) oraz zmodyfikować metody klasy \texttt{StrategyUtils}, dodając do niej kolejne strategie.
 
+\section{Mopsim - opis implementacji}
+Apache Maven, z którego korzysta Mopsim, to narzędzie automatyzujące budowę oprogramowania na platformę Java. Poszczególne funkcje Mavena realizowane są poprzez wtyczki, które są automatycznie pobierane przy ich pierwszym wykorzystaniu. Plik określający sposób budowy aplikacji nosi nazwę \textbf{POM}-u.
+
+\begin{figure}[!htb]
+\caption{Struktura plików źródłowych programu Mopsim}
+\dirtree{%
+.1 src/main/java.
+.2 ControlerModifer.java.
+.2 MOPSimRun.java.
+.2 MOPSimulator.java.
+.2 config\_group.
+.3 MOPSimConfigGroup.java.
+.2 events.
+.3 MOPAfterSimStepListener.java.
+.3 MOPBeforeSimStepListener.java.
+.3 MOPEnterEvent.java.
+.3 MOPLeaveEvent.java.
+.3 MOPLinkEnterEventHandler.java.
+.3 MOPLinkLeaveEventHandler.java.
+.2 handlers.
+.3 MOPHandler.java.
+.2 mop.
+.3 MOP.java.
+.2 network.
+.3 modifiers.
+.4 NetworkModifiers.java.
+.3 NetworkCreator.java.
+.2 plancreator.
+.3 FacilityPlanCreator.java.
+.3 TravelPlanCreator.java.
+.2 strategies.
+.3 mop\_enter.
+.4 MOPEnterStrategy.java.
+.4 BasicStrategy.java.
+.4 RandomStrategy.java.
+.4 TruckStrategy.java.
+.3 mop\_stay.
+.4 MOPStayStrategy.java.
+.4 ExpStayStrategy.java.
+.4 TruckStayStrategy.java.
+.3 time\_distribution.
+.4 TimeDistribution.java.
+.4 BasicDistribution.java.
+.3 StrategyUtils.java.
+.2 utils.
+.3 FileUtils.java.
+.3 ReportUtils.java.
+.3 TimeUtils.java.
+}\label{mopsim_structure}
+\end{figure}
+\subsubsection{Podział plików}
+W katalogu głównym aplikacji umieszczony jest plik POM oraz podkatalog \texttt{src/main}. Znajdują się w 3 kolejne podkatalogi:
+\begin{itemize}
+\item \texttt{CONF}, w którym umieszczone są pliki konfiguracyjne aplikacji.
+\item \texttt{java}, w którym umieszczone są pliki źródłowe.
+\item \texttt{resources}, w którym umieszczone są dane potrzebne do działania programu:
+    \begin{itemize}
+        \item katalog \texttt{mop\_data} zawierający plik z danymi o MOP-ach.
+        \item katalog \texttt{town\_coordinates} zawierający plik ze współrzędnymi miast powiatowych i przejść granicznych.
+        \item katalog \texttt{travel\_matrices} zawierający macierze podróży dla różnych typów pojazdów według danych z Generalnego Pomiaru Ruchu.
+    \end{itemize}
+\end{itemize}
+Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest podkatalog \\\texttt{SIMULATIONS}, w którym umieszczone zostaną pliki wyjściowe kolejnych symulacji.
+\subsubsection{Opis poszczególnych klas}
+\begin{itemize}
+    \item \texttt{default\_package}
+        \begin{itemize}
+        \item \textit{MOPSimRun} -- klasa uruchamiająca aplikację.
+        \item \textit{MOPSimulator} -- główna klasa odpowiedzialna za działanie aplikacji i sterowanie nią.
+        \item \textit{ControlerModifier} -- klasa modyfikująca kontroler -- modułu biblioteki MATSim odpowiedzialnego za kontrolę symulacji. Jej metody umożliwiają dodanie do symulacji odpowiednich obiektów typu \textit{EventHandler}, reagujących na odpowiednie zdarzenia, oraz \textit{MobsimListener}, reagujących na konkretnie etapy symulacji.
+        \end{itemize}
+    \item \texttt{config\_group}
+        \begin{itemize}
+            \item \textit{MOPSimConfigGroup} -- klasa implementująca moduł \texttt{mopsim} w pliku konfiguracyjnym i obsługująca go.
+        \end{itemize}
+    \item \texttt{events}
+        \begin{itemize}
+            \item \textit{MOPEnterEvent}, \textit{MOPLeaveEvent} -- implementacje interfejsu \textit{Event} z biblioteki MATSim. Odpowiadają zdarzeniom wjazdu i wyjazdu z MOP-a.
+            \item \textit{MOPLinkEnterEventHandler}, \textit{MOPLinkLeaveEventHandler} -- implementacje interfejsów obsługi zdarzeń z biblioteki MATSim. Definiują zachowanie aplikacji w momencie wjazdu i wyjazdu agentów z odcinków dróg.
+            \item \textit{MOPBeforeSimStepListener}, \textit{MOPAfterSimStepListener} -- implementacja interfejsów obsługi odpowiednich elementów iteracji z biblioteki MATSIm. Obsługują wjazdy i wyjazdy agentów z parkingów.
+        \end{itemize}
+    \item \texttt{handlers}
+        \begin{itemize}
+            \item \textit{MOPHandler} -- klasa obsługująca siatkę MOP-ów i zarządzająca nimi.
+        \end{itemize}
+    \item \texttt{mop}
+        \begin{itemize}
+            \item \textit{MOP} -- implementacja MOP-a.
+        \end{itemize}
+    \item \texttt{network}
+        \begin{itemize}
+            \item \textit{modifiers/NetworkModifier} -- klasa z metodami umożliwiającymi modyfikację siatki drogowej.
+            \item \textit{NetworkCreator} -- klasa tworząca plik z siatką drogowej na podstawe pliku osm.
+        \end{itemize}
+    \item \texttt{plancreator}
+        \begin{itemize}
+            \item \textit{FacilityPlanCreator} -- klasa tworząca odpowiednie pliki konfiguracyjne na podstawie pliku z danymi o MOP-ach.
+            \item \textit{TravelPlanCreator} -- klasa tworząca plik konfiguracyjny z planami poszczególnych agentów.
+        \end{itemize}
+    \item \texttt{strategies} -- został opisany wyżej, w opisie strategii.
+    \item \texttt{utils}
+        \begin{itemize}
+            \item \textit{FileUtils} -- szereg narzędzi pomocnych przy obsłudze plików.
+            \item \textit{ReportUtils} -- narzędzia pomocnicze do tworzenia raportów.
+            \item \textit{TimeUtils} -- narzędzia pomocnicze do obsługi czasu.
+        \end{itemize}        
+    
+\end{itemize}
 \chapter{Mopsik -- Strona serwerowa - \acrshort{api}}\label{r:apka} 
 
 Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
