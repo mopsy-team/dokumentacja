@@ -553,15 +553,15 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
 
 Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
 Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych -- ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
-Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. 
+Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. W tym momenie z danych z API korzysta aplikacja mobilna MOPsik oraz strona internetowa. Ponadto w programie Mopnik istnieje opcja pobrania danych z serwera.
 
 Podczas tworzenia aplikacji pewnym problemem stało się posługiwanie różnymi układami współrzędnych przez różne komponenty, z~których korzystamy. Na~przykład dane na temat MOP-ów przez GDDKiA są w \href{https://pl.wikipedia.org/wiki/Uk\%C5\%82ad_wsp\%C3\%B3\%C5\%82rz\%C4\%99dnych_1992}{układzie 92}, Google Maps, którego używamy w naszej aplikacji mobilnej przyjmuje danych w układzie \href{https://pl.wikipedia.org/wiki/System_odniesienia_WGS_84}{WSG84}. Postanowiliśmy dodać do naszego API konwerter pomiędzy tymi układami.
 \section{Przypadki użycia}
-Serwer ze stroną internetową oraz klient aplikacji mobilnej może:
+Serwer ze stroną internetową, klient aplikacji mobilnej oraz program Mopnik może:
 \begin{enumerate}
 \item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOP-ach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA.
 \item Pobrać dane o bieżącej zajętości MOP-ów.
-\item Pobrać dane o przewidywanej krótkoterminowo zajętości MOP-ów generowane na podstawie metodyk predykcji.
+\item Przekonwertować współrzędne pomiędzy układami WSG84 i układem 1992.
 \end{enumerate}
 \section{Architektura}
 Na implementację API serwera składają się dwie części:
@@ -572,10 +572,12 @@ Na implementację API serwera składają się dwie części:
 \paragraph{Cron}\mbox{}\\
 Na serwerze zostało umieszczone polecenie, które regularnie sprawdza, czy na stronie GDDKiA nie pojawił się nowy arkusz .xlsx z MOP-ami. Jeśli tak, to jest wywoływana zdefiniowana przez nas w Django komenda $\textit{update\_mops\_db}$, która aktualizuje bazę danych.
 \paragraph{Aplikacja Django}\mbox{}\\
-Implementacja oparta jest o wersję 2.0 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na dwa zapytania:
+Implementacja oparta jest o wersję 2.0 frameworku Django, Python 3.5 oraz bibliotekę django REST framework. Dane są przechowywane w bazie SQLite3. Na ten moment API odpowiada na następujące zapytania:
 \begin{itemize}
 \item /mops - zwraca wszystkie dane o MOP-ach agregowane w bazie danych
 \item /taken - zwraca dane o zajętości MOP-ów agregowane w bazie danych
+\item /wsg_to_92 - dla danej listy współrzędnych w formacie WSG84 zwraca listę współrzędnych w formacie 1992
+\item /92_to_wsg - dla danej listy współrzędnych w formacie 1992 zwraca listę współrzędnych w formacie WSG84
 \end{itemize}
 
 \section{Dokumentacja użytkowa i opis implementacji}
@@ -1082,10 +1084,12 @@ Po krótce opiszemy każdy z powyższych problemów:
 \subsection{Problemy z danymi i komunikacją w zespole}
 W ramach projektu RID współpracuje wiele osób, które są odpowiedzialne za różne elementy projektu. 
 Dane wymagane do działania naszych programów były pozyskiwane z wielu źródeł, za pośrednictwem wielu osób. Dane te często okazywały się niekompletne lub niewystarczające do naszych zastosowań.
-Jednym z przykładów są dane o długości postojów na MOP-ach. Były one zbierane między innymi z :
--systemu viaTOLL, za pomocą którego były generowane rozkłady czasów przejazdu pomiędzy parą punktów kontroli
--ankiet przeprowadzanych na MOP-ach. 
-Okazało się, że otrzymane zbiory danych nie były wystarczające do wiarygodnego wyznaczenia rozkładów czasu podróży. Jedną z czynności, które podjęliśmy w celu uzupełnienia tych danych było stworzenie ankiet internetowych i zamieszczenie ich w portalu Facebook na grupach poświęconych kierowcom samochodów ciężarowych.
+Jednym z przykładów są dane o długości postojów na MOP-ach. Były one zbierane między innymi z:
+\begin{itemize}
+\item systemu viaTOLL, za pomocą którego były generowane rozkłady czasów przejazdu pomiędzy parą punktów kontroli
+\item ankiet przeprowadzanych na MOP-ach. 
+\end{itemize}
+Okazało się, że otrzymane zbiory danych nie były wystarczające do wiarygodnego wyznaczenia rozkładów czasu podróży. Jedną z czynności, które podjęliśmy w celu uzupełnienia tych danych było stworzenie ankiet internetowych i zamieszczenie ich w portalu Facebook na grupach poświęconych kierowcom samochodów ciężarowych. W związku z niewystarczającymi lub trudnymi do obrobienia danymi, nie zdecydowaliśmy się wprowadzać takiej możliwości.
 Innym przykładem są dane o zajętości MOP-ów na żywo. Po początkowych rozmowach z promotorem, jak i~innymi osobami z projektu, wydawało nam się, że do czerwca 2018r. (czyli momentu w którym oddajemy pracę) będą dostępne dane choć z kilku MOP-ów, zapewnione przez zespół z Politechniki Warszawskiej. Po jakimś czasie dowiedzieliśmy się, iż nasze przekonanie jest błędne i dane takie, o ile będą dostępne, to w dalszej przyszłości.
 \subsection{Problemy techniczne}
 Podczas pracy nad dużym projektem zawsze zdarzają się także problemy techniczne. Nie~inaczej było i tym razem. 

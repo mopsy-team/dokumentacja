@@ -52,25 +52,39 @@
 \contentsline {subsection}{\numberline {6.2.8}Pozosta\IeC {\l }e komponenty}{29}{subsection.6.2.8}
 \contentsline {subsection}{\numberline {6.2.9}Pliki konfiguracyjne i funkcje}{30}{subsection.6.2.9}
 \contentsline {subsection}{\numberline {6.2.10}Zapisywanie danych}{31}{subsection.6.2.10}
-\contentsline {section}{\numberline {6.3}Dokumentacja u\IeC {\.z}ytkowa}{31}{section.6.3}
-\contentsline {chapter}{\numberline {7}Organizacja pracy}{33}{chapter.7}
-\contentsline {paragraph}{Slack}{33}{section*.35}
-\contentsline {paragraph}{GitHub}{33}{section*.36}
-\contentsline {paragraph}{Todoist}{33}{section*.37}
-\contentsline {chapter}{\numberline {8}Podzia\IeC {\l } zada\IeC {\'n}}{35}{chapter.8}
-\contentsline {paragraph}{Mopnik}{35}{section*.38}
-\contentsline {paragraph}{Mopsim}{35}{section*.39}
-\contentsline {paragraph}{Mopsik - serwer}{35}{section*.40}
-\contentsline {paragraph}{Mopsik - aplikacja mobilna}{35}{section*.41}
-\contentsline {paragraph}{Mopsik - strona internetowa}{35}{section*.42}
-\contentsline {paragraph}{Dokumentacja / Praca licencjacka}{35}{section*.43}
-\contentsline {chapter}{\numberline {9}Napotkane problemy i niezrealizowane pomys\IeC {\l }y}{37}{chapter.9}
-\contentsline {section}{\numberline {9.1}Napotkane problemy}{37}{section.9.1}
-\contentsline {subsection}{\numberline {9.1.1}Problemy z danymi i komunikacj\IeC {\k a} w zespole}{37}{subsection.9.1.1}
-\contentsline {subsection}{\numberline {9.1.2}Problemy techniczne}{38}{subsection.9.1.2}
-\contentsline {section}{\numberline {9.2}Niezrealizowane pomys\IeC {\l }y}{38}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}Predycje kr\IeC {\'o}tkoterminowe}{38}{subsection.9.2.1}
-\contentsline {subsection}{\numberline {9.2.2}Rozszerzona interakcja u\IeC {\.z}ytkownik\IeC {\'o}w z aplikacj\IeC {\k a} mobiln\IeC {\k a}}{38}{subsection.9.2.2}
-\contentsline {subsection}{\numberline {9.2.3}Precyzyjne dodawanie planowanych dr\IeC {\'o}g do programu Mopnik}{38}{subsection.9.2.3}
-\contentsline {chapter}{\numberline {10}Zawarto\IeC {\'s}\IeC {\'c} p\IeC {\l }yty}{41}{chapter.10}
-\contentsline {chapter}{Bibliografia}{43}{chapter*.44}
+\contentsline {chapter}{\numberline {7}Mopsik -- Strona internetowa}{33}{chapter.7}
+\contentsline {section}{\numberline {7.1}Przypadki u\IeC {\.z}ycia}{33}{section.7.1}
+\contentsline {section}{\numberline {7.2}Architektura i opis implementacji}{33}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Technologia}{33}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Zak\IeC {\l }adki}{33}{subsection.7.2.2}
+\contentsline {subsubsection}{Mapa}{33}{section*.36}
+\contentsline {subsubsection}{Wyszukiwarka}{34}{section*.38}
+\contentsline {subsubsection}{Szczeg\IeC {\'o}\IeC {\l }y}{35}{section*.40}
+\contentsline {subsection}{\numberline {7.2.3}Zapytania do API i zapisywanie danych}{36}{subsection.7.2.3}
+\contentsline {subsubsection}{Parsowanie danych z API}{36}{section*.42}
+\contentsline {subsection}{\numberline {7.2.4}Modele i modele widok\IeC {\'o}w}{37}{subsection.7.2.4}
+\contentsline {paragraph}{Modele}{37}{section*.43}
+\contentsline {paragraph}{Modele widok\IeC {\'o}w}{37}{section*.44}
+\contentsline {subsection}{\numberline {7.2.5}Kontrolery i widoki}{38}{subsection.7.2.5}
+\contentsline {subsection}{\numberline {7.2.6}U\IeC {\.z}yte biblioteki}{38}{subsection.7.2.6}
+\contentsline {chapter}{\numberline {8}Organizacja pracy}{39}{chapter.8}
+\contentsline {paragraph}{Slack}{39}{section*.45}
+\contentsline {paragraph}{GitHub}{39}{section*.46}
+\contentsline {paragraph}{Todoist}{39}{section*.47}
+\contentsline {chapter}{\numberline {9}Podzia\IeC {\l } zada\IeC {\'n}}{41}{chapter.9}
+\contentsline {paragraph}{Mopnik}{41}{section*.48}
+\contentsline {paragraph}{Mopsim}{41}{section*.49}
+\contentsline {paragraph}{Mopsik - serwer}{41}{section*.50}
+\contentsline {paragraph}{Mopsik - aplikacja mobilna}{41}{section*.51}
+\contentsline {paragraph}{Mopsik - strona internetowa}{41}{section*.52}
+\contentsline {paragraph}{Dokumentacja / Praca licencjacka}{41}{section*.53}
+\contentsline {chapter}{\numberline {10}Napotkane problemy i niezrealizowane pomys\IeC {\l }y}{43}{chapter.10}
+\contentsline {section}{\numberline {10.1}Napotkane problemy}{43}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Problemy z danymi i komunikacj\IeC {\k a} w zespole}{43}{subsection.10.1.1}
+\contentsline {subsection}{\numberline {10.1.2}Problemy techniczne}{44}{subsection.10.1.2}
+\contentsline {section}{\numberline {10.2}Niezrealizowane pomys\IeC {\l }y}{44}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Predycje kr\IeC {\'o}tkoterminowe}{44}{subsection.10.2.1}
+\contentsline {subsection}{\numberline {10.2.2}Rozszerzona interakcja u\IeC {\.z}ytkownik\IeC {\'o}w z aplikacj\IeC {\k a} mobiln\IeC {\k a}}{44}{subsection.10.2.2}
+\contentsline {subsection}{\numberline {10.2.3}Precyzyjne dodawanie planowanych dr\IeC {\'o}g do programu Mopnik}{45}{subsection.10.2.3}
+\contentsline {chapter}{\numberline {11}Zawarto\IeC {\'s}\IeC {\'c} p\IeC {\l }yty}{47}{chapter.11}
+\contentsline {chapter}{Bibliografia}{49}{chapter*.54}
