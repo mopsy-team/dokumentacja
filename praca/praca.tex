@@ -147,20 +147,18 @@ Badania są finansowane ze środków projektu pt. ,,Miejsca parkingowe na MOP'' 
 \section{Przypadki użycia}
 Inżynier \acrshort{gddkia} może:
 \begin{enumerate}
-  \item Wprowadzać dane dotyczące \acrshort{sdr} oraz położenie MOP-ów z pliku.
+  \item Wprowadzać dane dotyczące \acrshort{sdr}, sieć drogową oraz położenie MOP-ów z pliku.
   \item Wyświetlić wprowadzone dane na mapie.
   \item Wybrać metodykę, ustawić jej parametry i na jej podstawie wyznaczyć
-    liczbę potrzebnych miejsc parkingowych na odcinku drogi oraz na konkretnym
-    MOP-ie.
+    liczbę potrzebnych miejsc parkingowych na odcinku drogi.
   \item Wyświetlić wyniki na mapie.
   \item Edytować sieć drogową. 
-  \item Wyświetlić wyniki symulacji przeprowadzonych za pomocą systemu
-    \textbf{Mopsim} dotyczących:
+  \item Uruchomić symulacje przeprowadzane za pomocą systemu
+    \textbf{Mopsim} dotyczące:
     \begin{enumerate}
-      \item Długo- i krótkoterminowych predykcji \acrshort{sdr}.
-      \item Krótkoterminowej predykcji zajętości MOP-ów.
+      \item Predykcji \acrshort{sdr}.
+      \item Predykcji zajętości MOP-ów.
     \end{enumerate}
-  \item Zapisać wyniki przeprowadzanych analiz do pliku.
 \end{enumerate}
 
 \section{Architektura}
@@ -177,16 +175,21 @@ Java:
   (\url{https://github.com/imintel/osm-parser}).
 \item opencsv -- biblioteka do parsowania plików CSV
   (\url{http://opencsv.sourceforge.net/})
+\item org.json -- biblioteka do parsowania plików JSON 
 \end{itemize}
 Oprócz zewnętrznych bibliotek, program korzysta też z będącej częścią tego
 projektu biblioteki \textbf{Mopsim}. 
 \subsubsection{Dane wejściowe}
 Użytkownik programu ma możliwość wprowadzenia danych dotyczących \acrshort{sdr}
-oraz położenia MOP-ów z pliku w formacie CSV. Pliki te muszą spełniać pewne
+z plików w formacie CSV oraz położenia MOP-ów z pliku w formacie xlsx. Pliki te muszą spełniać pewne
 założenia (dotyczące formatu i kolejności pól) opisane w okienku służącym do
 wczytywania pliku. Ponadto użytkownik ma możliwość wczytania sieci drogowej w
 formacie OSM. Parsowaniem obu rodzajów plików zajmują się odpowiednie
 biblioteki wymienione w poprzedniej sekcji.
+\subsubsection{Domyślne dane wejściowe}
+Po uruchomieniu programu ładowane są domyślne dane wejściowe. Układ MOP-ów
+pochodzi z serwera (Mopsik-API). Dane dotyczące \acrshort{sdr} oraz mapa w formacie OSM są
+ładowane z plików dołączonych do programu. 
 \subsubsection{Wyświetlanie mapy}
 \paragraph{} 
 Mapa Polski, która jest wyświetlana po otwarciu programu, pochodzi z
@@ -209,9 +212,57 @@ Wczytywanie plików OSM daje następujące możliwości:
     źródła. Wymagałoby to renderowania map w czasie działania programu, co
     spowolniłoby jego działanie. Zamiast tego, nowe drogi wizualizowane są
     za pomocą prostych odcinków łączących punkty wyznaczone przez użytkownika. 
-    Możliwe jest jednak wprowadzanie własnych oznaczeń na dodanych
-    odcinkach, tak jak na istniejących. 
+    Możliwe jest jednak dodawanie MOP-ów do tych odcinków oraz obliczanie
+    wyników metodyk.
 \end{enumerate}
+\subsubsection{Pikietaż a współrzędne geograficzne}
+\paragraph{Problem} Dane dotyczące \acrshort{sdr} oraz układów MOP-ów są podane
+za pomocą nazwy drogi oraz pikietażu. Dla obliczania wyników metodyk jest to
+pomocne -- interesują nas bowiem wyniki dla konkretnych odcinków konkretnych
+dróg. Pojawił się jednak problem wizualizacji tych danych -- jak ustalić jakie
+współrzędne geograficzne ma punkt na drodze określony za pomocą nazwy drogi
+oraz pikietażu.
+\paragraph{Rozwiązanie} Niektóre węzły w plikach OSM opisane są tagiem \textit{mileage} oznaczającym
+właśnie pikietaż oraz współrzędnymi geograficznymi. Dzięki temu możliwe jest
+naniesienie tych węzłów na mapę.
+\paragraph{Wady tego rozwiązania}
+Główną wadą tego rozwiązania jest to, że mapy OSM są edytowane przez
+użytkowników. Oznacza to, że jeśli nikt dla danego punktu nie wpisał tagu
+\textit{mileage}, to nie jest możliwe ustalenie jego pikietażu. W
+praktyce oznacza to, że nie dla wszystkich dróg można skorzystać z wizualizacji
+wyników metodyk. Oznacza to również, że wartości tagu \textit{mileage} mogą być
+niepoprawne -- tak jest na przykład w przypadku drogi S8, która również jest
+wyłączona z wizualizacji w programie.
+
+
+\section{Metodyki}
+\paragraph{}
+W ostatecznej wersji programu zaimplementowana jest tylko jedna metodyka
+(nazwana metodyką domyślną),
+pochodząca z pracy dr. Malwiny Spławińskiej\cite{metodyki}.
+W pracy tej zaproponowane są konkretne parametry liczbowe dla tej metodyki,
+które w Mopniku są ustawione jako parametry domyślne, ale mogą być zmienione
+z poziomu użytkownika.
+\subsubsection{Wyświetlanie wyników metodyk}
+Liczby miejsc parkingowych są obliczane dla konkretnych odcinków dróg.
+Uwzględniana przy tym jest ich długość, ponieważ metodyka zwraca liczbę
+potrzebnych miejsc parkingowych na odcinku 15km. Dla konkretnego odcinka
+dysponujemy więc następującymi informacjami: 
+\begin{itemize}
+  \item \acrshort{sdr}
+  \item Liczba potrzebnych miejsc parkingowych
+  \item Liczba istniejących miejsc parkingowych (suma liczb miejsc
+    parkingowych na MOP-ach znajdujących się na tym odcinku).
+\end{itemize}
+Informacje te pozwalają na ustalenie stref priorytetowych: odcinków dróg, na
+których liczba miejsc parkingowych nie jest wystarczająca. Realizowane jest to
+przy uruchomieniu programu na podstawie domyślnych danych oraz domyślnych
+parametrów metodyk. Przy wczytaniu nowych danych,
+dodaniu MOP-a, lub zmianie parametrów metodyki następuje przeładowanie mapy. 
+
+\subsubsection{Dodatkowe metodyki} 
+Istniejąca implementacja pozwala na dodanie nowych metodyk z poziomu
+programisty.
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
@@ -1083,6 +1134,9 @@ Jako rozwiązanie tego problemu wprowadziliśmy opcję dodawania prostych odcink
 Axhausen, K W. (eds.) ``The Multi-Agent Transport Simulation MATSim'', Pp. 3–8. London: Ubiquity Press. DOI: http://dx.doi.org/10.5334/baw \\ License: CC-BY 4.0
 
 \bibitem[8]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
+
+\bibitem[9] {metodyki} M. Spławińska, K. Solecka, \\
+\url{http://www.autobusy-test.com.pl/images/stories/Do_pobrania/2017/nr%2012/Bezp%20i%20ekol/073_013_A_BiE_SPLAWINSKA_SOLECKA.pdf} 
 
 \end{thebibliography}
 
