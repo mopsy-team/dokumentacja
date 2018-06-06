@@ -510,7 +510,7 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
         \begin{itemize}
         \item \textit{MOPSimRun} -- klasa uruchamiająca aplikację.
         \item \textit{MOPSimulator} -- główna klasa odpowiedzialna za działanie aplikacji i sterowanie nią.
-        \item \textit{ControlerModifier} -- klasa modyfikująca kontroler -- modułu biblioteki MATSim odpowiedzialnego za kontrolę symulacji. Jej metody umożliwiają dodanie do symulacji odpowiednich obiektów typu \textit{EventHandler}, reagujących na odpowiednie zdarzenia, oraz \textit{MobsimListener}, reagujących na konkretnie etapy symulacji.
+        \item \textit{ControlerModifier} -- klasa modyfikująca kontroler -- moduł biblioteki MATSim odpowiedzialny za kontrolę symulacji. Jej metody umożliwiają dodanie do symulacji odpowiednich obiektów typu \textit{EventHandler}, reagujących na zdarzenia oraz \textit{MobsimListener}, reagujących na konkretne etapy symulacji.
         \end{itemize}
     \item \texttt{config\_group}
         \begin{itemize}
@@ -520,11 +520,11 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
         \begin{itemize}
             \item \textit{MOPEnterEvent}, \textit{MOPLeaveEvent} -- implementacje interfejsu \textit{Event} z biblioteki MATSim. Odpowiadają zdarzeniom wjazdu i wyjazdu z MOP-a.
             \item \textit{MOPLinkEnterEventHandler}, \textit{MOPLinkLeaveEventHandler} -- implementacje interfejsów obsługi zdarzeń z biblioteki MATSim. Definiują zachowanie aplikacji w momencie wjazdu i wyjazdu agentów z odcinków dróg.
-            \item \textit{MOPBeforeSimStepListener}, \textit{MOPAfterSimStepListener} -- implementacja interfejsów obsługi odpowiednich elementów iteracji z biblioteki MATSIm. Obsługują wjazdy i wyjazdy agentów z parkingów.
+            \item \textit{MOPBeforeSimStepListener}, \textit{MOPAfterSimStepListener} -- implementacje interfejsów obsługi momentów iteracji z biblioteki MATSIm. Definiują zachowanie agentów na wjazdach i wyjazdach z parkingów.
         \end{itemize}
     \item \texttt{handlers}
         \begin{itemize}
-            \item \textit{MOPHandler} -- klasa obsługująca siatkę MOP-ów i zarządzająca nimi.
+            \item \textit{MOPHandler} -- klasa zarządzająca siatką MOP-ów.
         \end{itemize}
     \item \texttt{mop}
         \begin{itemize}
@@ -533,7 +533,7 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
     \item \texttt{network}
         \begin{itemize}
             \item \textit{modifiers/NetworkModifier} -- klasa z metodami umożliwiającymi modyfikację siatki drogowej.
-            \item \textit{NetworkCreator} -- klasa tworząca plik z siatką drogowej na podstawie pliku osm.
+            \item \textit{NetworkCreator} -- klasa tworząca plik z siatką drogową na podstawe pliku osm.
         \end{itemize}
     \item \texttt{plancreator}
         \begin{itemize}
