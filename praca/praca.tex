@@ -293,7 +293,7 @@ Modelem obliczeniowym w informatyce nazywamy model matematyczny, wykorzystujący
 Jednym z intensywnie stosowanych i rozwijanych modeli obliczeniowych jest model oparty na~agentach (ang. \textit{agent-based model}).
 Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonomicznych agentów, w celu badania ich wpływ na cały system\cite{agent-based}. Zwykle agentom przyporządkowuje się uproszczone zachowania, a następnie umieszcza w pewnym miejscu i czasie. Następnie symuluje się podejmowane przez nich działania i oddziaływania między sobą w celu odtworzenia lub próby wyjaśnienia bardziej złożonych zjawisk. Modele obliczeniowe oparte na agentach stosuje się m.in. w biologii, ekologii czy naukach społecznych.
 \subsubsection{System wieloagentowy}
-    Nieco innym, choć pokrewnym pojeciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
+    Nieco innym, choć pokrewnym pojęciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
     \begin{figure}[h]
         \caption{Schemat działania systemu wieloagentowego}
         \includegraphics[width=\textwidth]{images/mopsim/multi-agent.png}
@@ -341,10 +341,10 @@ Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania symulacji.
         \includegraphics[width=\textwidth]{images/mopsim/mopsim-travelplan.png}
     \end{figure}
 Generowanie planów podróży odbywa się na podstawie macierzy dla trzech rodzajów pojazdów (samochody osobowe, pojazdy ciężarowe i autobusy), do których użytkownik podaje ścieżki w pliku konfiguracyjnym. Macierz podróży reprezentowana jest przez plik csv. Liczba w $n$-tym wierszu i $m$-tej komórce macierzy oznacza, ile pojazdów danego typu przejeżdża średnio w ciągu dnia z punktu $n$ do punktu $m$. Punkty o odpowiednich indeksach odpowiadają miastom powiatowym i przejściom granicznym. Ich współrzędne umieszczone są w oddzielnym pliku.\\
-W module generującym plan podroży macierze są traktowane jak rozkład prawdodobieństwa, według którego losowane są punkty startowe i końcowe dla poszczególnych agentów, których jest tyle, ile zostało określone w pliku konfiguracyjnym. Po wylosowaniu odpowiednich punktów, na podstawie zadanej strategii czasu wyjazdu wybierana jest godzina, o której agent wyjedzie w trasę. Następnie agent dodawany jest do symulacji. Opis wygenerowanych planów podróży agentów zostaje zapisany do pliku \texttt{travel\_plan.xml}.
+W module generującym plan podroży macierze są traktowane jak rozkład prawdopodobieństwa, według którego losowane są punkty startowe i końcowe dla poszczególnych agentów, których jest tyle, ile zostało określone w pliku konfiguracyjnym. Po wylosowaniu odpowiednich punktów, na podstawie zadanej strategii czasu wyjazdu wybierana jest godzina, o której agent wyjedzie w trasę. Następnie agent dodawany jest do symulacji. Opis wygenerowanych planów podróży agentów zostaje zapisany do pliku \texttt{travel\_plan.xml}.
 \newpage
 \subsubsection{Generowanie planu MOP-ów}
-Generowanie planu MOP-ów odbywa się na podstawie danego pliku csv, w którym kolejne kolumny oznaczają współrzędne MOP-a (w układzie 92 lub CH1903, w zależności od wybranej opcji w pliku konfiguracyjnym), lokalizację, nazwę, liczby miejsc parkingowych dla samochodów, pojazdów ciężarowych, busów i inne dane o obiektach znajdujących się na MOP-ie. Każdy z MOP-ów zostaje przyporządkowany do najbliższego odcinka drogi, który znajduje się po jego lewej stronie. Opis MOP-ów ze współrzędnymi zostaje zapisany w plku \texttt{facilities.xml}, zaś ich atrybutów -- w pliku \texttt{facilities\_attributes.xml}.
+Generowanie planu MOP-ów odbywa się na podstawie danego pliku csv, w którym kolejne kolumny oznaczają współrzędne MOP-a (w układzie 92 lub CH1903, w zależności od wybranej opcji w pliku konfiguracyjnym), lokalizację, nazwę, liczby miejsc parkingowych dla samochodów, pojazdów ciężarowych, busów i inne dane o obiektach znajdujących się na MOP-ie. Każdy z MOP-ów zostaje przyporządkowany do najbliższego odcinka drogi, który znajduje się po jego lewej stronie. Opis MOP-ów ze współrzędnymi zostaje zapisany w pliku \texttt{facilities.xml}, zaś ich atrybutów -- w pliku \texttt{facilities\_attributes.xml}.
 \subsubsection{Opis działania agenta w czasie symulacji}
     \begin{figure}[h]
         \caption{Schemat działania agenta w czasie symulacji}
@@ -533,7 +533,7 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
     \item \texttt{network}
         \begin{itemize}
             \item \textit{modifiers/NetworkModifier} -- klasa z metodami umożliwiającymi modyfikację siatki drogowej.
-            \item \textit{NetworkCreator} -- klasa tworząca plik z siatką drogowej na podstawe pliku osm.
+            \item \textit{NetworkCreator} -- klasa tworząca plik z siatką drogowej na podstawie pliku osm.
         \end{itemize}
     \item \texttt{plancreator}
         \begin{itemize}
@@ -553,7 +553,7 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
 
 Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
 Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych -- ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
-Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. W tym momenie z danych z API korzysta aplikacja mobilna MOPsik oraz strona internetowa. Ponadto w programie Mopnik istnieje opcja pobrania danych z serwera.
+Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. W tym momencie z danych z API korzysta aplikacja mobilna MOPsik oraz strona internetowa. Ponadto w programie Mopnik istnieje opcja pobrania danych z serwera.
 
 Podczas tworzenia aplikacji pewnym problemem stało się posługiwanie różnymi układami współrzędnych przez różne komponenty, z~których korzystamy. Na~przykład dane na temat MOP-ów przez GDDKiA są w \href{https://pl.wikipedia.org/wiki/Uk\%C5\%82ad_wsp\%C3\%B3\%C5\%82rz\%C4\%99dnych_1992}{układzie 92}, Google Maps, którego używamy w naszej aplikacji mobilnej przyjmuje danych w układzie \href{https://pl.wikipedia.org/wiki/System_odniesienia_WGS_84}{WSG84}. Postanowiliśmy dodać do naszego API konwerter pomiędzy tymi układami.
 \section{Przypadki użycia}
@@ -592,8 +592,8 @@ Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
 \item Poznać liczbę wolnych miejsc parkingowych oraz ich liczbę ogółem.
 \item Znaleźć kontakt do operatora MOP-a.
 \item Sprawdzić jakie usługi znajdują się na MOP-ie.
-\item Wyświetlić wizualizację danych o zajętośći miejsc parkingowych.
-\item Edytować preferencje wyświetlania danych dla konretnych typów pojazdów.
+\item Wyświetlić wizualizację danych o zajętości miejsc parkingowych.
+\item Edytować preferencje wyświetlania danych dla konkretnych typów pojazdów.
 \end{enumerate}
 Dodatkowo, w aplikacji mobilnej:
 \begin{enumerate}
@@ -723,7 +723,7 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 \item Wykorzystanie \textit{onRegionChangeComplete} zamiast \textit{onRegionChange} -- obie funkcje wywoływane są gdy użytkownik porusza mapą, czyli przy zmianie aktualnie widocznego fragmentu. \textit{onRegionChangeComplete} wywoływane jest tylko raz -- po zakończonym przeciągnięciu. Animacje są nieco mniej płynne, ale aplikacja nie zawiesza się przez ciągłe przeładowywanie mapy i znaczników MOP-ów.
 \end{enumerate}
 \subsubsection{Bezpieczeństwo}
-Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokazji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (wpsółrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
+Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokacji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (współrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
 
 \subsection{Zapytanie do API}
 Po otwarciu aplikacji wykonywane jest zapytanie do \acrshort{api} \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
@@ -755,7 +755,7 @@ Służy do grafiki wektorowej.
 
 \item \textbf{react-native-svg-circular-progress} \\
 \url{https://github.com/stssoftware/react-native-svg-circular-progress}\\
-Wykorzystana do rysowania wykresów zajętości MOP-ów. Wymaga bibkioteki \textit{react-native-svg}.
+Wykorzystana do rysowania wykresów zajętości MOP-ów. Wymaga biblioteki \textit{react-native-svg}.
 
 \item \textbf{react-native-swipeout} \\
 \url{https://github.com/dancormier/react-native-swipeout}\\
@@ -780,7 +780,10 @@ W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator})
 
 Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodany jest do niego widok \textit{SettingsView}, a także stosy \textit{HomeStack}, \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
 
-Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i \textit{Mapa} można przejść do widoku \textit{MopDetailsView}, a stamtąd do \textit{MapView} w trybie \textit{Pokaż MOP-a na mapie} (focused). Za tą część nawigacji odpowiedzialny jest \textit{StackNavigator}. Bedąc w szczegółowych informacjach o MOP-ie i skupionej mapie w nagłówku pojawia się przycisk cofania.\\
+Z zakładek \textit{Home}, \textit{Ulubione}, \textit{Wyszukiwarka} i
+\textit{Mapa} można przejść do widoku \textit{MopDetailsView}, a stamtąd do
+\textit{MapView} w trybie \textit{Pokaż MOP-a na mapie} (focused). Za tą część
+nawigacji odpowiedzialny jest \textit{StackNavigator}. Będąc w szczegółowych informacjach o MOP-ie i skupionej mapie w nagłówku pojawia się przycisk cofania.\\
 
 Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów można poruszać się po trzech widokach - głównym, szczegółowym i mapie (wyśrodkowanej na wybranym MOP-ie, z otwartym dymkiem). W widokach głównych (tj. domowym, mapie, wyszukiwarce i ulubionych) widoczne są listy wielu MOP-ów. Po kliknięciu w wybrany MOP, aplikacja przenosi do widoku ze szczegółami wraz z odpowiednim parametrem. Na jego podstawie renderowane są informacje o tym wybranych MOP-ie. Ze szczegółów można poprzez kliknięcie w przycisk \textit{Pokaż na mapie} przejść do \textit{MapView} -- o ile wcześniej nie przyszliśmy z mapy. \newline Czyli nie jest możliwe poruszanie się\\	\indent mapa --> szczegóły(A) --> mapa --> szczegóły(B) -/-> mapa --> ... ,\\ponieważ w widoku szczegóły(B) nie pojawia się przycisk \textit{Pokaż na mapie}.
 
@@ -849,7 +852,7 @@ Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plikó
 
 
 \subsection{Pliki konfiguracyjne i funkcje}
-W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dane statyczne oraz funkcje odpowiedzielne za przetwarzanie danych.
+W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dane statyczne oraz funkcje odpowiedzialne za przetwarzanie danych.
 \begin{enumerate}
 \item \textit{facilities} -- zdefiniowane usługi dostępne na MOP-ach, odpowiadające im polskie nazwy oraz ikony, funkcje generujące komplet ikon do wyświetlania w informacjach o MOP-ie
 \item \textit{favourites} -- funkcje odpowiedzialne za pobieranie MOP-ów zapisanych do ulubionych, zapisywanie, usuwanie
@@ -862,7 +865,7 @@ W folderze \textit{config} znajdują się pliki, w których zdefiniowane są dan
 \end{enumerate}
 
 \subsection{Zapisywanie danych}
-Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudoglobalnymi, ponieważ ich wartość można zmieniać w każdym kompomencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
+Podczas działania aplikacji dane zapisywane są w zmiennych znajdujących się m.in. w plikach mops.js i settings.js. Można nazwać je pseudo-globalnymi, ponieważ ich wartość można zmieniać w każdym komponencie, o ile zostały odpowiednio zaimportowane. Informacje te są tracone wraz z zamknięciem aplikacji.\\
 Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do tego celu wykorzystujemy AsyncStorage. Dane pobierane i zapisywane są asynchronicznie. Zasób ma postać słownika -- każda wartość znajduje się pod nadanym jej kluczem.
 
 
@@ -1080,7 +1083,7 @@ Główne problemy, które napotkaliśmy możemy podzielić na kilka podstawowych
 \item Problemy z komunikacją
 \item Problemy techniczne
 \end{enumerate}
-Po krótce opiszemy każdy z powyższych problemów:
+Opiszemy w skrócie każdy z powyższych problemów:
 \subsection{Problemy z danymi i komunikacją w zespole}
 W ramach projektu RID współpracuje wiele osób, które są odpowiedzialne za różne elementy projektu. 
 Dane wymagane do działania naszych programów były pozyskiwane z wielu źródeł, za pośrednictwem wielu osób. Dane te często okazywały się niekompletne lub niewystarczające do naszych zastosowań.
@@ -1097,7 +1100,7 @@ Jednym z przykładów jest praca z React Native, podczas której korzystaliśmy 
 
 \section{Niezrealizowane pomysły}
 Z wyżej wymienionych powodów, nie wszystkie planowane początkowo funkcjonalności udało się wdrożyć do naszych programów.
-\subsection{Predycje krótkoterminowe}
+\subsection{Predykcje krótkoterminowe}
 Planowaliśmy zaangażować się w analizę danych o zajętości MOP-ów we współpracy z innymi członkami zespołu RID. Na tej podstawie nasza aplikacja mobilna mogłaby nie tylko pokazywać stan zajętości parkingów ,,na żywo'', ale także prognozowaną zajętość za 15, 30, 60 minut. Do analizy tych danych chcieliśmy wykorzystać algorytmy uczenia maszynowego, które dobrze działają przy analizowaniu odcinków czasu, jak np. rekurencyjne sieci neuronowe, czy LSTM. W związku z niewystarczającymi lub trudnymi do obrobienia danymi, nie zdecydowaliśmy się wprowadzać takiej możliwości.
 \subsection{Rozszerzona interakcja użytkowników z aplikacją mobilną}
 W końcowej fazie tworzenia projektu wpadliśmy na pomysł, jak rozszerzyć aplikację, aby była ona bardziej przydatna dla użytkowników. Można to zrobić w oparciu o crowdsourcing (czyli zaangażowanie dużej grupy ludzi -- użytkowników aplikacji do jakiegoś działania -- dzielenia się informacjami na temat parkingów. Przykładowe funkcjonalności, które sprawiałyby, że użytkownicy pomagaliby sobie wzajemnie byłoby np.
@@ -1114,7 +1117,7 @@ W początkowych fazach projektu planowaliśmy, aby można było nanieść projek
 \item W początkowych fazach planowania \acrshort{gddkia} nie posiada dokładnych planów dróg.
 \item Nasz program musiałby obsługiwać nowy format plików wejściowych, co utrudniłoby implementację.
 \end{itemize}
-Jako rozwiązanie tego problemu wprowadziliśmy opcję dodawania prostych odcinków pomiędzy punktami A i B na mapie. Ta opcja okazała się o wiele mniej problematyczna w implementacji, a spełnia swój podstawowy cel, tzn. można uruchomić symulację na zmodyfikowanej sieci drogowej i wyznaczyć nowe obiążenia dla odcinków dróg.
+Jako rozwiązanie tego problemu wprowadziliśmy opcję dodawania prostych odcinków pomiędzy punktami A i B na mapie. Ta opcja okazała się o wiele mniej problematyczna w implementacji, a spełnia swój podstawowy cel, tzn. można uruchomić symulację na zmodyfikowanej sieci drogowej i wyznaczyć nowe obciążenia dla odcinków dróg.
 
 \chapter{Zawartość płyty}
 %TODO
