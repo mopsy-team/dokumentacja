@@ -134,7 +134,7 @@ Jednym ze wspomnianych wcześniej problemów związanych z budową MOP-ów jest 
 	\item Jaka będzie zajętość miejsc parkingowych za~godzinę?
 \end{enumerate}
 
-Odpowiedzią na te pytania będzie \textbf{Mopsik} (MOP -- System Informowania Kierowców) -- aplikacja mobilna i strona internetowa.
+Odpowiedzią na te pytania będzie \textbf{Mopsik} (MOP -- System Informowania Kierowców) -- \hyperref[mopsik_mobile]{aplikacja mobilna} i \hyperref[mopsik_web]{strona internetowa}. Programy te pobierają dane z API wystawianego przez \hyperref[mopsik_api]{Mopsik--Serwer}.
 
 
 \section{Nasze zadanie}
@@ -185,7 +185,7 @@ formacie \acrshort{osm}. Parsowaniem obu rodzajów plików zajmują się odpowie
 biblioteki wymienione w poprzedniej sekcji.
 \subsubsection{Domyślne dane wejściowe}
 Po uruchomieniu programu ładowane są domyślne dane wejściowe. Układ MOP-ów
-pochodzi z serwera (\hyperref[r:apka]{Mopsik-API}). Dane dotyczące \acrshort{sdr} oraz mapa w
+pochodzi z serwera (\hyperref[mopsik_api]{Mopsik-API}). Dane dotyczące \acrshort{sdr} oraz mapa w
 formacie \acrshort{osm} są
 ładowane z plików dołączonych do programu. 
 \subsubsection{Wyświetlanie mapy}
@@ -584,19 +584,21 @@ Dodatkowo, przy pierwszej symulacji w katalogu \texttt{src/main} tworzony jest p
         \end{itemize}        
     
 \end{itemize}
-\chapter{Mopsik -- Strona serwerowa - \acrshort{api}}\label{r:apka} 
 
-Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (Mopsik--Mobile oraz Mopsik--Web) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej.
-Predykcja zajętości MOP-ów odbywa się na podstawie różnych danych historycznych -- ankiet przeprowadzanych na MOP-ach oraz danych zbieranych za pomocą kamer.
-Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. W tym momencie z danych z API korzysta aplikacja mobilna MOPsik oraz strona internetowa. Ponadto w programie Mopnik istnieje opcja pobrania danych z serwera.
 
-Podczas tworzenia aplikacji pewnym problemem stało się posługiwanie różnymi układami współrzędnych przez różne komponenty, z~których korzystamy. Na~przykład dane na temat MOP-ów przez GDDKiA są w \href{https://pl.wikipedia.org/wiki/Uk\%C5\%82ad_wsp\%C3\%B3\%C5\%82rz\%C4\%99dnych_1992}{układzie 92}, Google Maps, którego używamy w naszej aplikacji mobilnej przyjmuje danych w układzie \href{https://pl.wikipedia.org/wiki/System_odniesienia_WGS_84}{WSG84}. Postanowiliśmy dodać do naszego API konwerter pomiędzy tymi układami.
-\section{Przypadki użycia}
+\chapter{Mopsik -- Strona serwerowa - \acrshort{api}}
+\label{mopsik_api}
+
+Jednymi z podstawowych danych wczytywanych przez pisane przez nas programy (\hyperref[mopsik_mobile]{Mopsik--Mobile} oraz \hyperref[mopsik_web]{Mopsik--Web}) są dane o MOP-ach. Dane te są przedstawiane przez \acrshort{gddkia} w postaci ogólnie dostępnego skoroszytu programu Excel (rozszerzenie .xlsx) zamieszczanego na~stronie internetowej\cite{mop-gddkia}.
+Sensownym wydał się pomysł zbudowania wspólnego interfejsu do przekazywania tych danych naszym aplikacjom. W tym momencie z danych z API korzystają w czasie rzeczywistym Mopsik--Mobile oraz Mopsik--Web. Ponadto w programie Mopnik, oprócz wczytywania danych o MOP-ach z plików, istnieje także opcja pobrania tych danych z serwera.
+
+Podczas tworzenia aplikacji pewnym problemem stało się posługiwanie różnymi układami współrzędnych przez różne komponenty, z~których korzystamy. Na~przykład dane o lokalizacji MOP-ów, które otrzymaliśmy przez GDDKiA są w \href{https://pl.wikipedia.org/wiki/Uk\%C5\%82ad_wsp\%C3\%B3\%C5\%82rz\%C4\%99dnych_1992}{układzie 92} a Google Maps, którego używamy w naszej aplikacji mobilnej przyjmuje dane w układzie \href{https://pl.wikipedia.org/wiki/System_odniesienia_WGS_84}{WSG84}. Postanowiliśmy dodać do naszego API konwerter pomiędzy tymi układami.
+\section{Przypadki użycia API}
 Serwer ze stroną internetową, klient aplikacji mobilnej oraz program Mopnik może:
 \begin{enumerate}
-\item Pobrać informacje na temat pozycji oraz dostępnych usprawnień na MOP-ach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA.
+\item Pobrać informacje na temat pozycji oraz dostępnych usług na MOP-ach na podstawie najnowszego stanu przedstawionego do tej pory na stronie GDDKiA.
 \item Pobrać dane o bieżącej zajętości MOP-ów.
-\item Przekonwertować współrzędne pomiędzy układami WSG84 i układem 1992.
+\item Przekonwertować współrzędne pomiędzy układami WSG84 i układem 92.
 \end{enumerate}
 \section{Architektura}
 Na implementację API serwera składają się dwie części:
@@ -617,7 +619,9 @@ Implementacja oparta jest o wersję 2.0 frameworku Django, Python 3.5 oraz bibli
 
 \section{Dokumentacja użytkowa i opis implementacji}
 
+
 \chapter{Mopsik -- Aplikacja mobilna}
+\label{mopsik_mobile}
 
 \section{Przypadki użycia}
 \label{mopsik_usecase}
@@ -906,6 +910,7 @@ Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do 
 
 
 \chapter{Mopsik -- Strona internetowa}
+\label{mopsik_web}
 
 \section{Przypadki użycia}
 Przypadki użycia strony internetowej \textit{Mopsik} zostały przedstawione w poprzednim rozdziale \ref{mopsik_usecase}, razem z przypadkami użycia aplikacji mobilnej.
@@ -1190,6 +1195,7 @@ Axhausen, K W. (eds.) ``The Multi-Agent Transport Simulation MATSim'', Pp. 3–8
 \bibitem[11]{metodyki} M. Spławińska, K. Solecka, \\
 \url{http://www.autobusy-test.com.pl/images/stories/Do_pobrania/2017/nr%2012/Bezp%20i%20ekol/073_013_A_BiE_SPLAWINSKA_SOLECKA.pdf} 
 
+\bibitem[12]{mop-gddkia} GDDKiA, \textit{Dane o MOP-ach}, \\ \url{https://www.gddkia.gov.pl/pl/24/pliki-do-pobrania}
 \end{thebibliography}
 
 \end{document}
