@@ -759,7 +759,7 @@ Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco o
 \item Wykorzystanie \textit{onRegionChangeComplete} zamiast \textit{onRegionChange} -- obie funkcje wywoływane są gdy użytkownik porusza mapą, czyli przy zmianie aktualnie widocznego fragmentu. \textit{onRegionChangeComplete} wywoływane jest tylko raz -- po zakończonym przeciągnięciu. Animacje są nieco mniej płynne, ale aplikacja nie zawiesza się przez ciągłe przeładowywanie mapy i znaczników MOP-ów.
 \end{enumerate}
 \subsubsection{Bezpieczeństwo}
-Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokacji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (współrzędne środa oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
+Śledzenie lokalizacji użytkownika jest realizowane dzięki geolokacji urządzenia przenośnego -- mapy Google nie biorą w niej udziału. Zapytanie wysyłane do Google zawierają jedynie obszar (współrzędne środka oraz przybliżenie), dla którego chcemy wyświetlić mapę. Jeżeli użytkownik aktywuje podążanie mapy za jego aktualnym położeniem, siłą rzeczy zapytania API będą wysyłać jego kolejne lokalizacje. Jednak zakładając korzystanie z map online -- nie ma innej możliwości. 
 
 \subsection{Zapytanie do API}
 Po otwarciu aplikacji wykonywane jest zapytanie do \acrshort{api} \textit{/mops}, które zwraca wszystkie informacje o MOP-ach. Dane te są przetwarzane i zapamiętywane.
@@ -1047,7 +1047,8 @@ Biblioteka JavaScript do tworzenia animowanych wykresów kołowych. Wykorzystana
 
 
 \chapter{Organizacja pracy}
-Nasz projekt składa z się z pięciu częściowo niezależnych programów. Niektóre z nich komunikują lub łączą się ze sobą, ale duża część kodu mogła być napisana bez znajomości szczegółowej implementacji pozostałych aplikacji. Dlatego powstał u nas dość wyraźny podział pracy -- każdy program posiadał swojego koordynatora, który był autorem większości kodu i nadzorował rozwój aplikacji. Dokładny podział prac został przedstawiony w następnym rozdziale. 
+Nasz projekt składa z się z pięciu częściowo niezależnych programów. Niektóre z nich komunikują lub łączą się ze sobą, ale duża część kodu mogła być napisana bez znajomości szczegółowej implementacji pozostałych aplikacji. Dlatego powstał u nas dość wyraźny podział pracy -- każdy program posiadał swojego koordynatora, który był autorem większości kodu i nadzorował rozwój aplikacji. Wszystkie zmiany w kodzie były recenzowane przez conajmniej jednego członka zespołu.\\
+Dokładny podział prac został przedstawiony w następnym rozdziale. 
 
 \paragraph{Slack}(komunikacja)
 
@@ -1075,13 +1076,14 @@ Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podpr
 \begin{enumerate}
 \item Magdalena Grabowska
 \item Przemysław Perkowski - integracja z \textit{Mopsimem}
+\item Michał Kukuła - integracja z \textit{Mopsimem}
 \item Klaudia Laks - poprawki
 \end{enumerate}
 
 \paragraph{Mopsim}
 \begin{enumerate}
 \item Michał Kukuła
-\item Przemysław Perkowski - generowanie planów podróży, integracja z \textit{Mopnikiem}
+\item Przemysław Perkowski - generowanie planów podróży
 \end{enumerate}
 
 \paragraph{Mopsik - serwer}
@@ -1092,13 +1094,12 @@ Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podpr
 \paragraph{Mopsik - aplikacja mobilna}
 \begin{enumerate}
 \item Klaudia Laks
-\item Przemysław Perkowski - testowanie, code review, poprawki
+\item Przemysław Perkowski - testowanie, poprawki
 \end{enumerate}
 
 \paragraph{Mopsik - strona internetowa}
 \begin{enumerate}
 \item Klaudia Laks
-\item Przemysław Perkowski - code review
 \end{enumerate}
 
 \paragraph{Dokumentacja / Praca licencjacka}
