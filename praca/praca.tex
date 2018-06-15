@@ -620,6 +620,7 @@ Implementacja oparta jest o wersję 2.0 frameworku Django, Python 3.5 oraz bibli
 \chapter{Mopsik -- Aplikacja mobilna}
 
 \section{Przypadki użycia}
+\label{mopsik_usecase}
 Zarówno w aplikacji mobilnej, jak i na stronie internetowej podróżny może:
 \begin{enumerate}
 \item Znaleźć MOP-a w wyszukiwarce lub na mapie.
@@ -643,7 +644,7 @@ Dodatkowo, w aplikacji mobilnej:
 \begin{figure}[!htb]
     \centering
     \begin{minipage}{.6\textwidth}
-Aplikacja mobilna została napisana w języku \textbf{JavaScript} z użyciem biblioteki \textbf{React~Native} (dalej: RN). Dzięki temu pisząc jeden kod, otrzymujemy aplikację zarówno na telefony z Androidem, jak i iOS.
+Aplikacja mobilna została napisana w języku \textbf{JavaScript} z użyciem biblioteki \textbf{React~Native}\cite{react-native} (dalej: \acrshort{rn}). Dzięki temu pisząc jeden kod, otrzymujemy aplikację zarówno na telefony z Androidem, jak i iOS.
     \end{minipage}%
     \begin{minipage}{.4\textwidth}
         \centering
@@ -694,7 +695,7 @@ Typy pojazdów
 \end{enumerate}
 Podział został wykonany w oparciu o zróżnicowane potrzeby użytkowników tych pojazdów, a także znaczące różnice w gabarytach, a co za tym idzie -- wymiarach potrzebnych miejsc parkingowych.
 Konfigurację aplikacji można zmienić w każdej chwili w zakładce \emph{Ustawienia}.
-W ustawieniach znajduję się także przycisk \textit{Zresetuj ustawienia}, który wymazuje z urządzenia wszystkie informacje zapisane przez aplikację i uruchamia ją ponownie. 
+W ustawieniach znajduje się także przycisk \textit{Zresetuj ustawienia}, który wymazuje z urządzenia wszystkie informacje zapisane przez aplikację i uruchamia ją ponownie. 
 
 \begin{figure}[!htb]
 \centering
@@ -747,9 +748,9 @@ W ustawieniach znajduję się także przycisk \textit{Zresetuj ustawienia}, któ
 
 \subsection{Google Maps}
 \subsubsection{Warunki}
-Jedną z podstawowych funkcji aplikacji Mopsik jest wyświetlanie mapy Polski z zaznaczonymi MOP-ami. Do tego celu wykorzystaliśmy Google Maps API. Dostęp do samej mapy i oznaczania na niej punktów jest nieodpłatny, dopóki aplikacja jest darmowa i ogólnodostępna\cite{google-api-faq}.
+Jedną z podstawowych funkcji aplikacji Mopsik jest wyświetlanie mapy Polski z zaznaczonymi MOP-ami. Do tego celu wykorzystaliśmy Google Maps API. Dostęp do samej mapy i oznaczanie na niej punktów są nieodpłatne, dopóki aplikacja jest darmowa i ogólnodostępna\cite{google-api-faq}.
 \subsubsection{Działanie}
-Połączenie do API uwierzytelniane jest przez klucz wygenerowany na stronie \url{https://console.developers.google.com/apis/credentials}. Z każdym przeładowaniem widoku z mapą do~API wysyłane jest zapytanie z prośbą o konkretny fragment mapy świata, który jest zwracany w odpowiedzi, a następnie wyświetlany w aplikacji. Na mapie znajdują się markery oznaczające MOP-y. Kolor markera jest uzależniony od zajętości MOP-a dla wybranego \textit{głównego typu pojazdu}. Aplikacja wyświetla aktualną lokalizację użytkownika oraz umożliwia jej śledzenia (mapa porusza się wraz z użytkownikiem). 
+Połączenie do API uwierzytelniane jest przez klucz wygenerowany na stronie \url{https://console.developers.google.com/apis/credentials}. Z każdym przeładowaniem widoku z mapą do~API wysyłane jest zapytanie z prośbą o konkretny fragment mapy świata, który jest zwracany w odpowiedzi, a następnie wyświetlany w aplikacji. Na mapie znajdują się markery oznaczające MOP-y. Kolor markera jest uzależniony od zajętości MOP-a dla wybranego \textit{głównego typu pojazdu}. Aplikacja wyświetla aktualną lokalizację użytkownika oraz umożliwia jej śledzenie (mapa porusza się wraz z użytkownikiem). 
 \subsubsection{Wydajność}
 Dodawanie markerów na mapie, a szczególnie tych z własną ikoną, znacząco obniża wydajność mapy. Aby ją poprawić zastosowaliśmy kilka zabiegów:
 \begin{enumerate}
@@ -810,7 +811,7 @@ Otoczka całej aplikacji. Odpowiada za nawigowanie wewnątrz aplikacji i porusza
 \end{enumerate}
 
 \subsection{Nawigacja}
-W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik_nav}.\\
+W aplikacji wykorzystaliśmy dwa typy nawigacji - stos (\textit{StackNavigator}) i menu boczne (\textit{DrawerNavigator}). Architektura nawigacji została przedstawiona na rysunku \ref{mopsik-nav}.\\
 
 
 Najbardziej zewnętrznym elementem aplikacji jest komponent \textit{DrawerNavigator}. Dodany jest do niego widok \textit{SettingsView}, a także stosy \textit{HomeStack}, \textit{MapStack}, \textit{FavouritesStack} i \textit{SearchStack}. Menu boczne jest utworzone przez dostosowany do naszych potrzeb komponent \textit{DrawerContent} -- dodane zostało logo i autorzy. \\
@@ -824,12 +825,12 @@ Komponenty Stack obudowują nawigację stosową. Wewnątrz każdego ze stosów m
 
 
 \begin{figure}[!htb]
-\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png}\label{mopsik_nav}
+\includegraphics[width=\textwidth]{images/mopsik_mobile_navigation.png} \label{mopsik-nav}
 \caption{Schemat nawigacji aplikacji mobilnej Mopsik}
 \end{figure}
 
 \subsection{Pozostałe komponenty}
-Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plików Mopsika. Poza komponentami opisanymi w poprzednim punkcie, aplikacja korzysta z narzędzi znajdujących się folderze \textit{tools}.
+Na rysunku \ref{mopsik_mobile_structure} przedstawiona została struktura plików Mopsika. Poza komponentami opisanymi w poprzednim punkcie, aplikacja korzysta z narzędzi znajdujących się w folderze \textit{tools}.
 \begin{enumerate}
 \item \textit{DrawerContent} -- menu boczne
 \item \textit{Header} -- nagłówek
@@ -907,7 +908,7 @@ Dane dotyczące ustawień użytkownika oraz ulubionych MOP-ów nie znikają. Do 
 \chapter{Mopsik -- Strona internetowa}
 
 \section{Przypadki użycia}
-Przypadki użycia strony internetowej \textit{Mopsik} zostały przedstawione w poprzednim rozdziale, razem z przypadkami użycia aplikacji mobilnej.
+Przypadki użycia strony internetowej \textit{Mopsik} zostały przedstawione w poprzednim rozdziale \ref{mopsik_usecase}, razem z przypadkami użycia aplikacji mobilnej.
 
 \section{Architektura i opis implementacji}
 
@@ -926,7 +927,8 @@ Aplikacja internetowa została napisana w technologii ASP.NET MVC, w języku obi
 \subsection{Zakładki}
 W górnej części strony znajduje się menu, w którym są dwie zakładki: \textit{Mapa} i \textit{Wyszukiwarka}. \textit{Mapa} jest zakładką domyślną. Jest także trzeci widok -- \textit{Szczegóły}, do którego można przejść z obu zakładek, po wyborze jednego z MOP-ów.
 \subsubsection{Mapa}
-W tej zakładce znajduje się mapa Polski z OpenStreetMap\cite{osm}. Do jej wyświetlania wykorzystane zostały OpenLayers - biblioteka JavaScript do dynamicznych map. Na mapie oznaczone są MOP-y, a kolor znacznika odpowiada zajętości miejsc parkingowych dla wybranego typu pojazdu (skala analogiczna jak w aplikacji mobilnej). Typ pojazdu można zmienić w prawym, górnym rogu mapy, wybierając odpowiednią ikonę. Wysyła to zapytanie POST z odpowiednią wartością typu pojazdu i odświeża stronę z naniesionymi zmianami. 
+W tej zakładce znajduje się mapa Polski z OpenStreetMap\cite{osm}. Do jej wyświetlania wykorzystana została OpenLayers - biblioteka JavaScript do dynamicznych map. Na mapie oznaczone są MOP-y, a kolor znacznika odpowiada zajętości miejsc parkingowych dla wybranego typu pojazdu (skala analogiczna jak w aplikacji mobilnej). Typ pojazdu można zmienić w prawym, górnym rogu mapy, wybierając odpowiednią ikonę. Wysyła to zapytanie POST z odpowiednią wartością typu pojazdu i odświeża stronę z naniesionymi zmianami. 
+
 Po kliknięciu w znacznik wyświetla się dymek z podstawowymi informacjami o MOP-ie, a guzik z ikoną informacji przenosi do szczegółów -- wywołuje \textit{DetailsController} z akcją \textit{Details} oraz parametrem id MOP-a.
 
 \begin{figure}[!htb]
@@ -971,7 +973,7 @@ W tej zakładce wyświetlane są szczegółowe informacje o konkretnym MOP-ie:
 \item współrzędne geograficzne
 \item operator i kontakt do niego -- numer telefonu oraz e-mail
 \item oferowane usługi
-\item położenie ma napie
+\item położenie na mapie
 \item dla każdego typu pojazdu:
 \begin{enumerate}
 \item zajętość miejsc parkingowych w procentach + wizualizacja danych na wykresie
@@ -1072,12 +1074,14 @@ Todoist to menadżer zadań, w którym można utworzyć wiele projektów i podpr
 \paragraph{Mopnik}
 \begin{enumerate}
 \item Magdalena Grabowska
+\item Przemysław Perkowski - integracja z \textit{Mopsimem}
+\item Klaudia Laks - poprawki
 \end{enumerate}
 
 \paragraph{Mopsim}
 \begin{enumerate}
 \item Michał Kukuła
-\item Przemysław Perkowski - generowanie planów podróży
+\item Przemysław Perkowski - generowanie planów podróży, integracja z \textit{Mopnikiem}
 \end{enumerate}
 
 \paragraph{Mopsik - serwer}
@@ -1112,7 +1116,7 @@ Przystępując do zadania, nasza wiedza z zakresu transportu drogowego, w szczeg
 W trakcie pisania programów napotkaliśmy wiele problemów oraz wraz z upływem czasu i postępem prac musieliśmy weryfikować, początkowo bardzo ambitny, plan zadań, które uda nam się wykonać.
 
 \section{Napotkane problemy}
-Główne problemy, które napotkaliśmy możemy podzielić na kilka podstawowych kategorii:
+Główne problemy, które napotkaliśmy, możemy podzielić na kilka podstawowych kategorii:
 \begin{enumerate}
 \item Problemy z danymi
 \item Problemy z komunikacją
@@ -1138,7 +1142,7 @@ Z wyżej wymienionych powodów, nie wszystkie planowane początkowo funkcjonalno
 \subsection{Predykcje krótkoterminowe}
 Planowaliśmy zaangażować się w analizę danych o zajętości MOP-ów we współpracy z innymi członkami zespołu RID. Na tej podstawie nasza aplikacja mobilna mogłaby nie tylko pokazywać stan zajętości parkingów ,,na żywo'', ale także prognozowaną zajętość za 15, 30, 60 minut. Do analizy tych danych chcieliśmy wykorzystać algorytmy uczenia maszynowego, które dobrze działają przy analizowaniu odcinków czasu, jak np. rekurencyjne sieci neuronowe, czy LSTM. W związku z niewystarczającymi lub trudnymi do obrobienia danymi, nie zdecydowaliśmy się wprowadzać takiej możliwości.
 \subsection{Rozszerzona interakcja użytkowników z aplikacją mobilną}
-W końcowej fazie tworzenia projektu wpadliśmy na pomysł, jak rozszerzyć aplikację, aby była ona bardziej przydatna dla użytkowników. Można to zrobić w oparciu o crowdsourcing (czyli zaangażowanie dużej grupy ludzi -- użytkowników aplikacji do jakiegoś działania -- dzielenia się informacjami na temat parkingów. Przykładowe funkcjonalności, które sprawiałyby, że użytkownicy pomagaliby sobie wzajemnie byłoby np.
+W końcowej fazie tworzenia projektu wpadliśmy na pomysł, jak rozszerzyć aplikację, aby była ona bardziej przydatna dla użytkowników. Można to zrobić w oparciu o crowdsourcing (czyli zaangażowanie dużej grupy ludzi -- użytkowników aplikacji do jakiegoś działania -- dzielenia się informacjami na temat parkingów). Przykładowe funkcjonalności, które sprawiałyby, że użytkownicy pomagaliby sobie wzajemnie byłoby np.
 \begin{itemize}
 \item ocenianie danego MOP-a poprzez przyznanie mu odpowiedniej liczby gwiazdek
 \item podanie jaka konkretnie restauracja znajduje się na danym MOP-ie
@@ -1175,13 +1179,16 @@ Jako rozwiązanie tego problemu wprowadziliśmy opcję dodawania prostych odcink
 \bibitem[7]{matsim} Horni, A, Nagel, K and Axhausen, K W. 2016. ``Introducing MATSim.'' In: Horni, A, Nagel, K and
 Axhausen, K W. (eds.) ``The Multi-Agent Transport Simulation MATSim'', Pp. 3–8. London: Ubiquity Press. DOI: http://dx.doi.org/10.5334/baw \\ License: CC-BY 4.0
 
-\bibitem[8]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
+\bibitem[8]{react-native} React Native, \textit{Dokumentacja}, \\ \url{https://facebook.github.io/react-native/}
 
-\bibitem[9] {metodyki} M. Spławińska, K. Solecka, \\
-\url{http://www.autobusy-test.com.pl/images/stories/Do_pobrania/2017/nr%2012/Bezp%20i%20ekol/073_013_A_BiE_SPLAWINSKA_SOLECKA.pdf} 
+\bibitem[9]{google-api-faq} Developers Google, \textit{FAQ -- Google Maps API},\\ \url{https://developers.google.com/maps/faq}
 
 \bibitem[10]{osm}  Projekt mający na celu stworzenie darmowej mapy kuli
   ziemskiej. \url{https://www.openstreetmap.org/} 
+
+\bibitem[11]{metodyki} M. Spławińska, K. Solecka, \\
+\url{http://www.autobusy-test.com.pl/images/stories/Do_pobrania/2017/nr%2012/Bezp%20i%20ekol/073_013_A_BiE_SPLAWINSKA_SOLECKA.pdf} 
+
 \end{thebibliography}
 
 \end{document}
