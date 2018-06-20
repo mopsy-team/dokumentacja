@@ -19,7 +19,7 @@
 
 \newacronym{gui}{GUI}{Graficzny interfejs użytkownika}
 
-\newacronym{rn}{RN}{React Native}
+\newacronym{rn}{RN}{React Native\cite{react-native}}
 
 \newacronym{api}{API}{Interfejs programowania aplikacji (ang. Application Programming Interface)}
 
@@ -1148,8 +1148,8 @@ Jednym z przykładów są dane o długości postojów na MOP-ach. Były one zbie
 \item systemu viaTOLL, za pomocą którego były generowane rozkłady czasów przejazdu pomiędzy parą punktów kontroli
 \item ankiet przeprowadzanych na MOP-ach. 
 \end{itemize}
-Okazało się, że otrzymane zbiory danych nie były wystarczające do wiarygodnego wyznaczenia rozkładów czasu podróży. Jedną z czynności, które podjęliśmy w celu uzupełnienia tych danych było stworzenie ankiet internetowych i zamieszczenie ich w portalu Facebook na grupach poświęconych kierowcom samochodów ciężarowych. W związku z niewystarczającymi lub trudnymi do obrobienia danymi, nie zdecydowaliśmy się wprowadzać takiej możliwości.
-Innym przykładem są dane o zajętości MOP-ów na żywo. Po początkowych rozmowach z promotorem, jak i~innymi osobami z projektu, wydawało nam się, że do czerwca 2018r. (czyli momentu w którym oddajemy pracę) będą dostępne dane choć z kilku MOP-ów, zapewnione przez zespół z Politechniki Warszawskiej. Po jakimś czasie dowiedzieliśmy się, iż nasze przekonanie jest błędne i dane takie, o ile będą dostępne, to w dalszej przyszłości.
+Okazało się, że otrzymane zbiory danych nie były wystarczające do wiarygodnego wyznaczenia rozkładów czasu podróży. Jedną z czynności, które podjęliśmy w celu uzupełnienia tych danych było stworzenie ankiet internetowych i zamieszczenie ich w portalu Facebook na grupach poświęconych kierowcom samochodów ciężarowych. Na podstawie zebranych danych wyznaczyliśmy pewne rozkłady czasu podróży dla różnych typów pojazdów. Wydaje się, że w przypadku posiadania dokładniejszych danych, dałoby się te rozkłady wyznaczyć jeszcze dokładniej.
+Innym przykładem są dane o współrzędnych MOP-ów oraz ilości miejsc na nich. Dane te, otrzymane przez nas na początku roku akademickiego okazały się posiadać liczne błędy i braki. Informacje o tych błędach przesłaliśmy mailowo naszym zleceniodawcom. Niestety do czasu zakończenia pisania pracy (czerwiec 2018) nie udało nam się uzyskać poprawionych danych.
 \subsection{Problemy techniczne}
 Podczas pracy nad dużym projektem zawsze zdarzają się także problemy techniczne. Nie~inaczej było i tym razem. 
 Jednym z przykładów jest praca z React Native, podczas której korzystaliśmy z wielu zewnętrznych bibliotek. Czasem okazywało się, że kolejne wersje tych bibliotek, pobierane z Internetu podczas pracy nad programem zawierały nowe błędy lub luki bezpieczeństwa.
@@ -1171,7 +1171,7 @@ Nie zdecydowaliśmy się na wprowadzenie takich usprawnień ze względu na duży
 W początkowych fazach projektu planowaliśmy, aby można było nanieść projekt planowanej drogi w~ustalonym formacie na mapę w~Mopniku. Okazało się, że jest to trudne:
 \begin{itemize}
 \item W początkowych fazach planowania \acrshort{gddkia} nie posiada dokładnych planów dróg.
-\item Nasz program musiałby obsługiwać nowy format plików wejściowych, co utrudniłoby implementację.
+\item Aktualne, udostępnione nam plany dróg są w formacie, którego użycie w naszym programie (przy obecnej implementacji wykorzystującej siatkę drogową \acrshort{osm}) byłoby bardzo trudne.
 \end{itemize}
 Jako rozwiązanie tego problemu wprowadziliśmy opcję dodawania prostych odcinków pomiędzy punktami A i B na mapie. Ta opcja okazała się o wiele mniej problematyczna w implementacji, a spełnia swój podstawowy cel, tzn. można uruchomić symulację na zmodyfikowanej sieci drogowej i wyznaczyć nowe obciążenia dla odcinków dróg.
 
