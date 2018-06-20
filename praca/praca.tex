@@ -320,16 +320,20 @@ Inżynier \acrshort{gddkia} może:
 
 \section{Architektura}
 
+<<<<<<< HEAD
 \subsubsection{Modele mikro-, mezo-, makroskopowe}
 Modelem obliczeniowym w informatyce nazywamy model matematyczny, wykorzystujący zasoby komputerowe do zbadania zachowania złożonego systemu za pomocą symulacji\cite{model}. Modele obliczeniowe są obecnie wykorzystywane w bardzo wielu dziedzinach, m.in. do prognozy pogody, badania zmian klimatycznych, symulacji ruchu planet, a także w biologii czy medycynie. Jednym ze sposobów klasyfikacji modeli jest podział na modele mikro-, makro- i mezoskopowe\cite{micmac}:
+=======
+\subsubsection{Modele mikro-, makroskopowe}
+Modelem obliczeniowym w informatyce nazywamy model matematyczny, wykorzystujący zasoby komputerowe do zbadania zachowania złożonego systemu za pomocą symulacji\cite{model}. Modele obliczeniowe są obecnie wykorzystywane w bardzo wielu dziedzinach, m.in. do prognozy pogody, badania zmian klimatycznych, symulacji ruchu planet, a także w biologii czy medycynie. Jednym ze sposobów klasyfikacji modeli jest podział na modele mikro- i makroskopowe\cite{micmac}:
+>>>>>>> parent of 6c6cd6e... some fixes in mopsim section
 \begin{itemize}
 \item w modelu mikroskopowym każda jednostka jest opisywana przez jej charakterystyczne atrybuty i zachowania
 \item w modelu makroskopowym analizuje się zagregowane cechy grupy jednostek i ich oddziaływanie na cały system
-\item w modelu mezoskopowym bada się jednostki połączone w niewielkie grupy, których elementy są traktowane jako jednolite.
 \end{itemize}
 \subsubsection{Model obliczeniowy oparty na agentach}
 Jednym z intensywnie stosowanych i rozwijanych modeli obliczeniowych jest model oparty na~agentach (ang. \textit{agent-based model}).
-Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonomicznych agentów, w celu badania ich wpływu na cały system\cite{agent-based}. Zwykle agentom przyporządkowuje się uproszczone zachowania, a następnie umieszcza w pewnym miejscu i czasie. Następnie symuluje się podejmowane przez nich działania i oddziaływania między sobą w celu odtworzenia lub próby wyjaśnienia bardziej złożonych zjawisk. Modele obliczeniowe oparte na agentach stosuje się m.in. w biologii, ekologii czy naukach społecznych.
+Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonomicznych agentów, w celu badania ich wpływ na cały system\cite{agent-based}. Zwykle agentom przyporządkowuje się uproszczone zachowania, a następnie umieszcza w pewnym miejscu i czasie. Następnie symuluje się podejmowane przez nich działania i oddziaływania między sobą w celu odtworzenia lub próby wyjaśnienia bardziej złożonych zjawisk. Modele obliczeniowe oparte na agentach stosuje się m.in. w biologii, ekologii czy naukach społecznych.
 \subsubsection{System wieloagentowy}
     Nieco innym, choć pokrewnym pojęciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
     \begin{figure}[h]
@@ -337,14 +341,14 @@ Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonom
         \includegraphics[width=\textwidth]{images/mopsim/multi-agent.png}
     \end{figure}
 \subsubsection{MATSim -- symulator ruchu drogowego}
-MATSim (\textit{Multi-Agent Transport Simulation}) to open-sourcowy, rozszerzalny framework napisany w Javie służący do przeprowadzania symulacji ruchu drogowego. Jego głównymi założeniami jest mikroskopowe modelowanie ruchu oraz oparte na agentach symulowanie dziennych planów poszczególnych jednostek. MATSim został zaprojektowany, by modelować aktywności podczas pojedynczego dnia. MATSim oparty jest o zasadę koewolucyjności. Każdy z agentów, reprezentujących pojedynczych uczestników ruchu drogowego, optymalizuje swój codzienny plan, rywalizując z innymi agentami w różnych aspektach korzystania z infrastruktury drogowej.\\
-Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu.\cite{matsim} Od~tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w~Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w~Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy~badania emisji spalin.
+MATSim (\textit{Multi-Agent Transport Simulation}) to open-sourcowy, rozszerzalny framework napisany w Javie służący do przeprowadzania symulacji ruchu drogowego. Jego głównymi założeniami jest mikroskopowe modelowanie ruchu oraz oparte na agentach symulowanie dziennych planów poszczególnych jednostek\cite{matsim}. MATSim został zaprojektowany, by modelować aktywności podczas pojedynczego dnia. MATSim oparty jest o zasadę koewolucyjności. Każdy z agentów, reprezentujących pojedynczych uczestników ruchu drogowego, optymalizuje swój codzienny plan, rywalizując z innymi agentami w różnych aspektach korzystania z infrastruktury drogowej.\\
+Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu. Od~tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w~Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w~Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy~badania emisji spalin.
     \begin{figure}[h]
         \caption{Logo MATSim}
         \includegraphics[width=\textwidth]{images/mopsim/matsim_logo.png}
     \end{figure}
 \subsubsection{MATSim -- pętla programu}
-Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji, takie jak wybrany układ współrzędnych, liczba wątków czy parametry poszczególnych modułów. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i~wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze~swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
+Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i~wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze~swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
     \begin{figure}[h]
         \caption{Schemat działania MATSim}
         \includegraphics[width=\textwidth]{images/mopsim/matsim-workflow.png}
@@ -353,9 +357,7 @@ Działanie programu polega na przeprowadzeniu określonej liczby iteracji, repre
 \subsubsection{Dlaczego MATSim?}
 Przeprowadzone próby pokazały, że MATSim może być dobrym narzędziem do symulowania ruchu na drogach w Polsce, w celu zbadania zajętości MOP-ów. Co istotne, wstępne symulacje pokazały, że już jedna iteracja działania głównej pętli programu jest wystarczająca -- wynik jest bardzo zbliżony do optymalnego. Jest to zgodne z~intuicją -- w ruchu krajowym należy oczekiwać, że najkrótsza droga spośród dróg danego typu jest najbardziej optymalną, a~tworzące się korki nie są tak częste i regularne, jak w intensywnym ruchu miejskim. Czynniki, które nas przekonały do wyboru frameworku MATSim to między innymi:
 \begin{itemize}
-\item licencja GNU GPLv2
-\item model ruchu umożliwiający symulację w skali sieci dróg krajowych i autostrad w Polsce
-\item istniejące podobne zastosowania i symulacje na sieciach dróg krajowych, m.in. w Niemczech i Szwajcarii
+\item licencja open-source
 \item możliwość łatwego rozszerzenia o dodatkowe funkcjonalności, wiele gotowych przykładów
 \item obszerna dokumentacja i dostęp do kodu źródłowego
 \item możliwość zrównoleglania
@@ -379,7 +381,7 @@ Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv,
 macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech
 rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie
 csv oraz mapę sieci drogowej w formacie \acrshort{osm}
-(\textit{OpenStreetMap}\cite{osm}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne. Część z nich może być przekazana do programu Mopnik w celu wizualizacji.
+(\textit{OpenStreetMap}\cite{osm}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne, część których może być przekazana do programu Mopnik w celu wizualizacji.
 
 \subsubsection{Generowanie planów podróży}
     \begin{figure}[h]
@@ -451,10 +453,10 @@ Oprócz powyższych parametrów, modyfikujących pracę biblioteki MATSim, oddzi
 \begin{itemize}
 \item \texttt{simulationId} - id symulacji. Jeżeli nie zostanie podane, ustawione jest na opisany wcześniej znacznik czasu.
 \item \texttt{carNr}, \texttt{truckNr}, \texttt{busNr} - parametry określające liczbę pojazdów danego typu biorących udział w symulacji. Domyślne wartości -- 100000, 40000, 0.
-\item \texttt{carPath}, \texttt{truckPath}, \texttt{busPath} - ścieżki do plików z macierzami podróży dla poszczególnych pojazdów. Domyślna wartość -- \\\texttt{src/main/resources/travel\_matrices/car\_matrix.csv} i analogicznie dla pozostałych typów pojazdów.
+\item \texttt{carPath}, \texttt{truckPath}, \texttt{busPath} - ścieżki do plików z macierzami podróży dla poszczególnych pojazdów. Domyślna wartość -- \\\texttt{src/main/resources/travel\_matrices/car\_matrix.csv} i analogicznie dla pozostałych pojazdów.
 \item \texttt{timeDistribution} -- nazwa strategii wyboru czasu wyjazdu dla pojazdów. Domyślna wartość - \texttt{BASIC\_DISTRIBUTION}.
-\item \texttt{carEnter}, \texttt{truckEnter}, \texttt{busEnter} -- nazwy strategii decyzji o wjeździe na MOP-a dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{BASIC\_STRATEGY}, \\\texttt{TRUCK\_STRATEGY}, \texttt{BUS\_STRATEGY}.
-\item \texttt{carStay}, \texttt{truckStay}, \texttt{busStay} -- nazwy strategii długości czasu pobytu na MOP-ie dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{CAR\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}, \texttt{BUS\_STAY\_STRATEGY}.
+\item \texttt{carEnter}, \texttt{truckEnter}, \texttt{busEnter} -- nazwy strategii decyzji o wjeździe na MOP-a dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{BASIC\_STRATEGY}, \\\texttt{TRUCK\_STRATEGY}, \texttt{TRUCK\_STRATEGY}.
+\item \texttt{carStay}, \texttt{truckStay}, \texttt{busStay} -- nazwy strategii długości czasu pobytu na MOP-ie dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{CAR\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}.
 \end{itemize}
 Więcej o poszczególnych strategiach, ich nazwach i dodawaniu nowych w podrozdziale Strategie.
 \subsubsection{Przeprowadzanie symulacji}
@@ -469,11 +471,11 @@ Sugerowanym sposobem generowania sieci drogowej jest użycie interfejsu graficzn
 \subsubsection{Strategie}
 Kluczowymi elementami programu Mopsim, odgrywającymi ważną rolę w przeprowadzaniu symulacji są strategie:
 \begin{itemize}
-\item \textit{TimeDistribution} -- strategia wyboru godzin wyjazdu pojazdów. Obecnie zaimplementowana jest strategia \texttt{BASIC\_DISTRIBUTION}, w której czasy wyjazdu kolejnych pojazdów są losowane zgodnie z rozkładem jednostajnym.
+\item \textit{TimeDistribution} -- strategia wyboru godzin wyjazdu pojazdów. Obecnie zaimplementowana jest strategia \texttt{BASIC\_STRATEGY}, w której czasy wyjazdu kolejnych pojazdów są losowane zgodnie z rozkładem jednostajnym.
 \item \textit{MOPEnterStrategy} -- strategia decyzji o zjeździe na MOP-ie. Obecnie zaimplementowane strategie to:
 \begin{itemize}
     \item \texttt{RANDOM\_STRATEGY}, która ma charakter testowy -- pojazdy zjeżdżają na MOP-a z prawdopodobieństwem równym $\frac{1}{2}$.
-    \item \texttt{BASIC\_STRATEGY} -- domyślna strategia dla samochodów. Losowana jest jedna liczba z przedziału 3600-32400 według rozkładu jednostajnego. Pojazd wjeżdża na MOP, jeżeli od czasu poprzedniego zatrzymania minęło więcej sekund, niż wynosi wylosowana liczba.
+    \item \texttt{BASIC\_STRATEGY} -- domyślna strategia dla samochodów. Losowana jest jedna liczba z przedziału 0-32400 według rozkładu jednostajnego. Pojazd wjeżdża na MOP, jeżeli od czasu poprzedniego zatrzymania minęło więcej sekund, niż wynosi wylosowana liczba.
     \item \texttt{TRUCK\_STRATEGY} -- domyślna strategia dla pojazdów ciężarowych i autobusów. Losowana jest liczba według rozkład normalnego o średniej 14400 i odchyleniu standardowym 3600.  Pojazd wjeżdża na parking, jeżeli od poprzedniego zatrzymania minęło więcej czasu, niż wynosi wylosowana liczba.
 \end{itemize}
 \item \textit{MOPStayStrategy} -- strategia długości pobytu na MOP-ie. Obecnie zaimplementowane strategie:
@@ -483,10 +485,13 @@ Kluczowymi elementami programu Mopsim, odgrywającymi ważną rolę w przeprowad
 \end{itemize}
 % TODO dopisać kolejne strategie, jeżeli powstaną
 \end{itemize}
-Czasy postoju i rozkłady zostały dobrane na podstawie danych pochodzących z pomiarów i badań ankietowych.
 
 \subsubsection{Mopsim - dodanie własnych strategii}
+<<<<<<< HEAD
 By przeprowadzać efektywne symulacje, zachowanie agentów powinno jak najbardziej odpowiadać rzeczywistości. Z poziomu programisty do programu Mopsim można dodać kolejne strategie. W pakiecie \texttt{strategies} znajdują się interfejsy dla każdego z rodzajów strategii -- odpowiednio \textit{TimeDistribution}, \textit{MOPEnterStrategy} i \textit{MOPStayStrategy}. By dodać strategię, należy zaimplementować dany interfejs (w każdym przypadku składający się z dwóch metod -- \texttt{getIdentifier()}, zwracającej unikalny identyfikator strategii oraz odpowiedniej funkcji decyzyjnej) oraz rozszerzyć klasę \texttt{StrategyUtils}, nadpisując metody zwracające odpowiednie strategie.
+=======
+By przeprowadzać efektywne symulacje, zachowanie agentów powinno jak najbardziej odpowiadać rzeczywistości. Z poziomu programisty do programu Mopsim można dodać kolejne strategie. W pakiecie \texttt{strategies} znajdują się interfejsy dla każdego z rodzajów strategii -- odpowiednio \textit{TimeDistribution}, \textit{MOPEnterStrategy} i \textit{MOPStayStrategy}. By dodać strategię, należy zaimplementować dany interfejs (w każdym przypadku składający się z dwóch metod -- \texttt{getIdentifier()}, zwracającej unikalny identyfikator strategii oraz odpowiedniej funkcji decyzyjnej) oraz zmodyfikować metody klasy \texttt{StrategyUtils}, dodając do niej kolejne strategie.
+>>>>>>> parent of 6c6cd6e... some fixes in mopsim section
 
 \section{Mopsim - opis implementacji}
 Apache Maven, z którego korzysta Mopsim, to narzędzie automatyzujące budowę oprogramowania na platformę Java. Poszczególne funkcje Mavena realizowane są poprzez wtyczki, które są automatycznie pobierane przy ich pierwszym wykorzystaniu. Plik określający sposób budowy aplikacji nosi nazwę \textbf{POM}-u.
@@ -1211,6 +1216,11 @@ Axhausen, K W. (eds.) ``The Multi-Agent Transport Simulation MATSim'', Pp. 3–8
 \end{thebibliography}
 
 \end{document}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> parent of 6c6cd6e... some fixes in mopsim section
 %%% Local Variables:
 -%%% mode: latex
 -%%% TeX-master: t
