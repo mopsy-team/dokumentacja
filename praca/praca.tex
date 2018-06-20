@@ -315,12 +315,11 @@ Inżynier \acrshort{gddkia} może:
   \item Wyznaczać przewidywane natężenie ruchu na danym odcinku drogi.
   \item Wyznaczać przewidywaną zajętość MOP-ów i liczbę potrzebnych miejsc parkingowych.
   \item Generować raporty.
-  \item Wyświetlić wyniki symulacji za pomocą \acrshort{gui} programu \textbf{Mopnik}.
 \end{enumerate}
 
 \section{Architektura}
 
-\subsubsection{Modele mikro-, mezo-, makroskopowe}
+\subsubsection{Modele mikro-, makro-, mezoskopowe}
 Modelem obliczeniowym w informatyce nazywamy model matematyczny, wykorzystujący zasoby komputerowe do zbadania zachowania złożonego systemu za pomocą symulacji\cite{model}. Modele obliczeniowe są obecnie wykorzystywane w bardzo wielu dziedzinach, m.in. do prognozy pogody, badania zmian klimatycznych, symulacji ruchu planet, a także w biologii czy medycynie. Jednym ze sposobów klasyfikacji modeli jest podział na modele mikro-, makro- i mezoskopowe\cite{micmac}:
 \begin{itemize}
 \item w modelu mikroskopowym każda jednostka jest opisywana przez jej charakterystyczne atrybuty i zachowania
@@ -333,21 +332,21 @@ Polega on na symulowaniu zachowań i oddziaływania między sobą zbioru autonom
 \subsubsection{System wieloagentowy}
     Nieco innym, choć pokrewnym pojęciem jest system wieloagentowy (ang. \textit{multi-agent system}). Jest to system komputerowy, złożony z wielu oddziałujących między sobą we wspólnym środowisku inteligentnych agentów. W odróżnieniu od modelu opartego na agentach, którego celem jest badanie złożonych procesów na podstawie zachowań poszczególnych jednostek, system wieloagentowy jest koncepcją programistyczną, w której agenci są wykorzystywani do rozwiązywania określonych problemów praktycznych lub inżynieryjnych. Systemy wieloagentowe często stosowane są w sytuacjach, gdy trzeba rozwiązać problemy o charakterze rozproszonym lub złożonych obliczeniowo, np. wyszukiwanie informacji w sieci, zarządzanie sieciami telekomunikacyjnymi, symulacja rynku, wspomaganie zarządzania w przedsiębiorstwie i kontrola ruchu lotniczego\cite{wiki-agent}. Poniższy schemat pokazuje ogólną zasadę działania systemu wieloagentowego. Każdy z agentów działa w środowisku, oddziałując na innych agentów i przeprowadzając obserwacje. Na ich podstawie, agent podejmuje decyzję o ewentualnej modyfikacji planu działania. Następnie agent ponownie wkracza do środowiska.
     \begin{figure}[h]
-        \caption{Schemat działania systemu wieloagentowego}
         \includegraphics[width=\textwidth]{images/mopsim/multi-agent.png}
+        \captionof{figure}{Schemat działania systemu wieloagentowego}
     \end{figure}
 \subsubsection{MATSim -- symulator ruchu drogowego}
 MATSim (\textit{Multi-Agent Transport Simulation}) to open-sourcowy, rozszerzalny framework napisany w Javie służący do przeprowadzania symulacji ruchu drogowego. Jego głównymi założeniami jest mikroskopowe modelowanie ruchu oraz oparte na agentach symulowanie dziennych planów poszczególnych jednostek. MATSim został zaprojektowany, by modelować aktywności podczas pojedynczego dnia. MATSim oparty jest o zasadę koewolucyjności. Każdy z agentów, reprezentujących pojedynczych uczestników ruchu drogowego, optymalizuje swój codzienny plan, rywalizując z innymi agentami w różnych aspektach korzystania z infrastruktury drogowej.\\
 Projekt MATSim został zapoczątkowany w 2004r. na Politechnice Federalnej w Zurychu.\cite{matsim} Od~tego czasu jest intensywnie rozwijany m.in. na tej uczelni, na Uniwersytecie Technicznym w~Berlinie, a także przez dziesiątki innych osób reprezentujących różne gałęzie nauki. MATSim został wykorzystany do przeprowadzenia symulacji ruchu drogowego m.in. w~Berlinie, Poznaniu, Seulu, Tel Avivie, Singapurze czy też dla całych Niemiec. Podejmowane były też próby wykorzystania go w celu modelowania ruchu lotniczego, symulowania ewakuacji czy~badania emisji spalin.
     \begin{figure}[h]
-        \caption{Logo MATSim}
         \includegraphics[width=\textwidth]{images/mopsim/matsim_logo.png}
+        \captionof{figure}{Logo MATSim}
     \end{figure}
 \subsubsection{MATSim -- pętla programu}
 Działanie programu polega na przeprowadzeniu określonej liczby iteracji, reprezentowanych przez pętlę na poniższym schemacie. MATSim zaczyna swoje działanie, wczytując ustawienia konfiguracyjne dotyczące sieci drogowej, populacji agentów wraz z ich dziennymi planami oraz metadane o symulacji, takie jak wybrany układ współrzędnych, liczba wątków czy parametry poszczególnych modułów. Podczas iteracji, każdy z agentów optymalizuje swój początkowy plan. Każdy z nich posiada zdefiniowany zbiór planów, składających się z dziennego łańcucha aktywności i~wyniku punktowego, który może być interpretowany jako użyteczność w pojęciu ekonometrycznym. Przed każdą iteracją, agenci wybierają plan ze~swojego zbioru. Wybór ten zależy od wyników poszczególnych planów, które są obliczane po każdej pojedynczej symulacji. Pod koniec iteracji, część agentów (najczęściej ok. 10\%) może zmodyfikować wybrany przez siebie plan i dodać go do swojego zbioru planów. 
     \begin{figure}[h]
-        \caption{Schemat działania MATSim}
         \includegraphics[width=\textwidth]{images/mopsim/matsim-workflow.png}
+        \captionof{figure}{Schemat działania MATSim}
     \end{figure}
 \newpage
 \subsubsection{Dlaczego MATSim?}
@@ -370,8 +369,8 @@ W programie Mopsim wykorzystano następujące technologie:
 \end{itemize}
 \section{Mopsim - opis działania}
     \begin{figure}[h]
-        \caption{Schemat działania programu Mopsim}
-        \includegraphics[width=\textwidth]{images/mopsim/mopsim-workflow.png}
+        \includegraphics[width=\textwidth]{images/mopsim/mopsim-workflow2.png}
+        \captionof{figure}{Schemat działania programu Mopsim}
     \end{figure}
 Program Mopsim wykorzystuje silnik programu MATSim do przeprowadzania
 symulacji. Poniższy schemat pokazuje zarys jego działania. Użytkownik programu
@@ -379,22 +378,22 @@ Mopsim wprowadza dane wejściowe -- plik z danymi o MOP-ach w formacie csv,
 macierze podróży pomiędzy poszczególnymi miastami powiatowymi dla trzech
 rodzajów pojazdów -- samochodów osobowych, ciężarowych i autobusów w formacie
 csv oraz mapę sieci drogowej w formacie \acrshort{osm}
-(\textit{OpenStreetMap}\cite{osm}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne. Część z nich może być przekazana do programu Mopnik w celu wizualizacji.
+(\textit{OpenStreetMap}\cite{osm}). Dane te są przetwarzane kolejno na odpowiednie pliki konfiguracyjne wykorzystywane przez MATSim -- opis obiektów powiązanych z odcinkami drogi (\textit{facilities}), opis agentów i ich planów oraz opis sieci drogowej. Użytkownik może dodatkowo zmodyfikować sieć dróg lub siatkę MOP-ów, dodając lub usuwając odpowiednie obiekty. Następnie przeprowadzana jest symulacja, w wyniku której tworzone są wykresy i inne dane analityczne.
 
 \subsubsection{Generowanie planów podróży}
     \begin{figure}[h]
-        \caption{Schemat działania generatora planów podróży}
         \includegraphics[width=\textwidth]{images/mopsim/mopsim-travelplan.png}
+        \captionof{figure}{Schemat działania generatora planów podróży}
     \end{figure}
 Generowanie planów podróży odbywa się na podstawie macierzy dla trzech rodzajów pojazdów (samochody osobowe, pojazdy ciężarowe i autobusy), do których użytkownik podaje ścieżki w pliku konfiguracyjnym. Macierz podróży reprezentowana jest przez plik csv. Liczba w $n$-tym wierszu i $m$-tej komórce macierzy oznacza, ile pojazdów danego typu przejeżdża średnio w ciągu dnia z punktu $n$ do punktu $m$. Punkty o odpowiednich indeksach odpowiadają miastom powiatowym i przejściom granicznym. Ich współrzędne umieszczone są w oddzielnym pliku.\\
 W module generującym plan podroży macierze są traktowane jak rozkład prawdopodobieństwa, według którego losowane są punkty startowe i końcowe dla poszczególnych agentów, których jest tyle, ile zostało określone w pliku konfiguracyjnym. Po wylosowaniu odpowiednich punktów, na podstawie zadanej strategii czasu wyjazdu wybierana jest godzina, o której agent wyjedzie w trasę. Następnie agent dodawany jest do symulacji. Opis wygenerowanych planów podróży agentów zostaje zapisany do pliku \texttt{travel\_plan.xml}.
-\newpage
+
 \subsubsection{Generowanie planu MOP-ów}
 Generowanie planu MOP-ów odbywa się na podstawie danego pliku csv, w którym kolejne kolumny oznaczają współrzędne MOP-a (w układzie 92 lub CH1903, w zależności od wybranej opcji w pliku konfiguracyjnym), lokalizację, nazwę, liczby miejsc parkingowych dla samochodów, pojazdów ciężarowych, busów i inne dane o obiektach znajdujących się na MOP-ie. Każdy z MOP-ów zostaje przyporządkowany do najbliższego odcinka drogi, który znajduje się po jego lewej stronie. Opis MOP-ów ze współrzędnymi zostaje zapisany w pliku \texttt{facilities.xml}, zaś ich atrybutów -- w pliku \texttt{facilities\_attributes.xml}.
 \subsubsection{Opis działania agenta w czasie symulacji}
     \begin{figure}[h]
-        \caption{Schemat działania agenta w czasie symulacji}
         \includegraphics[width=\textwidth]{images/mopsim/agent-dzialanie.png}
+        \captionof{figure}{Schemat działania agenta w czasie symulacji}
     \end{figure}
 Każdy z agentów biorących udział w symulacji wyposażony jest w dane początkowe:
 \begin{itemize}
@@ -407,14 +406,14 @@ Końcowe dane symulacji zawierają informacje o zmodyfikowanych planach agentów
 \subsubsection{Mopsim - pliki wyjściowe}
     \begin{figure}[h]
         \centering
-        \caption{Podział plików wyjściowych symulacji}
         \includegraphics[width=0.6\textwidth]{images/mopsim/dane-wyjsciowe.png}
+        \captionof{figure}{Podział plików wyjściowych symulacji}
     \end{figure}
 Dla każdej symulacji w programie Mopsim tworzony jest katalog, w którym umieszczone są dane wyjściowe. Jest on nazwany podanym w pliku konfiguracyjnym id symulacji lub, jeżeli nie zostało ono określone, domyślną nazwą postaci \texttt{sim\_yyyyMMdd-HHmmss}, a zatem znacznikiem czasu. W folderze utworzone są dwa podkatalogi - \texttt{MOPs} i \texttt{simulation\_data}. W pierwszym z nich utworzony jest katalog dla każdego z MOP-ów. Umieszczone są w nim raport w postaci pliku tekstowego i csv, a także wykresy przedstawiające w podziale na godziny takie dane jak:
     \begin{figure}[!b]
         \centering
-        \caption{Zrzut ekranu z symulacji programem Via. Różowe trójkąty oznaczają Miejsca Obsługi Podróżnych,  zielone -- poruszające się pojazdy.}
-        \includegraphics[width=0.9\textwidth]{images/mopsim/sim-via.png} 
+        \includegraphics[width=0.9\textwidth]{images/mopsim/sim-via.png}
+        \captionof{figure}{Zrzut ekranu z symulacji programem Via. Różowe trójkąty oznaczają Miejsca Obsługi Podróżnych,  zielone -- poruszające się pojazdy.}
     \end{figure}
 \begin{itemize}
 \item Liczba pojazdów danego typu, które wjechały na MOP-a.
@@ -425,8 +424,8 @@ Dla każdej symulacji w programie Mopsim tworzony jest katalog, w którym umiesz
 W raportach umieszczone są zsumowane dane dla całego dnia.
     \begin{figure}[h]
         \centering
-        \caption{Przykładowy wykres wygenerowany podczas symulacji}
         \includegraphics[width=0.8\textwidth]{images/mopsim/passingVehicles.png}
+        \captionof{figure}{Przykładowy wykres wygenerowany podczas symulacji}
     \end{figure}
 W folderze \texttt{simulation\_data} znajduje się raport, w którym znajdują się informacje o ustawieniach i ścieżki do plików wejściowych symulacji. Znajdują się w nim również dane dotyczące łącznej liczby pojazdów wjeżdżających na parkingi, przejeżdżających obok nich i
 średniej długości pobytu na MOP-ie. Oprócz tego w katalogu \texttt{simulation\_data} umieszczony jest folder z danymi wyjściowymi MATSima, w którym znajdują się między innymi:
