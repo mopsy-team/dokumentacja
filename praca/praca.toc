@@ -1,90 +1,108 @@
 \select@language {polish}
+\enlargethispage *{1\baselineskip }
 \contentsline {chapter}{\numberline {1}S\IeC {\l }owniczek}{5}{chapter.1}
 \contentsline {chapter}{\numberline {2}Wprowadzenie}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}Rozw\IeC {\'o}j sieci drogowej w Polsce}{7}{section.2.1}
+\contentsline {section}{\numberline {2.1}Rozw\IeC {\'o}j sieci drogowej w~Polsce}{7}{section.2.1}
 \contentsline {section}{\numberline {2.2}Miejsca Obs\IeC {\l }ugi Podr\IeC {\'o}\IeC {\.z}nych}{8}{section.2.2}
-\contentsline {section}{\numberline {2.3}Problemy zwi\IeC {\k a}zane z budow\IeC {\k a} MOP-\IeC {\'o}w}{9}{section.2.3}
-\contentsline {section}{\numberline {2.4}Symulacja ruchu drogowego w Polsce}{10}{section.2.4}
+\contentsline {section}{\numberline {2.3}Problemy zwi\IeC {\k a}zane z~budow\IeC {\k a} MOP-\IeC {\'o}w}{9}{section.2.3}
+\contentsline {section}{\numberline {2.4}Symulacja ruchu drogowego w~Polsce}{10}{section.2.4}
 \contentsline {section}{\numberline {2.5}Przewidywanie liczby potrzebnych miejsc parkingowych}{10}{section.2.5}
-\contentsline {section}{\numberline {2.6}Zaj\IeC {\k e}to\IeC {\'s}\IeC {\'c} MOP-\IeC {\'o}w i dost\IeC {\k e}pne us\IeC {\l }ugi}{11}{section.2.6}
+\contentsline {section}{\numberline {2.6}Zaj\IeC {\k e}to\IeC {\'s}\IeC {\'c} MOP-\IeC {\'o}w i~dost\IeC {\k e}pne us\IeC {\l }ugi}{11}{section.2.6}
 \contentsline {section}{\numberline {2.7}Nasze zadanie}{11}{section.2.7}
 \contentsline {chapter}{\numberline {3}Mopnik}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Przypadki u\IeC {\.z}ycia}{13}{section.3.1}
 \contentsline {section}{\numberline {3.2}Architektura}{13}{section.3.2}
-\contentsline {subsubsection}{Wykorzystywanie biblioteki}{13}{section*.5}
-\contentsline {subsubsection}{Dane wej\IeC {\'s}ciowe}{14}{section*.6}
-\contentsline {subsubsection}{Wy\IeC {\'s}wietlanie mapy}{14}{section*.7}
-\contentsline {paragraph}{}{14}{section*.8}
-\contentsline {paragraph}{}{14}{section*.9}
-\contentsline {section}{\numberline {3.3}Dokumentacja u\IeC {\.z}ytkowa i opis implementacji}{14}{section.3.3}
-\contentsline {chapter}{\numberline {4}Mopsim}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}Przypadki u\IeC {\.z}ycia}{15}{section.4.1}
-\contentsline {section}{\numberline {4.2}Architektura}{15}{section.4.2}
-\contentsline {subsubsection}{Modele mikro-, makroskopowe}{15}{section*.10}
-\contentsline {subsubsection}{Model obliczeniowy oparty na agentach}{16}{section*.11}
-\contentsline {subsubsection}{System wieloagentowy}{16}{section*.12}
-\contentsline {subsubsection}{MATSim -- symulator ruchu drogowego}{17}{section*.14}
-\contentsline {subsubsection}{MATSim -- p\IeC {\k e}tla programu}{17}{section*.16}
-\contentsline {subsubsection}{Dlaczego MATSim?}{18}{section*.18}
-\contentsline {subsubsection}{Mopsim -- schemat dzia\IeC {\l }ania programu}{18}{section*.19}
-\contentsline {subsubsection}{Mopsim -- technologie}{19}{section*.21}
-\contentsline {section}{\numberline {4.3}Dokumentacja u\IeC {\.z}ytkowa i opis implementacji}{19}{section.4.3}
-\contentsline {chapter}{\numberline {5}Mopsik -- Strona serwerowa - \acrshort {api}}{21}{chapter.5}
-\contentsline {section}{\numberline {5.1}Przypadki u\IeC {\.z}ycia}{21}{section.5.1}
-\contentsline {section}{\numberline {5.2}Architektura}{21}{section.5.2}
-\contentsline {paragraph}{Cron}{21}{section*.22}
-\contentsline {paragraph}{Aplikacja Django}{22}{section*.23}
-\contentsline {section}{\numberline {5.3}Dokumentacja u\IeC {\.z}ytkowa i opis implementacji}{22}{section.5.3}
-\contentsline {chapter}{\numberline {6}Mopsik -- Aplikacja mobilna}{23}{chapter.6}
-\contentsline {section}{\numberline {6.1}Przypadki u\IeC {\.z}ycia}{23}{section.6.1}
-\contentsline {section}{\numberline {6.2}Architektura i opis implementacji}{23}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Technologia}{23}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Zak\IeC {\l }adki}{24}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Konfiguracja aplikacji i ustawienia}{24}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Google Maps}{26}{subsection.6.2.4}
-\contentsline {subsubsection}{Warunki}{26}{section*.29}
-\contentsline {subsubsection}{Dzia\IeC {\l }anie}{26}{section*.30}
-\contentsline {subsubsection}{Wydajno\IeC {\'s}\IeC {\'c}}{26}{section*.31}
-\contentsline {subsubsection}{Bezpiecze\IeC {\'n}stwo}{27}{section*.32}
-\contentsline {subsection}{\numberline {6.2.5}Zapytanie do API}{27}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}U\IeC {\.z}yte biblioteki}{27}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}Nawigacja}{28}{subsection.6.2.7}
-\contentsline {subsection}{\numberline {6.2.8}Pozosta\IeC {\l }e komponenty}{29}{subsection.6.2.8}
-\contentsline {subsection}{\numberline {6.2.9}Pliki konfiguracyjne i funkcje}{30}{subsection.6.2.9}
-\contentsline {subsection}{\numberline {6.2.10}Zapisywanie danych}{31}{subsection.6.2.10}
-\contentsline {chapter}{\numberline {7}Mopsik -- Strona internetowa}{33}{chapter.7}
-\contentsline {section}{\numberline {7.1}Przypadki u\IeC {\.z}ycia}{33}{section.7.1}
-\contentsline {section}{\numberline {7.2}Architektura i opis implementacji}{33}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Technologia}{33}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Zak\IeC {\l }adki}{33}{subsection.7.2.2}
-\contentsline {subsubsection}{Mapa}{33}{section*.36}
-\contentsline {subsubsection}{Wyszukiwarka}{34}{section*.38}
-\contentsline {subsubsection}{Szczeg\IeC {\'o}\IeC {\l }y}{35}{section*.40}
-\contentsline {subsection}{\numberline {7.2.3}Zapytania do API i zapisywanie danych}{36}{subsection.7.2.3}
-\contentsline {subsubsection}{Parsowanie danych z API}{36}{section*.42}
-\contentsline {subsection}{\numberline {7.2.4}Modele i modele widok\IeC {\'o}w}{37}{subsection.7.2.4}
-\contentsline {paragraph}{Modele}{37}{section*.43}
-\contentsline {paragraph}{Modele widok\IeC {\'o}w}{37}{section*.44}
-\contentsline {subsection}{\numberline {7.2.5}Kontrolery i widoki}{38}{subsection.7.2.5}
-\contentsline {subsection}{\numberline {7.2.6}U\IeC {\.z}yte biblioteki}{38}{subsection.7.2.6}
-\contentsline {chapter}{\numberline {8}Organizacja pracy}{39}{chapter.8}
-\contentsline {paragraph}{Slack}{39}{section*.45}
-\contentsline {paragraph}{GitHub}{39}{section*.46}
-\contentsline {paragraph}{Todoist}{39}{section*.47}
-\contentsline {chapter}{\numberline {9}Podzia\IeC {\l } zada\IeC {\'n}}{41}{chapter.9}
-\contentsline {paragraph}{Mopnik}{41}{section*.48}
-\contentsline {paragraph}{Mopsim}{41}{section*.49}
-\contentsline {paragraph}{Mopsik - serwer}{41}{section*.50}
-\contentsline {paragraph}{Mopsik - aplikacja mobilna}{41}{section*.51}
-\contentsline {paragraph}{Mopsik - strona internetowa}{41}{section*.52}
-\contentsline {paragraph}{Dokumentacja / Praca licencjacka}{41}{section*.53}
-\contentsline {chapter}{\numberline {10}Napotkane problemy i niezrealizowane pomys\IeC {\l }y}{43}{chapter.10}
-\contentsline {section}{\numberline {10.1}Napotkane problemy}{43}{section.10.1}
-\contentsline {subsection}{\numberline {10.1.1}Problemy z danymi i komunikacj\IeC {\k a} w zespole}{43}{subsection.10.1.1}
-\contentsline {subsection}{\numberline {10.1.2}Problemy techniczne}{44}{subsection.10.1.2}
-\contentsline {section}{\numberline {10.2}Niezrealizowane pomys\IeC {\l }y}{44}{section.10.2}
-\contentsline {subsection}{\numberline {10.2.1}Predycje kr\IeC {\'o}tkoterminowe}{44}{subsection.10.2.1}
-\contentsline {subsection}{\numberline {10.2.2}Rozszerzona interakcja u\IeC {\.z}ytkownik\IeC {\'o}w z aplikacj\IeC {\k a} mobiln\IeC {\k a}}{44}{subsection.10.2.2}
-\contentsline {subsection}{\numberline {10.2.3}Precyzyjne dodawanie planowanych dr\IeC {\'o}g do programu Mopnik}{45}{subsection.10.2.3}
-\contentsline {chapter}{\numberline {11}Zawarto\IeC {\'s}\IeC {\'c} p\IeC {\l }yty}{47}{chapter.11}
-\contentsline {chapter}{Bibliografia}{49}{chapter*.54}
+\contentsline {subsection}{\numberline {3.2.1}Wykorzystywanie biblioteki}{13}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Dane wej\IeC {\'s}ciowe}{14}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Domy\IeC {\'s}lne dane wej\IeC {\'s}ciowe}{14}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Wy\IeC {\'s}wietlanie mapy}{14}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Integracja z~programem \hyperref [r:mopsim]{Mopsim}}{14}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Pikieta\IeC {\.z} a~wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dne geograficzne}{14}{subsection.3.2.6}
+\contentsline {paragraph}{Problem}{14}{section*.5}
+\contentsline {paragraph}{Rozwi\IeC {\k a}zanie}{15}{section*.6}
+\contentsline {section}{\numberline {3.3}Metodyki}{15}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Wy\IeC {\'s}wietlanie wynik\IeC {\'o}w metodyk}{15}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Dodatkowe metodyki}{15}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Zrzuty ekranu}{15}{section.3.4}
+\contentsline {chapter}{\numberline {4}Mopsim}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Przypadki u\IeC {\.z}ycia}{17}{section.4.1}
+\contentsline {section}{\numberline {4.2}Architektura}{17}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Modele mikro-, makro-, mezoskopowe}{17}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Model obliczeniowy oparty na agentach}{18}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}System wieloagentowy}{18}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}MATSim -- symulator ruchu drogowego}{19}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}MATSim -- p\IeC {\k e}tla programu}{19}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Dlaczego MATSim?}{20}{subsection.4.2.6}
+\contentsline {subsection}{\numberline {4.2.7}Mopsim -- technologie}{20}{subsection.4.2.7}
+\contentsline {section}{\numberline {4.3}Opis dzia\IeC {\l }ania}{21}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Generowanie plan\IeC {\'o}w podr\IeC {\'o}\IeC {\.z}y}{21}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Generowanie planu MOP-\IeC {\'o}w}{22}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Opis dzia\IeC {\l }ania agenta w~czasie symulacji}{22}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Mopsim - pliki wyj\IeC {\'s}ciowe}{23}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Instrukcja u\IeC {\.z}ytkownika}{25}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Konfiguracja}{25}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Przeprowadzanie symulacji}{26}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Generowanie siatki drogowej}{27}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Strategie}{27}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Mopsim - dodanie w\IeC {\l }asnych strategii}{28}{subsection.4.4.5}
+\contentsline {section}{\numberline {4.5}Opis implementacji}{28}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Podzia\IeC {\l } plik\IeC {\'o}w}{28}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Opis poszczeg\IeC {\'o}lnych klas}{28}{subsection.4.5.2}
+\contentsline {chapter}{\numberline {5}Mopsik -- Strona serwerowa - \acrshort {api}}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Przypadki u\IeC {\.z}ycia API}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Architektura}{31}{section.5.2}
+\contentsline {paragraph}{Cron}{31}{section*.20}
+\contentsline {paragraph}{Aplikacja Django}{32}{section*.21}
+\contentsline {chapter}{\numberline {6}Mopsik -- Aplikacja mobilna}{33}{chapter.6}
+\contentsline {section}{\numberline {6.1}Przypadki u\IeC {\.z}ycia}{33}{section.6.1}
+\contentsline {section}{\numberline {6.2}Architektura i~opis implementacji}{33}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Technologia}{33}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Zak\IeC {\l }adki}{34}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Konfiguracja aplikacji i~ustawienia}{34}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Google Maps}{36}{subsection.6.2.4}
+\contentsline {subsubsection}{Warunki}{36}{section*.27}
+\contentsline {subsubsection}{Dzia\IeC {\l }anie}{36}{section*.28}
+\contentsline {subsubsection}{Wydajno\IeC {\'s}\IeC {\'c}}{36}{section*.29}
+\contentsline {subsubsection}{Bezpiecze\IeC {\'n}stwo}{37}{section*.30}
+\contentsline {subsection}{\numberline {6.2.5}Zapytanie do API}{37}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}U\IeC {\.z}yte biblioteki}{37}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Nawigacja}{38}{subsection.6.2.7}
+\contentsline {subsection}{\numberline {6.2.8}Pozosta\IeC {\l }e komponenty}{39}{subsection.6.2.8}
+\contentsline {subsection}{\numberline {6.2.9}Pliki konfiguracyjne i~funkcje}{40}{subsection.6.2.9}
+\contentsline {subsection}{\numberline {6.2.10}Zapisywanie danych}{41}{subsection.6.2.10}
+\contentsline {chapter}{\numberline {7}Mopsik -- Strona internetowa}{43}{chapter.7}
+\contentsline {section}{\numberline {7.1}Przypadki u\IeC {\.z}ycia}{43}{section.7.1}
+\contentsline {section}{\numberline {7.2}Architektura i~opis implementacji}{43}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Technologia}{43}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Zak\IeC {\l }adki}{43}{subsection.7.2.2}
+\contentsline {subsubsection}{Mapa}{43}{section*.34}
+\contentsline {subsubsection}{Wyszukiwarka}{44}{section*.36}
+\contentsline {subsubsection}{Szczeg\IeC {\'o}\IeC {\l }y}{45}{section*.38}
+\contentsline {subsection}{\numberline {7.2.3}Zapytania do API i~zapisywanie danych}{46}{subsection.7.2.3}
+\contentsline {subsubsection}{Parsowanie danych z~API}{46}{section*.40}
+\contentsline {subsection}{\numberline {7.2.4}Modele i~modele widok\IeC {\'o}w}{47}{subsection.7.2.4}
+\contentsline {paragraph}{Modele}{47}{section*.41}
+\contentsline {paragraph}{Modele widok\IeC {\'o}w}{47}{section*.42}
+\contentsline {subsection}{\numberline {7.2.5}Kontrolery i~widoki}{48}{subsection.7.2.5}
+\contentsline {subsection}{\numberline {7.2.6}U\IeC {\.z}yte biblioteki}{48}{subsection.7.2.6}
+\contentsline {chapter}{\numberline {8}Organizacja pracy}{49}{chapter.8}
+\contentsline {paragraph}{Slack}{49}{section*.43}
+\contentsline {paragraph}{GitHub}{49}{section*.44}
+\contentsline {paragraph}{Todoist}{49}{section*.45}
+\contentsline {chapter}{\numberline {9}Podzia\IeC {\l } zada\IeC {\'n}}{51}{chapter.9}
+\contentsline {paragraph}{Mopnik}{51}{section*.46}
+\contentsline {paragraph}{Mopsim}{51}{section*.47}
+\contentsline {paragraph}{Mopsik - serwer}{51}{section*.48}
+\contentsline {paragraph}{Mopsik - aplikacja mobilna}{51}{section*.49}
+\contentsline {paragraph}{Mopsik - strona internetowa}{51}{section*.50}
+\contentsline {paragraph}{Dokumentacja / Praca licencjacka}{51}{section*.51}
+\contentsline {chapter}{\numberline {10}Napotkane problemy i~niezrealizowane pomys\IeC {\l }y}{53}{chapter.10}
+\contentsline {section}{\numberline {10.1}Napotkane problemy}{53}{section.10.1}
+\contentsline {subsubsection}{Problemy z~danymi i~komunikacj\IeC {\k a} w~zespole}{53}{section*.52}
+\contentsline {subsubsection}{Problemy techniczne}{54}{section*.53}
+\contentsline {section}{\numberline {10.2}Niezrealizowane pomys\IeC {\l }y}{54}{section.10.2}
+\contentsline {subsubsection}{Predykcje kr\IeC {\'o}tkoterminowe}{54}{section*.54}
+\contentsline {subsubsection}{Rozszerzona interakcja u\IeC {\.z}ytkownik\IeC {\'o}w z~aplikacj\IeC {\k a} mobiln\IeC {\k a}}{54}{section*.55}
+\contentsline {subsubsection}{Precyzyjne dodawanie planowanych dr\IeC {\'o}g do programu Mopnik}{55}{section*.56}
+\contentsline {chapter}{\numberline {11}Zawarto\IeC {\'s}\IeC {\'c} p\IeC {\l }yty}{57}{chapter.11}
+\contentsline {chapter}{Bibliografia}{59}{chapter*.58}
