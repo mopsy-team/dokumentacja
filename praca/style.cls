@@ -359,8 +359,8 @@
 	\def\klasyfikacja#1{\gdef\@klasyfikacja{#1}}
 	\def\@klasyfikacja{???\ClassError{pracamgr}{Brak klasyfikacji tematycznej}\@ehc}
 	%-------------------nowe------------
-	%\def\tytulang#1{\gdef\@tytulang{#1}}
-	%\def\@tytulang{???\ClassError{pracamgr}{Brak tytulu po angielsku}\@ehc}
+	\def\tytulang#1{\gdef\@tytulang{#1}}
+	\def\@tytulang{???\ClassError{pracamgr}{Brak tytulu po angielsku}\@ehc}
 
 
 	\renewenvironment{abstract}{%
@@ -392,11 +392,11 @@
 	  \@klasyfikacja\par
 	  \vspace*{26pt}%
 	%-------------------nowosc----------------
-%	  \begin{center}%
-%		\bfseries\large Tytuł pracy w języku angielskim
-%		\@endparpenalty\@M
-%	  \end{center}
-%	  \@tytulang\par
+	  \begin{center}%
+		\bfseries\large Tytuł pracy w języku angielskim
+		\@endparpenalty\@M
+	  \end{center}
+	  \@tytulang\par
 	  \nobreak\vfil\null\endtitlepage\cleardoublepage}
 
 	\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
