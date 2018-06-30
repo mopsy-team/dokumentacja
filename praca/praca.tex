@@ -446,8 +446,8 @@ Oprócz powyższych parametrów, modyfikujących pracę biblioteki MATSim, oddzi
 \item \texttt{carNr}, \texttt{truckNr}, \texttt{busNr} - parametry określające liczbę pojazdów danego typu biorących udział w~symulacji. Domyślne wartości -- 100000, 40000, 0.
 \item \texttt{carPath}, \texttt{truckPath}, \texttt{busPath} - ścieżki do plików z~macierzami podróży dla poszczególnych pojazdów. Domyślna wartość -- \\\texttt{src/main/resources/travel\_matrices/car\_matrix.csv} i~analogicznie dla pozostałych typów pojazdów.
 \item \texttt{timeDistribution} -- nazwa strategii wyboru czasu wyjazdu dla pojazdów. Domyślna wartość - \texttt{BASIC\_DISTRIBUTION}.
-\item \texttt{carEnter}, \texttt{truckEnter}, \texttt{busEnter} -- nazwy strategii decyzji o wjeździe na MOP-a dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{BASIC\_STRATEGY}, \\\texttt{TRUCK\_STRATEGY}, \texttt{TRUCK\_STRATEGY}.
-\item \texttt{carStay}, \texttt{truckStay}, \texttt{busStay} -- nazwy strategii długości czasu pobytu na MOP-ie dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{CAR\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}.
+\item \texttt{carEnter}, \texttt{truckEnter}, \texttt{busEnter} -- nazwy strategii decyzji o wjeździe na MOP-a dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{BASIC\_STRATEGY}, \\\texttt{TRUCK\_STRATEGY}, \texttt{BUS\_STRATEGY}.
+\item \texttt{carStay}, \texttt{truckStay}, \texttt{busStay} -- nazwy strategii długości czasu pobytu na MOP-ie dla poszczególnych typów pojazdów. Domyślne wartości to kolejno \texttt{CAR\_STAY\_STRATEGY}, \texttt{TRUCK\_STAY\_STRATEGY}, \texttt{BUS\_STAY\_STRATEGY}.
 \end{itemize}
 Więcej o poszczególnych strategiach, ich nazwach i~dodawaniu nowych w~podrozdziale Strategie.
 \subsection{Przeprowadzanie symulacji}
@@ -1237,11 +1237,7 @@ Axhausen, K W. (eds.) ``The Multi-Agent Transport Simulation MATSim'', Pp. 3–8
 
 
 \end{document}
-<<<<<<< HEAD
-=======
 
-
->>>>>>> parent of 6c6cd6e... some fixes in mopsim section
 %%% Local Variables:
 -%%% mode: latex
 -%%% TeX-master: t
