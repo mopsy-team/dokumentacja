@@ -1,5 +1,5 @@
 % book example for classicthesis.sty
-\documentclass[10pt,paper=a4 BCOR0, DIV15]{scrbook} % KOMA-Script book
+\documentclass[10pt,paper=a4 BCOR0, DIV15, titlepage=false, oneside]{scrbook} % KOMA-Script book
 \usepackage[T1]{fontenc}                
 \usepackage{lipsum}
 \usepackage[linedheaders,parts,pdfspacing]{classicthesis} % ,manychapters
@@ -8,34 +8,33 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
-\usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{geometry}
-%\newgeometry{tmargin=2.5cm, bmargin=1.5cm, lmargin=1.5cm, rmargin=1.5cm}
-\urlstyle{sf} 
+\newgeometry{tmargin=2.5cm, bmargin=1.5cm, lmargin=1.5cm, rmargin = 1.5cm}
 \renewcommand{\contentsname}{Instrukcja obsługi programu Mopnik}
 \begin{document}
 %	\pagestyle{scrheadings}
-%	\manualmark
-%	\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
-	
-	\tableofcontents 
-
-%	\automark[section]{chapter}
+% \manualmark
+%	\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}	
+\tableofcontents 
+%\automark[section]{chapter}
 %	\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
 %	\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
 
     % use \cleardoublepage here to avoid problems with pdfbookmark
     %\cleardoublepage\part{Widok po uruchomieniu programu}
-    \chapter{Widok po uruchomieniu programu}
-    %\addtocounter{chapter}{1}
+    \chapter*{Widok po uruchomieniu programu}
+    \addtocounter{chapter}{1}
+    \addcontentsline{toc}{chapter}{Widok po uruchomieniu programu}
     \section{Wyświetlanie mapy}
     \paragraph{}
     Po uruchomieniu programu ładowane są domyślne dane:
     \begin{enumerate}
     \item Kafelki mapy w formacie graficznym (służą one tylko wizualizacji).
     \item Mapa sieci drogowej w formacie OSM.
-    \item Dane dotyczące średniodobowego natężenia ruchu.
+    \item Dane dotyczące średniodobowego natężenia ruchu (pochodzące z
+      Generalnego Pomiaru Ruchu w 2015r.
+      \footnote{\url{https://www.gddkia.gov.pl/userfiles/articles/g/generalny-pomiar-ruchu-w-2015_15598//SYNTEZA/WYNIKI_GPR2015_DK.pdf}}
     \item Dane dotyczące rozmieszczenia MOP-ów.
     \end{enumerate}
  \begin{figure}[ht]
@@ -99,26 +98,109 @@
           \caption{Podgląd MOP-a}
       \end{figure}
 
-    \chapter{Test Chapter}
-    \lipsum[1]
+      \chapter*{Modyfikacja danych}
+      \addcontentsline{toc}{chapter}{Modyfikacja danych}
+      \addtocounter{chapter}{1}
+      \setcounter{section}{0}
 
-    \section{A Section}
-    \lipsum[1]
-    
-    \chapter{Test Chapter}
-    \lipsum[1]
-    
-    \section{A Section}
-    \lipsum[1]
+      Możliwa jest zmiana domyślnych danych. Po ich wprowadzeniu, wyniki
+      natychmiast są obliczane ponownie i zaznaczanie na mapie.
 
-%	\include{multiToC}
+      \section{Parametry metodyki}
+        Aby zmienić domyślne parametry metodyki należy z głównego menu wybrać
+        Predykcje > Zajętości MOP-ów > Domyślna metodyka. Pojawi się okienko z
+        parametrami. Dwukrotne kliknięcie na wartość daje możliwość edycji. Po
+        kliknięciu przycisku \textit{Ustaw parametry} zmiany będą widoczne na
+        mapie.
 
-    \appendix
-    \cleardoublepage\part{Appendix}
-    \chapter{Appendix Chapter}
-    \lipsum[1]
-    
-    \section{A Section}
-    \lipsum[1]
+      \section{Średniodobowe natężenie ruchu}
+        Aby dodać dane dotyczące średniodobowego natężenia ruchu należy z
+        głównego menu wybrać Wczytaj dane z pliku > Średniodobowe natężenie
+        ruchu. Wczytywany plik musi być w formacie csv, jeden rząd na jeden
+        odcinek drogi. Kolejność pól powinna być taka, jak ta w GPR2015 czyli następująca:
+        \begin{enumerate}
+          \item Numer punktu pomiarowego
+          \item Numer drogi (kraj)
+          \item Numer drogi (E)
+          \item Pikietaż początku (kilometry i metry oddzielone przecinkiem)
+          \item Pikietaż końca (kilometry i metry oddzielone przecinkiem)
+          \item Długość
+          \item Nazwa
+          \item SDR pojazdów silnikowych ogółem 
+          \item SDR ze względu na rodzaj pojazdu, kolejno:
+          \begin{itemize}
+            \item Motocykle
+            \item Samochody osobowe i mikrobusy
+            \item Samochody dostawcze
+            \item Samochody ciężarowe bez przyczepy
+            \item Samochody ciężarowe z przyczepą
+            \item Autobusy 
+          \end{itemize}
+        \end{enumerate}
+        Plik nie powinien też zawierać nagłówka z tytułami kolumn. Dodanie
+        pliku w złym formacie nie powiedzie się.
+
+        \section{Układ MOP-ów}
+        \subsection{Z pliku} TODO
+        \subsection{Z serwera} TODO
+
+        \chapter*{Dodawanie nowych obiektów}
+        \setcounter{section}{0}
+        \addcontentsline{toc}{chapter}{Dodawanie nowych obiektów}
+        \addtocounter{chapter}{1}
+        \section{Drogi}
+        W celu dodania nowego odcinka drogi, należy z głównego menu wybrać
+        Dodaj... > Drogę. Następnie wybrać dwa punkty na mapie, gdzie ma być
+        początek i koniec drogi. Kolejność kliknięć ma znaczenie -- pierwsze
+        będzie oznaczało początek, drugie koniec. Następnie należy wypełnić
+        okienko odpowiednimi wartościami (jak na rysunku poniżej). 
+
+       \begin{figure}[ht]
+        \centering
+       \includegraphics[width=.3\textwidth]{dodawanie_drogi.png}
+        \caption{Dodawanie drogi}
+      \end{figure}
+
+      \section{MOP-a}
+      W celu dodania nowego MOP-a należy z głównego menu wybrać Dodaj... >
+      MOP-a. Następnie wybrać punkt na mapie, gdzie ma być umieszczony MOP.
+      Jeżeli punkt jest wystarczająco blisko istniejącej (lub dodanej) drogi,
+      zostanie do niej przypisany. W tym wypadku należy również wybrać kierunek
+      -- a więc stronę drogi, przy której MOP ma stanąć. Po zatwierdzeniu tych
+      danych, w odpowiednim miejscy mapy pojawia się czerwona ikonka
+      oznaczająca dodanego MOP-a. Dane dotyczące liczby miejsc parkingowych i
+      wyposażenia można edytować w jego podglądzie. Zmiana liczby miejsc
+      parkingowych spowoduje ponowne obliczenie liczby miejsc przy odpowiednim
+      odcinku drogi i ewentualną zmianę kolorów na mapie. 
+
+     \begin{figure}[ht]
+       \begin{minipage}{.3\textwidth}
+        \centering
+       \includegraphics[width=.9\linewidth]{dodawanie_drogi.png}
+        \caption{Dodawanie MOP-a}
+      \end{minipage}%
+      \begin{minipage}{.6\textwidth}
+        \centering
+       \includegraphics[width=.9\linewidth]{dodany_mop_droga.png}
+        \caption{Mapa z nowym MOP-em i nową drogą}
+      \end{minipage}
+      \end{figure}
+
+
+    \chapter*{Symulacje}
+    \addtocounter{chapter}{1}
+    \setcounter{section}{0}
+    \addcontentsline{toc}{chapter}{Symulacje}
+    TODO
+
+  
+
+
+
 
 \end{document}
+
+
+
+
+
