@@ -141,8 +141,16 @@
         pliku w złym formacie nie powiedzie się.
 
         \section{Układ MOP-ów}
-        \subsection{Z pliku w formacie json} TODO
-        \subsection{Z serwera} TODO
+        \subsection{Z pliku w formacie json}
+        Aby dodać dane o MOP-ach z pliku należy z
+        głównego menu wybrać Wczytaj dane z pliku > Układ MOP-ów. 
+        Wczytywany plik musi być w formacie json. \\
+        Pola konieczne do prawidłowego dodania MOP-ów do programu to wszystkie te, dostarczane przez serwer z wyjątkiem danych o operatorze MOP-a oraz o aktualnej zajętości
+        \subsection{Z serwera} 
+        Aby dodać dane o MOP-ach z serwera należy z
+        głównego menu wybrać Dane z serwera > Dodaj układ MOP-ów. \\
+        Dokładny opis pliku JSON z danymi o MOP-ach jest dostępny w instrukcji do programu Mopsik--Serwer.
+        W każdej chwili można zmienić adres serwera z którego pobierane będą dane. Można to uczynić wybierając z głównego menu Dane z serwera > Zmień adres serwera, ustawiając odpowiedni url oraz klikając Zapisz.
 
         \chapter*{Dodawanie nowych obiektów}
         \setcounter{section}{0}
@@ -153,7 +161,7 @@
         Dodaj... > Drogę. Następnie wybrać dwa punkty na mapie, gdzie ma być
         początek i koniec drogi. Kolejność kliknięć ma znaczenie -- pierwsze
         będzie oznaczało początek, drugie koniec. Następnie należy wypełnić
-        okienko odpowiednimi wartościami (jak na rysunku poniżej). 
+        okienko odpowiednimi wartościami (jak na rysunku poniżej). Jeśli podczas wyboru początku lub końca drogi klikniemy blisko już istniejącej, nowa droga zostanie podczepiona do istniejącej drogi. Potwierdzeniem tego będzie napis "Początek/Koniec drogi zakotwiczony w [nr drogi]". W przeciwnym wypadku pojawi się napis "Początek/Koniec drogi nie jest zakotwiczony".
 
        \begin{figure}[ht]
         \centering
@@ -191,19 +199,25 @@
     \addtocounter{chapter}{1}
     \setcounter{section}{0}
     \addcontentsline{toc}{chapter}{Symulacje}
-    TODO
+    
+    \section{Przygotowanie do symulacji}
+    Aby przeprowadzić Symulację za pomoą zintegrowanego programu Mopsim będziemy potrzebowali pięciu plików wejściowych. Są to: \begin{itemize}
+    \item Plik z siecią drogową -- format .xml
+    \item Układ MOP-ów -- format .json lub .csv, współrzędne w układzie WGS84 lub układzie 92
+    \item Macierze podróży dla samochodów osobowych, samochodów ciężarowych i autobusów.
+\end{itemize}
+Plik z siecią drogową możemy wyprodukować z pliku .osm opcją Symulacje -> Generuj siatkę drogową.\\
+Plik z MOP-ami w formacie .json możemy wyprodukować za pomocą polecenia Eksportuj do pliku -> Układ MOP-ów.\\
+Więcej szczegółów na temat formatu tych plików można znaleźć w instrukcji obsługi programu Mopsim.
 
-    \chapter*{Zapisywanie danych do pliku}
-    \addtocounter{chapter}{1}
-    \setcounter{section}{0}
-    \addcontentsline{toc}{chapter}{Zapisywanie danych do pliku}
-
-    \section{Układ MOPów}
-
-  
-
-
-
+\section{Przeprowadzanie symulacji}
+    W celu przeprowadzenia symulacji z użyciem zintegrowaniego programu Mopsim należy wybrać w menu głównym Symulacje -> Przeprowadź symulację. Zostaniemy przekierowani do okienka w którym otrzymamy wybór plików wejściowych symulacji. Domyślnie wpisane są pliki, które są dołączone do programu Mopsim. Możemy je dowolnie zmieniać wpisując ścieżkę lub wybierając plik z menu otwierającego się po kliknięciu przycisku "Wybierz". \\
+    Następnie wybieramy odpowiednią liczbę pojazdów, które mają wziąć udział w symulacji. Ustawiamy Id symulacji -- będzie to nazwa folderu w którym zostaną przedstawione dane o symulacji. Możemy także wybrać liczbę wątków które zostaną użyte do przeprowadzenia symulacji. Przy komputerach z procesorami wielordzeniowymi możemy uzyskać znaczne skrócenie czasu przeprowadzania symulacji poprzez ustawienie odpowiedniej liczby wątków.
+    \begin{figure}[ht]
+        \centering
+       \includegraphics[width=.8\textwidth]{symulacja.png}
+        \caption{Przeprowadzanie symulacji}
+      \end{figure}
 
 \end{document}
 

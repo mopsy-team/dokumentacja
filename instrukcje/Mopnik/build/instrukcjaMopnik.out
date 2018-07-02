@@ -1,10 +1,15 @@
-\BOOKMARK [0][-]{chapter.1}{Widok po uruchomieniu programu}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Wyswietlanie mapy}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{Ogladanie danych}{chapter.1}% 3
-\BOOKMARK [0][-]{chapter.2}{Test Chapter}{}% 4
-\BOOKMARK [1][-]{section.2.1}{A Section}{chapter.2}% 5
-\BOOKMARK [0][-]{chapter.3}{Test Chapter}{}% 6
-\BOOKMARK [1][-]{section.3.1}{A Section}{chapter.3}% 7
-\BOOKMARK [-1][-]{part.1}{Appendix}{}% 8
-\BOOKMARK [0][-]{appendix.A}{Appendix Chapter}{part.1}% 9
-\BOOKMARK [1][-]{section.A.1}{A Section}{appendix.A}% 10
+\BOOKMARK [0][-]{chapter*.2}{Widok po uruchomieniu programu}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Wyswietlanie mapy}{chapter*.2}% 2
+\BOOKMARK [1][-]{section.1.2}{Ogladanie danych}{chapter*.2}% 3
+\BOOKMARK [0][-]{chapter*.3}{Modyfikacja danych}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Parametry metodyki}{chapter*.3}% 5
+\BOOKMARK [1][-]{section.2.2}{Sredniodobowe natezenie ruchu}{chapter*.3}% 6
+\BOOKMARK [1][-]{section.2.3}{Uk\233ad MOP-\363w}{chapter*.3}% 7
+\BOOKMARK [2][-]{subsection.2.3.1}{Z pliku w formacie json}{section.2.3}% 8
+\BOOKMARK [2][-]{subsection.2.3.2}{Z serwera}{section.2.3}% 9
+\BOOKMARK [0][-]{chapter*.4}{Dodawanie nowych obiekt\363w}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Drogi}{chapter*.4}% 11
+\BOOKMARK [1][-]{section.3.2}{MOP-a}{chapter*.4}% 12
+\BOOKMARK [0][-]{chapter*.5}{Symulacje}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Przygotowanie do symulacji}{chapter*.5}% 14
+\BOOKMARK [1][-]{section.4.2}{Przeprowadzanie symulacji}{chapter*.5}% 15

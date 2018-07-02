@@ -1,12 +1,17 @@
 \vspace {-\cftbeforepartskip }
-\contentsline {chapter}{\numberline {1}\spacedlowsmallcaps {Widok po uruchomieniu programu}}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}Wy\IeC {\'s}wietlanie mapy}{3}{section.1.1}
-\contentsline {paragraph}{}{3}{section.1.1}
-\contentsline {section}{\numberline {1.2}Ogl\IeC {\k a}danie danych}{4}{section.1.2}
-\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {Test Chapter}}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}A Section}{7}{section.2.1}
-\contentsline {chapter}{\numberline {3}\spacedlowsmallcaps {Test Chapter}}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}A Section}{9}{section.3.1}
-\contentsline {part}{\numberline {i}\spacedlowsmallcaps {Appendix}}{11}{part.1}
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Appendix Chapter}}{13}{appendix.A}
-\contentsline {section}{\numberline {A.1}A Section}{13}{section.A.1}
+\contentsline {chapter}{Widok po uruchomieniu programu}{2}{chapter*.2}
+\contentsline {section}{\numberline {1.1}Wy\IeC {\'s}wietlanie mapy}{2}{section.1.1}
+\contentsline {paragraph}{}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Ogl\IeC {\k a}danie danych}{3}{section.1.2}
+\contentsline {chapter}{Modyfikacja danych}{5}{chapter*.3}
+\contentsline {section}{\numberline {2.1}Parametry metodyki}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}\IeC {\'S}redniodobowe nat\IeC {\k e}\IeC {\.z}enie ruchu}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Uk\IeC {\l }ad MOP-\IeC {\'o}w}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Z pliku w formacie json}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Z serwera}{6}{subsection.2.3.2}
+\contentsline {chapter}{Dodawanie nowych obiekt\IeC {\'o}w}{7}{chapter*.4}
+\contentsline {section}{\numberline {3.1}Drogi}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}MOP-a}{7}{section.3.2}
+\contentsline {chapter}{Symulacje}{8}{chapter*.5}
+\contentsline {section}{\numberline {4.1}Przygotowanie do symulacji}{8}{section.4.1}
+\contentsline {section}{\numberline {4.2}Przeprowadzanie symulacji}{8}{section.4.2}
